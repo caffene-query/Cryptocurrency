@@ -1679,10 +1679,10 @@ dcc_client/CMakeFiles/dcc_client.dir/Miner.cpp.o: \
  /usr/include/c++/12/queue /usr/include/c++/12/bits/stl_queue.h \
  /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/indicators.hpp \
  /usr/include/c++/12/iostream /usr/include/c++/12/thread \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/System.h \
  /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/strops.h \
  /usr/include/c++/12/math.h \
  /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/BaseConverter.h \
+ /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/System.h \
  /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/SettingsConsts.h \
  /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/crypto.h \
  /usr/include/openssl/md5.h /usr/include/openssl/macros.h \

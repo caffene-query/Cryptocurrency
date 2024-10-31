@@ -2419,7 +2419,13 @@ dcc_client/CMakeFiles/dcc_client.dir/Console.cpp.o: /home/sam/Code/Distributed-C
   /usr/include/c++/12/bits/node_handle.h \
   /usr/include/c++/12/bits/unordered_map.h \
   /usr/include/c++/12/bits/erase_if.h \
-  /usr/include/c++/12/array
+  /usr/include/c++/12/array \
+  /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/strops.h \
+  /usr/include/c++/12/cstring \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  /usr/include/c++/12/math.h \
+  /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/BaseConverter.h
 
 dcc_client/CMakeFiles/dcc_client.dir/FileManip.cpp.o: /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/FileManip.cpp \
   /usr/include/stdc-predef.h \
@@ -6419,10 +6425,10 @@ dcc_client/CMakeFiles/dcc_client.dir/Miner.cpp.o: /home/sam/Code/Distributed-Com
   /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/indicators.hpp \
   /usr/include/c++/12/iostream \
   /usr/include/c++/12/thread \
-  /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/System.h \
   /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/strops.h \
   /usr/include/c++/12/math.h \
   /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/BaseConverter.h \
+  /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/System.h \
   /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/SettingsConsts.h \
   /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/crypto.h \
   /usr/include/openssl/md5.h \

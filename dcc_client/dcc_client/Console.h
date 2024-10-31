@@ -3,6 +3,7 @@
 
 #include <queue>
 #include "indicators.hpp"
+#include "strops.h"
 
 
 namespace console
@@ -51,6 +52,11 @@ namespace console
 	// Reset colors
 	const std::string resetColor = "\033[0m";
 
+	struct colorstr{
+		std::string value = "";
+		std::string color = "";
+	};
+
 	std::string colorText(std::string name, std::string color);
 	std::string colorText(std::string name, std::string fgColor, std::string bgColor);
 
@@ -78,12 +84,15 @@ namespace console
 	void Write(std::string message, std::string fgColor, std::string bgColor);
 	void WriteDialogueAuthor(std::string coloredType);
 	void WriteIndented(std::string message, std::string fgColor, std::string bgColor, int indents);
+	void WriteLineIndented(std::string message, std::string fgColor, std::string bgColor, int indents);
 	void WriteBulleted(std::string message, std::string fgColor, std::string bgColor, int indents, std::string bullet);
 	void WriteBulleted(std::string message, std::string fgColor, std::string bgColor, int indents);
 	void WriteBulleted(std::string message, int indents, std::string bullet);
 	void WriteBulleted(std::string message, int indents);
 
 	void WriteLineCharArrayOfLen(char* message, int len);
+	void WriteTable(std::vector<std::string>& headers, std::vector<std::vector<colorstr>>& items, int maxWidths[], int indentation = 0, bool autoExpansion = true);
+	//void WriteTable(std::vector<std::string>& headers, std::vector<std::vector<std::string>>& items, int maxWidths[], std::vector<std::vector<std::string>>& itemColors);
 
 	std::string ReadLine();
 

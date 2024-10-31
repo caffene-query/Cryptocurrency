@@ -58,6 +58,8 @@ std::vector<std::string> keypair = { "", "" };
 
 P2P p2p;
 
+using console::colorstr;
+
 int main()
 {
 	Logo();
@@ -616,23 +618,12 @@ int main()
 				for (std::string delugeDir : delugeDirectories) {
 					console::Write("\nDeluges in directory: ");
 					console::WriteLine("\"" + delugeDir + "\"", console::yellowFGColor);
+					
+					std::vector<std::string> headers = {"Name", "ID", "Peers", "Size"};
+					std::vector<std::vector<colorstr>> content = std::vector<std::vector<colorstr>>();
+					int widths[] = {0, 0, 0, 0};
 
-					// Make table
-					console::WriteIndented("+---------------------------------+-------------------------+--------+-----------+\n", "", "", 1);
 
-					// Colored headers
-					console::WriteIndented("| ", "", "", 1);
-					console::Write("Name", console::cyanFGColor);
-					console::Write("                            |");
-					console::Write(" ID", console::cyanFGColor, "");
-					console::Write("                      |");
-					console::Write(" Peers", console::cyanFGColor, "");
-					console::Write("  |");
-					console::Write(" Size", console::cyanFGColor, "");
-					console::Write("      |");
-					console::WriteLine();
-
-					console::WriteIndented("+---------------------------------+-------------------------+--------+-----------+\n", "", "", 1);
 					for (auto deluge : fs::directory_iterator(delugeDir))
 					{
 						std::ifstream delugeFile(deluge.path());
@@ -642,12 +633,7 @@ int main()
 							json delugeJson = json::parse(delugeFilebuf.str());
 							delugeFile.close();
 
-							console::WriteIndented("| " + PadStringRight((std::string)delugeJson["_name"], ' ', 32) + "| ", "", "", 1);
-							console::Write(((std::string)delugeJson["_totalHash"]).substr(0, 20) + "... |");
-							console::Write(PadString(std::to_string(delugeJson["peers"].size()), ' ', 7) + " |");
-							console::Write(PadString(truncateMetricNum((unsigned long long)delugeJson["_totalSizeB"]), ' ', 9) + "B |");
-							console::WriteLine();
-
+							content.push_back({(colorstr){(std::string)delugeJson["_name"]},  (colorstr){((std::string)delugeJson["_totalHash"]).substr(0, 20)}, (colorstr){std::to_string(delugeJson["peers"].size())}, (colorstr){truncateMetricNum((unsigned long long)delugeJson["_totalSizeB"]) + "B"}}); // Add new row
 							//// Verify the deluge, by checking each chunk with its expected hash, and then the full hash
 							//std::string delugePath = "./wwwdata/containers/" + ((std::string)delugeJson["_totalHash"]).substr(0, 32) + ".tar.zip";
 							//if(VerifyDeluge(delugeJson, delugePath)){
@@ -663,7 +649,7 @@ int main()
 							//}
 						}
 					}
-					console::WriteIndented("+---------------------------------+-------------------------+--------+-----------+\n", "", "", 1);
+					console::WriteTable(headers, content, widths, 1);
 				}
 			}
 			else if (commandParts[0] == "--LIST-PEERS" || commandParts[0] == "-LP")
@@ -671,49 +657,28 @@ int main()
 				console::WriteLine();
 				console::Write("\nPeers: ");
 
-				// Make table
-				console::WriteIndented("+-----------------+-------+-------------+---------+---------+\n", "", "", 1);
+				std::vector<std::string> headers = {"IP", "PORT", "Known Peers", "Height", "Online"};
+				std::vector<std::vector<colorstr>> content = std::vector<std::vector<colorstr>>();
+				int widths[] = {0, 0, 0, 0, 0};
 
-				// Colored headers
-				console::WriteIndented("| ", "", "", 1);
-				console::Write("IP", console::cyanFGColor);
-				console::Write("              |");
-				console::Write(" PORT", console::cyanFGColor, "");
-				console::Write("  |");
-				console::Write(" Known Peers", console::cyanFGColor, "");
-				console::Write(" |");
-				console::Write(" Height", console::cyanFGColor, "");
-				console::Write("  |");
-				console::Write(" Online", console::cyanFGColor, "");
-				console::Write("  |");
-				console::WriteLine();
 
-				console::WriteIndented("+-----------------+-------+-------------+---------+---------+\n", "", "", 1);
 				for(const auto& [key, value] : p2p.p2pConnections)
 				{
 					// IP and Port
 					std::string ipPort = key;
-					console::WriteIndented("| " + PadStringRight(SplitString(ipPort, ":")[0], ' ', 16) + "| ", "", "", 1);
-					console::Write(PadStringRight(SplitString(ipPort, ":")[1], ' ', 5) + " |     ");
-
-					// Known peers
-					console::Write(PadString(std::to_string(value->peerList.size()), ' ', 7) + " | ");
-
-					// Height
-					console::Write(PadString(std::to_string(value->height), ' ', 7) + " | ");
 					
 					// Online/Offline
 					bool statusBool = value->testedOnline;
+					colorstr connectionStatusStr;
 					if (statusBool)
-						console::Write(PadStringRight("online", ' ', 7), console::greenFGColor);
+						connectionStatusStr = (colorstr){"online", console::greenFGColor};
 					else
-						console::Write(PadStringRight("unknown", ' ', 7), console::redFGColor);
-					console::Write(" | ");
+						connectionStatusStr = (colorstr){"unknown", console::redFGColor};
 
-
-					console::WriteLine();
+					content.push_back({(colorstr){SplitString(ipPort, ":")[0]},  (colorstr){SplitString(ipPort, ":")[1]}, (colorstr){std::to_string(value->peerList.size())}, (colorstr){std::to_string(value->height)}, connectionStatusStr}); // Add new row
 				}
-				console::WriteIndented("+-----------------+-------+-------------+---------+---------+\n", "", "", 1);
+				// Actually write the table finally
+				console::WriteTable(headers, content, widths, 1);
 			}
 
 			//else if (commandParts[0] == "--CONNECT" || commandParts[0] == "-C")

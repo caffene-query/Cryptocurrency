@@ -256,4 +256,8 @@ dcc_client/CMakeFiles/dcc_client.dir/Console.cpp.o: \
  /usr/include/c++/12/bits/enable_special_members.h \
  /usr/include/c++/12/bits/node_handle.h \
  /usr/include/c++/12/bits/unordered_map.h \
- /usr/include/c++/12/bits/erase_if.h /usr/include/c++/12/array
+ /usr/include/c++/12/bits/erase_if.h /usr/include/c++/12/array \
+ /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/strops.h \
+ /usr/include/c++/12/cstring /usr/include/string.h /usr/include/strings.h \
+ /usr/include/c++/12/math.h \
+ /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/BaseConverter.h

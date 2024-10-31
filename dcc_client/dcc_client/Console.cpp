@@ -202,6 +202,13 @@ namespace console{
 			ind += "\t";
 		PrintColored(ind + "  " + message, fgColor, bgColor);
 	}
+	void WriteLineIndented(std::string message, std::string fgColor, std::string bgColor, int indents)
+	{
+		std::string ind = "";
+		for (size_t i = 0; i < indents; i++)
+			ind += "\t";
+		PrintColored(ind + "  " + message + "\n", fgColor, bgColor);
+	}
 	void WriteBulleted(std::string message, std::string fgColor, std::string bgColor, int indents, std::string bullet)
 	{
 		std::string ind = "";
@@ -236,6 +243,58 @@ namespace console{
 			std::cout << message[i];
 	
 		std::cout << std::endl;
+	}
+	void WriteTable(std::vector<std::string>& headers, std::vector<std::vector<colorstr>>& items, int maxWidths[], int indentation, bool autoExpansion){
+		// If any of the data values are too large, expand the width of the column
+		if(autoExpansion)
+			for(int i = 0; i < items.size(); i++)
+				for(int k=0; k < items[i].size(); k++)
+					maxWidths[k] = std::max((int)(items[i][k].value.size()), maxWidths[k]);
+
+		std::string verticalSeparator = "";
+		for(int i = 0; i < headers.size(); i++){
+			maxWidths[i] = std::max(maxWidths[i], (int)(headers[i].length()));
+			verticalSeparator += "+";
+			for(int j = 0; j < maxWidths[i]+2; j++)
+				verticalSeparator += "-";
+			if(i == headers.size()-1)
+				verticalSeparator += "+";
+		}
+
+		// Print header:
+		WriteLineIndented(verticalSeparator, "", "", indentation);
+		WriteIndented("", "", "", indentation);
+		for(int i = 0; i < headers.size(); i++){
+			Write("| ");
+			std::string totalHeader = headers[i];
+			for(int j = headers[i].length(); j < maxWidths[i]; j++){
+				totalHeader += " ";
+			}
+			Write(totalHeader + " ", blueFGColor);
+			if(i == headers.size()-1)
+				Write("|");
+		}
+		WriteLine();
+		WriteLineIndented(verticalSeparator, "", "", indentation);
+
+		// Print items:
+		for(int i = 0; i < items.size(); i++){
+			WriteIndented("", "", "", indentation);
+			for(int k = 0; k < items[i].size(); k++){
+				Write("|");
+				std::string totalItem = PadString(items[i][k].value + " ", ' ', maxWidths[k] + 2);
+				std::string itemColor = items[i][k].color;
+				//if(items[i][k][1].size() > 0)
+				//	itemColor = itemColors[i][k];
+				Write(totalItem, itemColor);
+
+				if(k == items[i].size()-1)
+					Write("|");
+				
+			}
+			WriteLine();
+			WriteLineIndented(verticalSeparator, "", "", indentation);
+		}
 	}
 	//void WriteDialogueAuthor(std::string coloredType)
 	//{

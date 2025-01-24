@@ -256,8 +256,8 @@ void P2P::ListenerThread(int update_interval)
 
 				remoteAddrLen = sizeof(remoteAddr);
 
-				//if (setsockopt(localSocket, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv)) < 0)
-				//	ERRORMSG("Failed to set socket options");
+				if (setsockopt(localSocket, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv)) < 0)
+					ERRORMSG("Failed to set socket options");
 				int iResult = recvfrom(localSocket, buffer, BUFFERLENGTH, 0, (sockaddr*)&remoteAddr, &remoteAddrLen);
 
 				if (WalletSettingValues::verbose >= 9)

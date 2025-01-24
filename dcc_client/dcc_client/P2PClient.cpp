@@ -852,6 +852,7 @@ void P2P::SenderThread()
 					//otherAddrStr = "\0";
 					reqDat = -1;
 					role = -1;
+					otherAddrStr = "";
 					break;
 				}
 

@@ -13,7 +13,7 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1173 P2PClient.cpp
+badd +794 P2PClient.cpp
 badd +22 SettingsConsts.h
 badd +471 Main.cpp
 badd +31 P2PClient.h
@@ -118,44 +118,46 @@ normal! zo
 normal! zo
 749
 normal! zo
-790
+773
 normal! zo
-801
+799
 normal! zo
-802
+810
 normal! zo
-831
+811
 normal! zo
-850
+840
 normal! zo
-906
+859
 normal! zo
-910
+915
 normal! zo
-945
+919
 normal! zo
-960
+954
 normal! zo
-1052
+969
 normal! zo
-1062
+1061
 normal! zo
-1065
+1071
 normal! zo
-1137
+1074
 normal! zo
-1171
+1146
 normal! zo
-1183
+1180
 normal! zo
-1191
+1192
 normal! zo
-let s:l = 1173 - ((27 * winheight(0) + 28) / 56)
+1200
+normal! zo
+let s:l = 794 - ((45 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1173
-normal! 071|
+keepjumps 794
+normal! 048|
 tabnext
 edit P2PClient.h
 argglobal
@@ -420,12 +422,12 @@ normal! zo
 normal! zo
 707
 normal! zo
-let s:l = 471 - ((45 * winheight(0) + 28) / 56)
+let s:l = 344 - ((28 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 471
-normal! 0140|
+keepjumps 344
+normal! 021|
 tabnext
 argglobal
 if bufexists(fnamemodify("term://~/Code/Distributed-Compute-Coin/dcc_client/dcc_client//336272:/bin/bash", ":p")) | buffer term://~/Code/Distributed-Compute-Coin/dcc_client/dcc_client//336272:/bin/bash | else | edit term://~/Code/Distributed-Compute-Coin/dcc_client/dcc_client//336272:/bin/bash | endif
@@ -441,12 +443,12 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 476 - ((55 * winheight(0) + 28) / 56)
+let s:l = 56 - ((55 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 476
-normal! 076|
+keepjumps 56
+normal! 0
 tabnext
 edit SettingsConsts.h
 argglobal
@@ -464,7 +466,7 @@ keepjumps exe s:l
 normal! zt
 keepjumps 23
 normal! 036|
-tabnext 9
+tabnext 1
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

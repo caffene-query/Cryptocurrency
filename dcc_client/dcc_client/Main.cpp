@@ -405,6 +405,9 @@ int main()
 				p2p.AddToPeerList(commandParts[1]);
 				p2p.SavePeerList();
 			}
+			else if (commandParts[0] == "--PRINTP2PINFO") {
+				p2p.PrintP2PInfo();
+			}
 			//else if (commandParts[0] == "--VERBOSITY")
 			//{
 			//	WalletSettingValues::verbose = std::stoi(commandParts[1]);

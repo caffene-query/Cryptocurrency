@@ -786,6 +786,15 @@ void P2P::SetPeer(std::string key)
 	}
 }
 
+void P2P::PrintP2PInfo()
+{
+	console::WriteLine("P2P Information:");
+	console::WriteLine("peerListID: " + peerListID);
+	console::WriteLine("peerIP: " + peerIP);
+	console::WriteLine("peerPort: " + std::to_string(peerPort));
+	console::WriteLine("messageStatus: " + std::to_string(messageStatus));
+}
+
 // The function that is run in a thread in order to reply or send data to a peer in the background
 void P2P::SenderThread()
 {

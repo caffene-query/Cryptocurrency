@@ -147,6 +147,7 @@ public:
 	void SetPeer(std::string id);
 	//int mySendTo(int socket, std::string& s, int len, int redundantFlags, sockaddr* to, int toLen);
 	int OpenP2PSocket(int port);
+	void PrintP2PInfo();
 	void SenderThread();
 	int mySendTo(int socket, std::string& s, int len, int redundantFlags, sockaddr* to, int toLen);
 	void InitPeerList();

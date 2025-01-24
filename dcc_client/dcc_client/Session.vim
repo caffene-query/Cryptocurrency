@@ -13,9 +13,9 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +420 P2PClient.cpp
-badd +22 SettingsConsts.h
-badd +471 Main.cpp
+badd +606 P2PClient.cpp
+badd +32 SettingsConsts.h
+badd +668 Main.cpp
 badd +31 P2PClient.h
 badd +419 Blockchain.cpp
 badd +41 strops.h
@@ -56,6 +56,8 @@ setlocal fdn=20
 setlocal fen
 49
 normal! zo
+56
+normal! zo
 69
 normal! zo
 117
@@ -78,66 +80,62 @@ normal! zo
 normal! zo
 266
 normal! zo
-313
-normal! zo
-324
-normal! zo
 350
 normal! zo
 351
 normal! zo
-353
+444
 normal! zo
-386
+464
 normal! zo
-442
+481
 normal! zo
-461
+483
 normal! zo
-478
+501
 normal! zo
-521
+524
 normal! zo
-566
+528
 normal! zo
-572
+536
 normal! zo
-635
+570
 normal! zo
-669
+576
 normal! zo
-687
+583
 normal! zo
-756
+604
 normal! zo
-806
+639
 normal! zo
-817
+673
 normal! zo
-818
+681
 normal! zo
-847
+691
 normal! zo
-906
+760
 normal! zo
-952
+784
 normal! zo
-961
+788
 normal! zo
-1068
+810
 normal! zo
-1153
+821
 normal! zo
-1187
+822
 normal! zo
-1199
+1158
 normal! zo
-let s:l = 630 - ((44 * winheight(0) + 28) / 56)
+let s:l = 523 - ((9 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 630
-normal! 0
+keepjumps 523
+normal! 051|
 tabnext
 edit P2PClient.h
 argglobal
@@ -396,18 +394,30 @@ normal! zo
 normal! zo
 428
 normal! zo
-575
-normal! zo
 578
 normal! zo
-614
+581
 normal! zo
-let s:l = 344 - ((28 * winheight(0) + 28) / 56)
+617
+normal! zo
+726
+normal! zo
+730
+normal! zo
+746
+normal! zo
+761
+normal! zo
+762
+normal! zo
+771
+normal! zo
+let s:l = 574 - ((24 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 344
-normal! 021|
+keepjumps 574
+normal! 044|
 tabnext
 argglobal
 if bufexists(fnamemodify("term://~/Code/Distributed-Compute-Coin/dcc_client/dcc_client//336272:/bin/bash", ":p")) | buffer term://~/Code/Distributed-Compute-Coin/dcc_client/dcc_client//336272:/bin/bash | else | edit term://~/Code/Distributed-Compute-Coin/dcc_client/dcc_client//336272:/bin/bash | endif
@@ -440,12 +450,12 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 23 - ((22 * winheight(0) + 28) / 56)
+let s:l = 18 - ((17 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 23
-normal! 036|
+keepjumps 18
+normal! 05|
 tabnext 1
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

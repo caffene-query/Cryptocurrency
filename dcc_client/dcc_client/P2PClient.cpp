@@ -427,19 +427,26 @@ void P2P::ListenerThread(int update_interval)
 							console::WriteLine("Dual Confirmation", console::greenFGColor, "");
 						}
 						//messageStatus = await_second_success; // Confirmed message status, continue sending our own
+						p2pConnections[otherAddrStr]->testedOnline = true;
 						messageStatus = idle;  // Confirmed message status, continue sending our own
+						reqDat = -1;
+						messageStatus = -1;
+						pendingReceiveData = false;
+						otherAddrStr = "";
 						// confirm 2 times, then switch to idle state -1
-						CONNECTED_TO_PEER = true;
+						CONNECTED_TO_PEER = false;
 					}
 					// If the peer is idling
 					else if (totalMessage == "peer~idle") {
 						if (WalletSettingValues::verbose >= 5) {
 							console::DebugPrint();
 							console::WriteLine("idle...", console::yellowFGColor, "");
+							p2pConnections[otherAddrStr]->testedOnline = true;
 						}
 					}
 					// If peer is requesting data
 					else if (SplitString(totalMessage, "~")[0] == "request") {
+						p2pConnections[otherAddrStr]->testedOnline = true;
 						messagePrefix += "request~";
 						// If peer is asking for blockchain height
 						if (SplitString(totalMessage, "~")[1] == "height")
@@ -519,6 +526,7 @@ void P2P::ListenerThread(int update_interval)
 					}
 					// If peer is answering request
 					else if (SplitString(totalMessage, "~")[0] == "answer") {
+						p2pConnections[otherAddrStr]->testedOnline = true;
 						messagePrefix += "answer~";
 						// If peer is giving blockchain height
 						if (SplitString(totalMessage, "~")[1] == "height") {

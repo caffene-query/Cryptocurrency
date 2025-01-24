@@ -8820,6 +8820,7 @@ dcc_client/CMakeFiles/dcc_client.dir/P2PClient.cpp.o: /home/sam/Code/Distributed
 
 dcc_client/CMakeFiles/dcc_client.dir/SettingsConsts.cpp.o: /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/SettingsConsts.cpp \
   /usr/include/stdc-predef.h \
+  /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/SettingsConsts.h \
   /usr/include/c++/12/string \
   /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
   /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \
@@ -8962,8 +8963,7 @@ dcc_client/CMakeFiles/dcc_client.dir/SettingsConsts.cpp.o: /home/sam/Code/Distri
   /usr/include/asm-generic/errno-base.h \
   /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
   /usr/include/c++/12/bits/charconv.h \
-  /usr/include/c++/12/bits/basic_string.tcc \
-  /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/SettingsConsts.h
+  /usr/include/c++/12/bits/basic_string.tcc
 
 dcc_client/CMakeFiles/dcc_client.dir/System.cpp.o: /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/System.cpp \
   /usr/include/stdc-predef.h \

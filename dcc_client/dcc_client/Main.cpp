@@ -548,6 +548,9 @@ int main()
 				else
 					console::WriteLine("Verbosity is currently set to (" + std::to_string(WalletSettingValues::verbose) + ")");
 			}
+			else if (commandParts[0] == "--DEVMODE" || commandParts[0] == "-dev") {
+				WalletSettingValues::developerMode = !WalletSettingValues::developerMode;
+			}
 			else if (commandParts[0] == "--MINEANY" || commandParts[0] == "-MA") {
 				std::string diff = "";
 				if (commandParts.size() == 3)
@@ -710,11 +713,9 @@ Usage: miner.exe [options]
 Options:
   -h, --help                          Display this help menu
   -v, --version                       Print the current wallet and block version
+  -vb, --verbosity <int>              Set the client print verbosity, higher => more info. Default 2
   -s, --sync                          Manually re-sync blockchain
-  -sb, --syncblock                    Manually re-sync a single block on the blockchain
   -m, --mine <amount>                 Mine <amount> number of blocks, defaults to 1 if not specified
-  -ma, --mineany <block num> <dif>    (Debug) Mines the block specified by <block num> at the given 
-                                          difficulty <dif>
   --funds                             Count and print the funds of the user
   --difficulty                        Calculate the expected block's difficulty
   -sn, --send <addr> <amount>         Sends the <amount> of Aether to a receiving address <addr>
@@ -722,8 +723,21 @@ Options:
   -vf, --verify                       Verify the entire blockchain to make sure all blocks are valid
   -p, --pool <url>                    Start mining at a pool, given by <url>. Default is http://distributedcomputeproject.org
   -mk, --make-container <path>        Create a new Deluge for sharing a container (this won't publish it yet)
-
 )V0G0N");
+
+	if (WalletSettingValues::developerMode) {
+		console::WriteLine(R"V0G0N(
+Developer Options:
+  -dev, --devmode                     Toggle Developer mode
+  -sb, --syncblock                    Manually re-sync a single block on the blockchain
+  --addpeer <IP>:<PORT>               Manually add a peer with IP and PORT specified
+  --printp2pinfo                      Print the current/last connected peer information and p2p status
+  --currentconnection                 Similar to printp2pinfo, but just the connected peer
+  -ma, --mineany <block num> <dif>    (Debug) Mines the block specified by <block num> at the given 
+                                          difficulty <dif>
+)V0G0N");
+	}
+	console::WriteLine();
 }
 
 

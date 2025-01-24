@@ -13,7 +13,7 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +794 P2PClient.cpp
+badd +420 P2PClient.cpp
 badd +22 SettingsConsts.h
 badd +471 Main.cpp
 badd +31 P2PClient.h
@@ -88,76 +88,56 @@ normal! zo
 normal! zo
 353
 normal! zo
-385
+386
 normal! zo
-439
+442
 normal! zo
-458
+461
 normal! zo
-475
-normal! zo
-477
-normal! zo
-518
+478
 normal! zo
 521
 normal! zo
-529
+566
 normal! zo
-563
+572
 normal! zo
-573
+635
 normal! zo
-628
+669
 normal! zo
-634
+687
 normal! zo
-662
+756
 normal! zo
-680
+806
 normal! zo
-749
+817
 normal! zo
-773
+818
 normal! zo
-799
+847
 normal! zo
-810
+906
 normal! zo
-811
+952
 normal! zo
-840
+961
 normal! zo
-859
+1068
 normal! zo
-915
+1153
 normal! zo
-919
+1187
 normal! zo
-954
+1199
 normal! zo
-969
-normal! zo
-1061
-normal! zo
-1071
-normal! zo
-1074
-normal! zo
-1146
-normal! zo
-1180
-normal! zo
-1192
-normal! zo
-1200
-normal! zo
-let s:l = 794 - ((45 * winheight(0) + 28) / 56)
+let s:l = 630 - ((44 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 794
-normal! 048|
+keepjumps 630
+normal! 0
 tabnext
 edit P2PClient.h
 argglobal
@@ -410,17 +390,17 @@ normal! zo
 normal! zo
 346
 normal! zo
-420
+415
 normal! zo
-425
+423
 normal! zo
-450
+428
 normal! zo
-611
+575
 normal! zo
-620
+578
 normal! zo
-707
+614
 normal! zo
 let s:l = 344 - ((28 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif

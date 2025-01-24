@@ -417,6 +417,7 @@ void P2P::ListenerThread(int update_interval)
 						reqDat = -1;
 						messageStatus = -1;
 						pendingReceiveData = false;
+						otherAddrStr = "";
 						return;
 					}
 					// If the peer is requesting message received confirmation

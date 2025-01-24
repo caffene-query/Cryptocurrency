@@ -256,8 +256,8 @@ void P2P::ListenerThread(int update_interval)
 
 				remoteAddrLen = sizeof(remoteAddr);
 
-				if (setsockopt(localSocket, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv)) < 0)
-					ERRORMSG("Failed to set socket options");
+				//if (setsockopt(localSocket, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv)) < 0)
+				//	ERRORMSG("Failed to set socket options");
 				int iResult = recvfrom(localSocket, buffer, BUFFERLENGTH, 0, (sockaddr*)&remoteAddr, &remoteAddrLen);
 
 				if (WalletSettingValues::verbose >= 9)
@@ -354,6 +354,7 @@ void P2P::ListenerThread(int update_interval)
 								totalMessage = "";
 								for (int part = 1; part <= maxSegments; part++)
 									totalMessage += messageParts[part];
+								pendingReceiveData = false;
 							}
 							else
 								continue;
@@ -415,6 +416,7 @@ void P2P::ListenerThread(int update_interval)
 						CONNECTED_TO_PEER = false;
 						reqDat = -1;
 						messageStatus = -1;
+						pendingReceiveData = false;
 						return;
 					}
 					// If the peer is requesting message received confirmation
@@ -566,8 +568,11 @@ void P2P::ListenerThread(int update_interval)
 							std::string blockData = SplitString(totalMessage, "~")[3];
 
 							// Make sure this data is actually being requested; we don't want a forced download.
-							if (reqDat != num)
+							if (reqDat != num) {
+								if (WalletSettingValues::verbose >= 5)
+									console::WriteLine("\nAnswered block does not match request: " + std::to_string(reqDat) + " != " + std::to_string(num));
 								continue;
+							}
 
 							// Save block data to file
 							try {
@@ -598,6 +603,7 @@ void P2P::ListenerThread(int update_interval)
 					messageAttempt = 0;
 					otherAddrStr = "";
 					noreceipt = 0;
+					pendingReceiveData = false;
 				}
 				else {
 					noreceipt++;

@@ -13,22 +13,30 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +940 P2PClient.cpp
-badd +27 SettingsConsts.h
-badd +134 Main.cpp
-badd +107 P2PClient.h
-badd +790 Blockchain.cpp
+badd +1173 P2PClient.cpp
+badd +22 SettingsConsts.h
+badd +471 Main.cpp
+badd +31 P2PClient.h
+badd +419 Blockchain.cpp
 badd +41 strops.h
-badd +0 indicators.hpp
-badd +97 Console.h
-badd +0 ~/Code/Distributed-Compute-Coin/dcc_client/CMakeLists.txt
+badd +1 indicators.hpp
+badd +94 Console.h
+badd +1 ~/Code/Distributed-Compute-Coin/dcc_client/CMakeLists.txt
 badd +15 CMakeLists.txt
 badd +25 Blockchain.h
-badd +0 Miner.cpp
+badd +352 Miner.cpp
+badd +255 Console.cpp
+badd +1 strops.cpp
+badd +1 term://~/Code/Distributed-Compute-Coin/dcc_client/dcc_client//336272:/bin/bash
+badd +12 ~/Code/Distributed-Compute-Coin/dcc_client/out-linux/dcc_client/out.txt
 argglobal
 %argdel
 $argadd P2PClient.cpp
 set stal=2
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
 tabnew +setlocal\ bufhidden=wipe
 tabnew +setlocal\ bufhidden=wipe
 tabnew +setlocal\ bufhidden=wipe
@@ -46,261 +54,125 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-48
+49
 normal! zo
-56
+69
 normal! zo
-82
+117
 normal! zo
-90
+125
 normal! zo
-94
-normal! zo
-152
-normal! zo
-155
-normal! zo
-158
-normal! zo
-178
-normal! zo
-184
+128
 normal! zo
 187
 normal! zo
-192
-normal! zo
-202
-normal! zo
-253
-normal! zo
-304
-normal! zo
-317
-normal! zo
-338
-normal! zo
-349
-normal! zo
-356
-normal! zo
-375
-normal! zo
-393
-normal! zo
-395
-normal! zo
-415
-normal! zo
-440
-normal! zo
-443
-normal! zo
-452
-normal! zo
-456
-normal! zo
-458
-normal! zo
-471
-normal! zo
-483
-normal! zo
-188
+190
 normal! zo
 192
 normal! zo
-198
+234
 normal! zo
-208
+236
 normal! zo
-259
+250
 normal! zo
-310
+266
 normal! zo
-323
+313
 normal! zo
-344
+324
 normal! zo
-355
+350
 normal! zo
-362
+351
 normal! zo
-381
+353
 normal! zo
-399
+385
 normal! zo
-401
-normal! zo
-421
-normal! zo
-446
-normal! zo
-449
+439
 normal! zo
 458
 normal! zo
-462
-normal! zo
-464
+475
 normal! zo
 477
 normal! zo
-489
+518
 normal! zo
-539
+521
 normal! zo
-542
+529
 normal! zo
-553
+563
 normal! zo
-588
+573
 normal! zo
-597
+628
 normal! zo
-645
+634
 normal! zo
-685
+662
 normal! zo
-698
+680
 normal! zo
-719
+749
 normal! zo
-730
+790
 normal! zo
-737
+801
 normal! zo
-755
+802
 normal! zo
-772
+831
 normal! zo
-774
+850
 normal! zo
-794
+906
 normal! zo
-819
-normal! zo
-821
-normal! zo
-829
-normal! zo
-832
-normal! zo
-834
-normal! zo
-847
-normal! zo
-857
-normal! zo
-591
-normal! zo
-603
-normal! zo
-621
-normal! zo
-659
-normal! zo
-699
-normal! zo
-712
-normal! zo
-733
-normal! zo
-744
-normal! zo
-751
-normal! zo
-769
-normal! zo
-786
-normal! zo
-788
-normal! zo
-808
-normal! zo
-833
-normal! zo
-835
-normal! zo
-843
-normal! zo
-846
-normal! zo
-848
-normal! zo
-861
-normal! zo
-871
-normal! zo
-921
-normal! zo
-926
-normal! zo
-943
-normal! zo
-944
-normal! zo
-944
+910
 normal! zo
 945
 normal! zo
-961
+960
 normal! zo
-978
+1052
 normal! zo
-1046
+1062
 normal! zo
-1063
+1065
 normal! zo
-1079
-normal! zo
-1090
-normal! zo
-1091
-normal! zo
-1117
-normal! zo
-1120
-normal! zo
-1140
-normal! zo
-1148
-normal! zo
-1156
+1137
 normal! zo
 1171
 normal! zo
-1180
+1183
 normal! zo
-1195
+1191
 normal! zo
-1210
-normal! zo
-1223
-normal! zo
-1233
-normal! zo
-1244
-normal! zo
-1255
-normal! zo
-1266
-normal! zo
-1286
-normal! zo
-1296
-normal! zo
-1299
-normal! zo
-1304
-normal! zo
-1338
-normal! zo
-let s:l = 924 - ((16 * winheight(0) + 28) / 56)
+let s:l = 1173 - ((27 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 924
+keepjumps 1173
+normal! 071|
+tabnext
+edit P2PClient.h
+argglobal
+balt P2PClient.cpp
+setlocal fdm=expr
+setlocal fde=b:anyfold_ind_buffer[v:lnum-1]
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=99
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 32 - ((29 * winheight(0) + 28) / 56)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 32
 normal! 0
 tabnext
 edit Blockchain.cpp
@@ -313,84 +185,80 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-36
+19
+normal! zo
+35
 normal! zo
 51
 normal! zo
 53
 normal! zo
-55
+54
 normal! zo
-69
+68
 normal! zo
-71
+247
 normal! zo
-251
+434
 normal! zo
-318
+443
 normal! zo
-405
-normal! zo
-435
-normal! zo
-510
-normal! zo
-514
+513
 normal! zo
 515
 normal! zo
-541
+536
 normal! zo
-543
+540
 normal! zo
-613
+566
 normal! zo
-628
+567
 normal! zo
-628
+568
 normal! zo
-628
+581
 normal! zo
-641
+635
 normal! zo
-643
+650
 normal! zo
-647
+662
 normal! zo
 663
 normal! zo
-702
+666
 normal! zo
-713
+667
 normal! zo
-727
+683
 normal! zo
-736
+743
 normal! zo
-783
+858
 normal! zo
-789
+883
 normal! zo
-796
+917
 normal! zo
-798
+970
 normal! zo
-845
+978
 normal! zo
-869
+987
 normal! zo
-903
+993
 normal! zo
-1045
+1058
 normal! zo
-1170
+1174
 normal! zo
-let s:l = 950 - ((26 * winheight(0) + 28) / 56)
+let s:l = 176 - ((40 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 950
-normal! 017|
+keepjumps 176
+normal! 040|
 tabnext
 edit Miner.cpp
 argglobal
@@ -407,26 +275,93 @@ setlocal fen
 normal! zo
 30
 normal! zo
-161
+146
 normal! zo
-172
+164
 normal! zo
-195
+178
+normal! zo
+185
+normal! zo
+208
 normal! zo
 218
 normal! zo
-228
+220
 normal! zo
-266
+345
 normal! zo
-364
-normal! zo
-let s:l = 397 - ((45 * winheight(0) + 28) / 56)
+let s:l = 352 - ((27 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 397
-normal! 05|
+keepjumps 352
+normal! 083|
+tabnext
+edit Console.cpp
+argglobal
+balt Miner.cpp
+setlocal fdm=expr
+setlocal fde=b:anyfold_ind_buffer[v:lnum-1]
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=99
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+25
+normal! zo
+200
+normal! zo
+242
+normal! zo
+249
+normal! zo
+let s:l = 292 - ((44 * winheight(0) + 28) / 56)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 292
+normal! 0
+tabnext
+edit strops.cpp
+argglobal
+balt Console.cpp
+setlocal fdm=expr
+setlocal fde=b:anyfold_ind_buffer[v:lnum-1]
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=99
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+108
+normal! zo
+let s:l = 109 - ((27 * winheight(0) + 28) / 56)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 109
+normal! 0
+tabnext
+edit Console.h
+argglobal
+setlocal fdm=expr
+setlocal fde=b:anyfold_ind_buffer[v:lnum-1]
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=99
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+10
+normal! zo
+let s:l = 94 - ((41 * winheight(0) + 28) / 56)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 94
+normal! 0
 tabnext
 edit Blockchain.h
 argglobal
@@ -439,11 +374,11 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 38 - ((37 * winheight(0) + 28) / 56)
+let s:l = 37 - ((36 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 38
+keepjumps 37
 normal! 0
 tabnext
 edit Main.cpp
@@ -457,48 +392,48 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-61
+58
 normal! zo
-118
+114
 normal! zo
-129
+124
 normal! zo
-210
+205
 normal! zo
-213
+207
 normal! zo
-223
+322
 normal! zo
-325
+333
 normal! zo
-382
+346
 normal! zo
-438
+420
 normal! zo
-444
+425
 normal! zo
-556
+450
 normal! zo
-563
+611
 normal! zo
-634
+620
 normal! zo
-655
+707
 normal! zo
-731
-normal! zo
-754
-normal! zo
-let s:l = 561 - ((45 * winheight(0) + 28) / 56)
+let s:l = 471 - ((45 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 561
-normal! 013|
+keepjumps 471
+normal! 0140|
 tabnext
-edit P2PClient.h
 argglobal
-setlocal fdm=expr
+if bufexists(fnamemodify("term://~/Code/Distributed-Compute-Coin/dcc_client/dcc_client//336272:/bin/bash", ":p")) | buffer term://~/Code/Distributed-Compute-Coin/dcc_client/dcc_client//336272:/bin/bash | else | edit term://~/Code/Distributed-Compute-Coin/dcc_client/dcc_client//336272:/bin/bash | endif
+if &buftype ==# 'terminal'
+  silent file term://~/Code/Distributed-Compute-Coin/dcc_client/dcc_client//336272:/bin/bash
+endif
+balt Main.cpp
+setlocal fdm=manual
 setlocal fde=b:anyfold_ind_buffer[v:lnum-1]
 setlocal fmr={{{,}}}
 setlocal fdi=#
@@ -506,14 +441,12 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-51
-normal! zo
-let s:l = 31 - ((10 * winheight(0) + 28) / 56)
+let s:l = 476 - ((55 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 31
-normal! 017|
+keepjumps 476
+normal! 076|
 tabnext
 edit SettingsConsts.h
 argglobal
@@ -525,13 +458,13 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 27 - ((26 * winheight(0) + 28) / 56)
+let s:l = 23 - ((22 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 27
-normal! 037|
-tabnext 3
+keepjumps 23
+normal! 036|
+tabnext 9
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

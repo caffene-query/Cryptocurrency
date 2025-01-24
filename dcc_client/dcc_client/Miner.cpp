@@ -2,13 +2,13 @@
 #include "Miner.h"
 
 #if defined(__unix__)
-#include <curses.h>
-#include <stdio.h>
-#define ISKEYDOWN(X) (getch() == X)
+	#include <curses.h>
+	#include <stdio.h>
+	#define ISKEYDOWN(X) (getch() == X)
 
 #else
 
-#define ISKEYDOWN(X) GetAsyncKeyState(X)
+	#define ISKEYDOWN(X) GetAsyncKeyState(X)
 
 #endif
 
@@ -27,8 +27,7 @@ int Mine(json currentBlockJson, int blockNum, json& walletInfo)
 
 	std::string seedStr = std::to_string(rand());
 	//stdlib_rand_numeric_string(seedStr, 16);
-	try
-	{
+	try {
 		auto startTime = std::chrono::steady_clock::now();
 
 		std::string runCommand = "podman run -d --network none --rm --name=" + (std::string)(walletInfo["ProgramID"]) + " -v ./wwwdata/programs/" + (std::string)(walletInfo["ProgramID"]) + ":/out/ " + (std::string)(walletInfo["ProgramID"]) + " /bin/bash run.sh --seed " + seedStr;
@@ -45,7 +44,7 @@ int Mine(json currentBlockJson, int blockNum, json& walletInfo)
 		char sha256OutBuffer[65];
 
 		// Get hash from previous block
-		std::ifstream blockFile("./wwwdata/blockchain/block" + std::to_string((int)walletInfo["BlockchainLength"]) + ".dccblock");
+		std::ifstream blockFile("./wwwdata/blockchain/block" + std::to_string((int)walletInfo["BlockchainLength"]) + ".agblock");
 		std::stringstream blockBuffer;
 		blockBuffer << blockFile.rdbuf();
 		currentBlockJson["pprev"] = (std::string)(json::parse(blockBuffer.str())["hash"]);
@@ -71,9 +70,8 @@ int Mine(json currentBlockJson, int blockNum, json& walletInfo)
 		// The data we will actually be mining for is a hash of the
 		// transactions and header, so we don't need to do calculations on
 		// massive amounts of data
-		std::string txData; // Only use the `tx` portion of each transaction objects' data
-		for (size_t i = 0; i < currentBlockJson["transactions"].size(); i++)
-		{
+		std::string txData;	 // Only use the `tx` portion of each transaction objects' data
+		for (size_t i = 0; i < currentBlockJson["transactions"].size(); i++) {
 			txData += (std::string)(currentBlockJson["transactions"][i]["tx"].dump());
 		}
 		std::string fDat = (std::string)currentBlockJson["pprev"] + txData;
@@ -81,13 +79,12 @@ int Mine(json currentBlockJson, int blockNum, json& walletInfo)
 		std::string hData = std::string(sha256OutBuffer);
 		char* hDataChars = (char*)hData.c_str();
 
-		char numberstring[] = { '-' ,'-' ,'-' ,'-' ,'-' ,'-' ,'-' ,'-' ,'-' ,'-' ,'-' ,'-' ,'0' ,'0' ,'0' ,'0' ,'0', '\0' };
+		char numberstring[] = {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '0', '0', '0', '0', '0', '\0'};
 		char databuffer[83];
 		strncpy(databuffer, hDataChars, sizeof(databuffer));
 		//strncat(databuffer, numberstring, 18);
 		// While hash is not less than the target difficulty number
-		do
-		{
+		do {
 			nonce++;
 			addOneToHexStr(numberstring, 17);
 			strncpy(databuffer, hDataChars, 82);
@@ -98,8 +95,7 @@ int Mine(json currentBlockJson, int blockNum, json& walletInfo)
 			sha256_full_cstr(databuffer, hash);
 
 			// print status every second
-			if ((since(hashStart).count()) >= 1000)
-			{
+			if ((since(hashStart).count()) >= 1000) {
 				hashesPerSecond = nonce - hashesAtStart;
 				hashStart = std::chrono::steady_clock::now();
 				hashesAtStart = nonce;
@@ -108,16 +104,14 @@ int Mine(json currentBlockJson, int blockNum, json& walletInfo)
 				console::Write("\r" + std::to_string((int)std::round(since(startTime).count() / 1000)) + "s :	" + numberstring + " # " + std::string(sha256OutBuffer));
 				console::Write("   " + FormatHPS((float)hashesPerSecond) + " ");
 
-				[[unlikely]]
-				if (ISKEYDOWN(0x51)) // Q Key for quit loop
-					//if (kbhit())
-					//	if (GETKEY() == 'q')
-							return 2;
-				[[unlikely]]
-				if (ISKEYDOWN(0x50)) // P Key for pause loop
-					//if (kbhit())
-					//	if (GETKEY() == 'p')
-							return 3;
+				[[unlikely]] if (ISKEYDOWN(0x51))  // Q Key for quit loop
+												   //if (kbhit())
+												   //	if (GETKEY() == 'q')
+					return 2;
+				[[unlikely]] if (ISKEYDOWN(0x50))  // P Key for pause loop
+												   //if (kbhit())
+												   //	if (GETKEY() == 'p')
+					return 3;
 			}
 		} while (!CompareCharNumbers(c_difficulty, hash));
 
@@ -149,17 +143,14 @@ int Mine(json currentBlockJson, int blockNum, json& walletInfo)
 		currentBlockJson["time"] = sec;
 
 		// Save new json data to file into finished blockchain folder
-		try
-		{
-			std::ofstream blockFilew("./wwwdata/blockchain/block" + std::to_string(blockNum) + ".dccblock");
-			if (blockFilew.is_open())
-			{
+		try {
+			std::ofstream blockFilew("./wwwdata/blockchain/block" + std::to_string(blockNum) + ".agblock");
+			if (blockFilew.is_open()) {
 				blockFilew << currentBlockJson.dump();
 				blockFilew.close();
 			}
 		}
-		catch (const std::exception& e)
-		{
+		catch (const std::exception& e) {
 			ERRORMSG("Failed to save block");
 			if (WalletSettingValues::verbose >= 1)
 				std::cerr << e.what() << std::endl;
@@ -167,7 +158,7 @@ int Mine(json currentBlockJson, int blockNum, json& walletInfo)
 		}
 
 		// Remove the block from pending
-		fs::remove("./wwwdata/pendingblocks/block" + std::to_string(blockNum) + ".dccblock");
+		fs::remove("./wwwdata/pendingblocks/block" + std::to_string(blockNum) + ".agblock");
 
 		// Create new pending block if there are no more
 		if (FileCount("./wwwdata/pendingblocks/") == 0) {
@@ -184,17 +175,14 @@ int Mine(json currentBlockJson, int blockNum, json& walletInfo)
 			blockJson["id"] = blockNum + 1;
 
 			// Save new json data to file into finished blockchain folder
-			try
-			{
-				std::ofstream blockFilew("./wwwdata/pendingblocks/block" + std::to_string(blockNum + 1) + ".dccblock");
-				if (blockFilew.is_open())
-				{
+			try {
+				std::ofstream blockFilew("./wwwdata/pendingblocks/block" + std::to_string(blockNum + 1) + ".agblock");
+				if (blockFilew.is_open()) {
 					blockFilew << blockJson.dump();
 					blockFilew.close();
 				}
 			}
-			catch (const std::exception& e)
-			{
+			catch (const std::exception& e) {
 				ERRORMSG("Failed to save block");
 				if (WalletSettingValues::verbose >= 1)
 					std::cerr << e.what() << std::endl;
@@ -208,8 +196,7 @@ int Mine(json currentBlockJson, int blockNum, json& walletInfo)
 
 		return 1;
 	}
-	catch (const std::exception& e)
-	{
+	catch (const std::exception& e) {
 		//if (WalletSettingValues::verbose == true)
 		ERRORMSG("");
 		std::cerr << e.what() << std::endl;
@@ -228,13 +215,11 @@ int PoolMine(std::string poolURL, json& walletInfo)
 	std::string hData = "";
 	unsigned long long int nonce = 0;
 	unsigned long long int maxNonce = 0;
-	while (true)
-	{
+	while (true) {
 		// Request the data to mine from the pool, and receive the hash along with a nonce range.
-		try
-		{
+		try {
 			Http http;
-			std::vector<std::string> args = { "query=requestData", "lastNonce=" + std::to_string(maxNonce) };
+			std::vector<std::string> args = {"query=requestData", "lastNonce=" + std::to_string(maxNonce)};
 			std::string html = http.StartHttpWebRequest(poolURL, args);
 			std::cout << "\"" << html << "\"" << std::endl;
 
@@ -251,8 +236,7 @@ int PoolMine(std::string poolURL, json& walletInfo)
 			console::Write("new job ", console::magentaFGColor, "");
 			console::WriteLine("from " + poolURL + " nonces " + std::to_string(maxNonce - nonce) + " height " + std::to_string(blockNumber));
 		}
-		catch (const std::exception& e)
-		{
+		catch (const std::exception& e) {
 			console::NetworkErrorPrint();
 			console::WriteLine("Connection error.");
 			std::cerr << e.what() << std::endl;
@@ -266,8 +250,7 @@ int PoolMine(std::string poolURL, json& walletInfo)
 		console::Write(" at difficulty ");
 		console::Write(difficulty, console::cyanFGColor, "");
 		console::Write(" :\n");
-		try
-		{
+		try {
 			auto startTime = std::chrono::steady_clock::now();
 
 			// The Docker program execution needs to be thought out more, because it would need changes for pool mining.
@@ -291,8 +274,7 @@ int PoolMine(std::string poolURL, json& walletInfo)
 			char databuffer[128];
 			strncpy(databuffer, hDataChars, sizeof(databuffer));
 			// While hash is not less than the target difficulty number, and nonces are not exhausted
-			do
-			{
+			do {
 				nonce++;
 				sprintf(numberstring, "%x", nonce);
 				strncpy(databuffer, hDataChars, 65);
@@ -300,8 +282,7 @@ int PoolMine(std::string poolURL, json& walletInfo)
 				sha256_full_cstr(databuffer, hash);
 				//std::cout << sizeof(hashesPerSecond) << std::endl;
 
-				if ((since(hashStart).count() / 1000) >= 1)
-				{
+				if ((since(hashStart).count() / 1000) >= 1) {
 					hashesPerSecond = nonce - hashesAtStart;
 					hashStart = std::chrono::steady_clock::now();
 					hashesAtStart = nonce;
@@ -326,10 +307,9 @@ int PoolMine(std::string poolURL, json& walletInfo)
 
 
 			// Return the nonce to the server if it is correct
-			try
-			{
+			try {
 				Http http;
-				std::vector<std::string> args = { "query=solved", "nonce=" + std::to_string(nonce), "id=" + (std::string)walletInfo["Address"] };
+				std::vector<std::string> args = {"query=solved", "nonce=" + std::to_string(nonce), "id=" + (std::string)walletInfo["Address"]};
 				std::string html = http.StartHttpWebRequest(poolURL, args);
 
 				if (html.find("ERR") != std::string::npos || html == "")
@@ -339,8 +319,7 @@ int PoolMine(std::string poolURL, json& walletInfo)
 				console::Write("accepted ", console::greenFGColor, "");
 				console::WriteLine("nonces " + (std::string)numberstring);
 			}
-			catch (const std::exception& e)
-			{
+			catch (const std::exception& e) {
 				console::NetworkErrorPrint();
 				console::WriteLine("Connection error.");
 				std::cerr << e.what() << std::endl;
@@ -350,10 +329,8 @@ int PoolMine(std::string poolURL, json& walletInfo)
 
 			console::MiningPrint();
 			console::WriteLine("Mined in " + std::to_string(std::round(since(startTime).count() / 1000)) + " s.");
-
 		}
-		catch (const std::exception& e)
-		{
+		catch (const std::exception& e) {
 			ERRORMSG("");
 			//if (WalletSettingValues::verbose == true)
 			std::cerr << e.what() << std::endl;
@@ -372,15 +349,14 @@ int MineAnyBlock(int blockNum, std::string& difficulty)
 
 	auto startTime = std::chrono::steady_clock::now();
 
-	std::ifstream td("./wwwdata/blockchain/block" + std::to_string(blockNum) + ".dccblock");
+	std::ifstream td("./wwwdata/blockchain/block" + std::to_string(blockNum) + ".agblock");
 	std::stringstream bufferd;
 	bufferd << td.rdbuf();
 	std::string nextBlockText = bufferd.str();
 	json o = json::parse(nextBlockText);
 
-	std::string txData; // Only use the `tx` portion of each transaction objects' data
-	for (size_t i = 0; i < o["transactions"].size(); i++)
-	{
+	std::string txData;	 // Only use the `tx` portion of each transaction objects' data
+	for (size_t i = 0; i < o["transactions"].size(); i++) {
 		txData += (std::string)o["transactions"][i]["tx"].dump();
 	}
 	std::string currentHash = o["hash"];
@@ -406,10 +382,8 @@ int MineAnyBlock(int blockNum, std::string& difficulty)
 	std::string hData = std::string(sha256OutBuffer);
 
 	//while (!StringStartsWith(hash, difficulty))
-	while (!CharStrStartsWith(hash, c_difficulty, difficultyLen))
-	{
-		if ((since(hashStart).count() / 1000) >= 1)
-		{
+	while (!CharStrStartsWith(hash, c_difficulty, difficultyLen)) {
+		if ((since(hashStart).count() / 1000) >= 1) {
 			hashesPerSecond = nonce - hashesAtStart;
 			hashStart = std::chrono::steady_clock::now();
 			hashesAtStart = nonce;
@@ -436,5 +410,3 @@ int MineAnyBlock(int blockNum, std::string& difficulty)
 
 	return 0;
 }
-
-

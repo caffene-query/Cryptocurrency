@@ -1,38 +1,39 @@
 #pragma once
 
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include <map>
 #include <iterator>
+#include <map>
 #include <stdexcept>
+#include <string>
+#include <unordered_map>
+#include <vector>
 
 #if WINDOWS
-#include <winsock2.h>
-#include <Ws2tcpip.h>
-#include <windows.h>
+	#include <Ws2tcpip.h>
+	#include <windows.h>
+	#include <winsock2.h>
 #elif defined(__unix__)
-#include <unistd.h>
-#include <sys/types.h> 
-#include <sys/socket.h>
-#include <netinet/in.h>
+	#include <netinet/in.h>
+	#include <sys/socket.h>
+	#include <sys/types.h>
+	#include <unistd.h>
 #endif
 
-#include <iostream>
-#include <fstream>
-#include <filesystem>
-#include <thread>
 #include <math.h>
 
-#include "json.hpp"
-#include "strops.h"
-#include "Console.h"
 #include <boost/process.hpp>
 #include <chrono>
-#include "Network.h"
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <thread>
+
+#include "Console.h"
 #include "FileManip.h"
+#include "Network.h"
 #include "SettingsConsts.h"
 #include "crypto.h"
+#include "json.hpp"
+#include "strops.h"
 
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 
@@ -44,7 +45,7 @@ using json = nlohmann::json;
 
 //extern P2P p2p;
 
-class Peer{
+class Peer {
 public:
 	std::string ip = "";
 	uint16_t port = 0;
@@ -54,22 +55,23 @@ public:
 	std::vector<std::string> peerList;
 
 
-	void set_peerlist(std::vector<std::string> peerList){
+	void set_peerlist(std::vector<std::string> peerList)
+	{
 		this->peerList = peerList;
 	}
 
 	Peer(std::string& ipPort);
 };
 
-class P2P
-{
+class P2P {
 private:
 #if defined(_MSC_VER)
 	SOCKET localSocket;
 #endif
 	int MSG_PART = 0;
 	//int messageStatus = 0;
-	std::vector<std::string> CONNECTION_PARTS = { "" };
+	std::vector<std::string> CONNECTION_PARTS = {""};
+
 public:
 	//using namespace std;
 	//
@@ -81,7 +83,7 @@ public:
 
 	// A list of deluges given by: [totalHash][partHash] => dataString
 	std::map<std::string, std::map<std::string, uint16_t>> completeDelugeList;
-	
+
 	int messageAttempt = 0;
 	int differentPeerAttempts = 0;
 
@@ -91,7 +93,7 @@ public:
 
 	std::unordered_map<std::string, Peer*> p2pConnections;
 
-	int role = -1; //   -1 == offline,  0 == requester,  1 == answerer
+	int role = -1;	//   -1 == offline,  0 == requester,  1 == answerer
 
 	std::atomic_int messageStatus = -1;
 	enum MsgStatus {
@@ -156,4 +158,3 @@ public:
 };
 
 bool VerifyTransaction(json& tx, uint32_t id = 0, bool thorough = false);
-

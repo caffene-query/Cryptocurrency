@@ -2,15 +2,15 @@
 #define console_h
 
 #include <queue>
+
 #include "indicators.hpp"
 #include "strops.h"
 
 
-namespace console
-{
+namespace console {
 	// Declare the global print queue
 	extern std::queue<std::ostream> printQueue;
-	
+
 	void ConnectionError();
 
 	// Foreground colors
@@ -52,7 +52,7 @@ namespace console
 	// Reset colors
 	const std::string resetColor = "\033[0m";
 
-	struct colorstr{
+	struct colorstr {
 		std::string value = "";
 		std::string color = "";
 	};
@@ -98,9 +98,9 @@ namespace console
 
 	void ExitError(std::string errMessage);
 
-	
+
 	//Console();
-}
+}  // namespace console
 
 
 #endif

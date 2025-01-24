@@ -1,27 +1,24 @@
-// dcc_client.cpp
 
 #if defined(__unix__)
-#define UNIX true
-#define WINDOWS false
+	#define UNIX true
+	#define WINDOWS false
 #elif defined(_MSC_VER)
-#define UNIX false
-#define WINDOWS true
+	#define UNIX false
+	#define WINDOWS true
 #endif
 
 #include "Main.h"
 
 #if defined(__unix__)
 
-#include <curses.h>
-#define ISKEYDOWN(X) (getch() == X)
+	#include <curses.h>
+	#define ISKEYDOWN(X) (getch() == X)
 
 #else
 
-#define ISKEYDOWN(X) GetAsyncKeyState(X)
+	#define ISKEYDOWN(X) GetAsyncKeyState(X)
 
 #endif
-
-
 
 
 using json = nlohmann::json;
@@ -34,10 +31,8 @@ void Logo();
 int SendFunds(P2P& p2p, std::string& toAddress, float amount);
 
 
-
-
 int connectionStatus = 1;
-const std::string directoryList[] = { "./sec", "./wwwdata", "./wwwdata/blockchain", "./wwwdata/pendingblocks", "./wwwdata/containers", "./wwwdata/deluges", "./wwwdata/developing-containers", "./wwwdata/developing-deluges", "./wwwdata/superchain" };
+const std::string directoryList[] = {"./sec", "./wwwdata", "./wwwdata/blockchain", "./wwwdata/pendingblocks", "./wwwdata/containers", "./wwwdata/deluges", "./wwwdata/developing-containers", "./wwwdata/developing-deluges", "./wwwdata/superchain"};
 
 json walletConfig;
 json walletInfo;
@@ -54,7 +49,7 @@ unsigned long long flops = 0;
 
 struct stat info;
 
-std::vector<std::string> keypair = { "", "" };
+std::vector<std::string> keypair = {"", ""};
 
 P2P p2p;
 
@@ -98,26 +93,25 @@ int main()
 	console::Write("Getting public IP address...");
 	//Http http;
 	std::string ipStr;
-	try{
-		ipStr = DownloadFileAsString(serverURL+"/ipget.php"); // use custom server for getting IP:PORT
+	try {
+		ipStr = DownloadFileAsString(serverURL + "/ipget.php");	 // use custom server for getting IP:PORT
 	}
-	catch(...){
+	catch (...) {
 		console::WriteLine(" failed", console::redFGColor);
 		//ERRORMSG("Connection to server timed out\n");
 		console::ExitError("Connection to server timed out");
 	}
-	//std::string ipStr = http.StartHttpWebRequest("https://api.ipify.org", args); // This is a free API that lets you get IP 
+	//std::string ipStr = http.StartHttpWebRequest("https://api.ipify.org", args); // This is a free API that lets you get IP
 	//console::WriteLine(ipStr);
 	console::WriteLine(" ok", console::greenFGColor);
 
 	bool permanentPort = false;
 
-	
-	// Create config.cfg file if it doesn't exist 
+
+	// Create config.cfg file if it doesn't exist
 	console::SystemPrint();
 	console::Write("Checking config.cfg");
-	if (!fs::exists("./config.cfg"))
-	{
+	if (!fs::exists("./config.cfg")) {
 		//int prt;
 		//console::ErrorPrint();
 		//console::Write("Config file not found. \nPlease input the port # you want to use \n(default 5060): ");
@@ -125,10 +119,9 @@ int main()
 		//if (prt <= 0 || prt > 65535)
 		//	prt = 5060;
 		console::Write(" creating.", console::yellowFGColor);
-	
+
 		std::ofstream configFile("./config.cfg");
-		if (configFile.is_open())
-		{
+		if (configFile.is_open()) {
 			configFile
 				<< "{\"port\":" << SplitString(ipStr, ":")[1]
 				<< ",\"ip\":\"" << SplitString(ipStr, ":")[0]
@@ -153,8 +146,7 @@ int main()
 			walletConfig["port"] = stoi(SplitString(ipStr, ":")[1]);
 			walletConfig["ip"] = SplitString(ipStr, ":")[0];
 			std::ofstream configFile("./config.cfg");
-			if (configFile.is_open())
-			{
+			if (configFile.is_open()) {
 				configFile << walletConfig.dump(4);
 				configFile.close();
 			}
@@ -165,8 +157,7 @@ int main()
 	// Generate and save keypair if it doesn't exist
 	console::SystemPrint();
 	console::Write("Checking keypairs...");
-	if (!fs::exists("./sec/prikey.pem"))
-	{
+	if (!fs::exists("./sec/prikey.pem")) {
 		console::WriteLine(" not found", console::redFGColor);
 		console::SystemPrint();
 		console::WriteLine("None found, generating keypairs...");
@@ -176,7 +167,7 @@ int main()
 		std::cout << "Private key: " << std::endl;
 		std::cout << keypair[1] << std::endl;
 	}
-	else{
+	else {
 		console::WriteLine(" ok", console::greenFGColor);
 	}
 	// Load public key as keypair[0]
@@ -205,14 +196,13 @@ int main()
 	console::Write("Your wallet: ");
 	console::WriteLine(wallet, console::cyanFGColor, "");
 	walletInfo["Address"] = wallet;
-	
+
 	walletInfo["pubkey"] = keypair[0];
 	walletInfo["prikey"] = keypair[1];
 
 	// Get all deluge files, and ensure they are complete
 	//walletInfo["FullPrograms"] = json::array();
-	for (auto deluge : fs::directory_iterator("./wwwdata/deluges/"))
-	{
+	for (auto deluge : fs::directory_iterator("./wwwdata/deluges/")) {
 		std::ifstream delugeFile(deluge.path());
 		if (delugeFile.is_open()) {
 			std::stringstream delugeFilebuf;
@@ -224,8 +214,8 @@ int main()
 			std::string delugePath = "./wwwdata/containers/" + ((std::string)delugeJson["_totalHash"]).substr(0, 32) + ".tar.zip";
 
 
-			if(VerifyDeluge(delugeJson, delugePath)){
-				for(int hs = 0; hs < delugeJson["hashList"].size(); hs++){
+			if (VerifyDeluge(delugeJson, delugePath)) {
+				for (int hs = 0; hs < delugeJson["hashList"].size(); hs++) {
 					p2p.completeDelugeList[(std::string)delugeJson["_totalHash"]][delugeJson["hashList"][hs]] = hs;
 				}
 				//// Add deluge full hash to list with it's path as a value
@@ -236,11 +226,11 @@ int main()
 				try {
 					remove(deluge.path());
 				}
-				catch (...) {}
+				catch (...) {
+				}
 			}
 		}
 	}
-
 
 
 	// Load the wallet config file and get the P2P port and IP
@@ -255,7 +245,7 @@ int main()
 	endpointAddr = (std::string)walletConfig["ip"];
 	endpointPort = std::to_string((int)walletConfig["port"]);
 
-	if((int)walletConfig["verbosity"] != -1)
+	if ((int)walletConfig["verbosity"] != -1)
 		WalletSettingValues::verbose = (int)walletConfig["verbosity"];
 
 	console::SystemPrint();
@@ -276,7 +266,7 @@ int main()
 	p2p.keepPeersAlive = (bool)walletConfig["keepAlive"];
 	p2p.isServer = (bool)walletConfig["isServer"];
 	p2p.InitPeerList();
-	if(p2p.isServer == false)
+	if (p2p.isServer == false)
 		p2p.RandomizePeer();
 	// Start the P2P listener thread
 	std::thread t1(&P2P::ListenerThread, &p2p, 10);
@@ -285,18 +275,16 @@ int main()
 
 	//
 	// Gather wallet information, validate blockchain, and print information.
-	//	
+	//
 
 	console::NetworkPrint();
 	console::Write("Syncing blocks...");
 	Sync(p2p, walletInfo);
 	console::WriteLine(" ok", console::greenFGColor);
-	try
-	{
+	try {
 		IsChainValid(p2p, walletInfo);
 	}
-	catch (const std::exception&)
-	{
+	catch (const std::exception&) {
 		Sync(p2p, walletInfo);
 	}
 
@@ -331,8 +319,7 @@ int main()
 	//
 	// Start command loop
 	//
-	while (true)
-	{
+	while (true) {
 		console::Write("Input:  ");
 		std::string command = console::ReadLine();
 
@@ -356,27 +343,23 @@ int main()
 		// Make (only first cmd part) uppercase
 		commandParts[0] = ToUpper(commandParts[0]);
 
-		try{
+		try {
 			if (commandParts[0] == "--HELP" || commandParts[0] == "-H")
 				Help();
-			else if (commandParts[0] == "--VERSION" || commandParts[0] == "-V")
-			{
+			else if (commandParts[0] == "--VERSION" || commandParts[0] == "-V") {
 				Version();
 				continue;
 			}
-			else if (commandParts[0] == "--QUIT" || commandParts[0] == "--EXIT")
-			{
+			else if (commandParts[0] == "--QUIT" || commandParts[0] == "--EXIT") {
 				exit(0);
 			}
-			else if (commandParts[0] == "--FUNDS")
-			{
+			else if (commandParts[0] == "--FUNDS") {
 				console::SystemPrint();
 				console::Write("You have: ");
 				console::WriteLine("$" + CommaLargeNumberF((double)walletInfo["Funds"]) + " credits\n", console::yellowFGColor, "");
 				continue;
 			}
-			else if (commandParts[0] == "--DIFFICULTY")
-			{
+			else if (commandParts[0] == "--DIFFICULTY") {
 				console::SystemPrint();
 				console::WriteLine("Calculating difficulty...");
 				std::string dif = CalculateDifficulty(walletInfo);
@@ -385,48 +368,40 @@ int main()
 				console::WriteLine(ExtractPaddedChars(dif, '0'), console::redFGColor, "");
 				continue;
 			}
-			else if (commandParts[0] == "--SYNC" || commandParts[0] == "-S")
-			{
-				if (Sync(p2p, walletInfo) == 0) continue;
+			else if (commandParts[0] == "--SYNC" || commandParts[0] == "-S") {
+				if (Sync(p2p, walletInfo) == 0)
+					continue;
 			}
-			else if (commandParts[0] == "--SYNCBLOCK" || commandParts[0] == "-SB")
-			{
+			else if (commandParts[0] == "--SYNCBLOCK" || commandParts[0] == "-SB") {
 				int blockNum = 0;
-				try
-				{
+				try {
 					blockNum = stoi(commandParts[1]);
 					console::NetworkPrint();
 					console::WriteLine("Syncing block " + std::to_string(blockNum));
 					SyncBlock(p2p, blockNum, true);
 				}
-				catch (const std::exception& e)
-				{
+				catch (const std::exception& e) {
 					console::NetworkErrorPrint();
 					console::WriteLine("Error syncing. : " + (std::string)e.what(), "", console::redFGColor);
 				}
 			}
-			else if (commandParts[0] == "--SEND" || commandParts[0] == "-SN")
-			{
+			else if (commandParts[0] == "--SEND" || commandParts[0] == "-SN") {
 				std::string toAddr;
 				float amnt;
-				try
-				{
+				try {
 					toAddr = commandParts[1];
 					amnt = stof(commandParts[2]);
 
-					if (SendFunds(p2p, toAddr, amnt) == 0)
-					{
+					if (SendFunds(p2p, toAddr, amnt) == 0) {
 						console::ConnectionError();
 						continue;
 					}
 				}
-				catch (const std::exception& e)
-				{
+				catch (const std::exception& e) {
 					console::WriteLine("Error sending : " + (std::string)e.what(), "", console::redFGColor);
 				}
 			}
-			else if (commandParts[0] == "--ADDPEER")
-			{
+			else if (commandParts[0] == "--ADDPEER") {
 				p2p.AddToPeerList(commandParts[1]);
 				p2p.SavePeerList();
 			}
@@ -434,29 +409,23 @@ int main()
 			//{
 			//	WalletSettingValues::verbose = std::stoi(commandParts[1]);
 			//}
-			else if (commandParts[0] == "--VERIFY" || commandParts[0] == "-VF")
-			{
-				try
-				{
+			else if (commandParts[0] == "--VERIFY" || commandParts[0] == "-VF") {
+				try {
 					IsChainValid(p2p, walletInfo);
 				}
-				catch (const std::exception&)
-				{
+				catch (const std::exception&) {
 					Sync(p2p, walletInfo);
 				}
 			}
-			else if (commandParts[0] == "--MINE" || commandParts[0] == "-M")
-			{
+			else if (commandParts[0] == "--MINE" || commandParts[0] == "-M") {
 				int iterations = 1;
 				if (commandParts.size() > 1)
 					iterations = stoi(commandParts[1]);
 
-				for (int i = 0; i < iterations; i++)
-				{
+				for (int i = 0; i < iterations; i++) {
 					IsChainValid(p2p, walletInfo);
 
-					if (GetProgram(p2p, walletInfo) != 0)
-					{
+					if (GetProgram(p2p, walletInfo) != 0) {
 						//console::ConnectionError();
 						ERRORMSG("Failed to get deluge program");
 						continue;
@@ -465,8 +434,7 @@ int main()
 					walletInfo["BlockchainLength"] = FileCount("./wwwdata/blockchain/");
 
 					// Create a superblock if the number is 262800 (the number of blocks created in a year)
-					if (walletInfo["BlockchainLength"] >= 262800)
-					{
+					if (walletInfo["BlockchainLength"] >= 262800) {
 
 						walletInfo["BlockchainLength"] = FileCount("./wwwdata/blockchain/");
 					}
@@ -482,7 +450,7 @@ int main()
 					for (const auto& entry : fs::directory_iterator(path)) {
 						std::string filename = entry.path().filename().string();
 						std::string name = SplitString(filename, "block")[1];
-						name = SplitString(name, ".dcc")[0];
+						name = SplitString(name, ".ag")[0];
 						// Delete old pending blocks, or ones that are too high
 						if (stoi(name) <= walletInfo["BlockchainLength"] || (stoi(name) >= (int)walletInfo["BlockchainLength"] + 2 && isFirst)) {
 							fs::remove(entry);
@@ -500,7 +468,7 @@ int main()
 						break;
 					}
 
-					std::ifstream blockFile("./wwwdata/pendingblocks/block" + std::to_string((int)walletInfo["BlockchainLength"] + 1) + ".dccblock");
+					std::ifstream blockFile("./wwwdata/pendingblocks/block" + std::to_string((int)walletInfo["BlockchainLength"] + 1) + ".agblock");
 					std::stringstream blockBuffer;
 					blockBuffer << blockFile.rdbuf();
 					std::string content = blockBuffer.str();
@@ -519,22 +487,19 @@ int main()
 					// which will verify this as the recipient should it succeed.
 					json txDat = json::object({});
 					txDat["tx"] = {
-							{"fromAddr", "Block Reward"},
-							{"toAddr", (std::string)walletInfo["Address"]},
-							{"amount", 1},
-							{"unlockTime", 10},
-							{"transactionFee", 0.01}
-					};
+						{"fromAddr", "Block Reward"},
+						{"toAddr", (std::string)walletInfo["Address"]},
+						{"amount", 1},
+						{"unlockTime", 10},
+						{"transactionFee", 0.01}};
 					txDat["sec"] = {
-							{"signature", ""},
-							{"pubKey", keypair[0]},
-							{"note", ""}
-					};
+						{"signature", ""},
+						{"pubKey", keypair[0]},
+						{"note", ""}};
 					blockJson["transactions"].insert(blockJson["transactions"].begin(), txDat);
 
 					int returnVal = Mine(blockJson, ((int)walletInfo["BlockchainLength"] + 1), walletInfo);
-					if (returnVal == 0)
-					{
+					if (returnVal == 0) {
 						console::ConnectionError();
 						continue;
 					}
@@ -549,15 +514,15 @@ int main()
 						console::Write("\nPaused, press");
 						console::Write(" R ", console::greenFGColor, "");
 						console::WriteLine("to resume");
-						while (!ISKEYDOWN(0x52));
+						while (!ISKEYDOWN(0x52))
+							;
 						//while (!GetAsyncKeyState(0x52));
 						//GETKEY();
 					}
 
 					walletInfo["BlockchainLength"] = FileCount("./wwwdata/blockchain/");
 					walletInfo["PendingLength"] = FileCount("./wwwdata/pendingblocks/");
-					if (walletInfo.is_null())
-					{
+					if (walletInfo.is_null()) {
 						console::ConnectionError();
 						continue;
 					}
@@ -565,67 +530,58 @@ int main()
 					std::cout << "\n\n";
 				}
 			}
-			else if (commandParts[0] == "--VERBOSITY" || commandParts[0] == "-VB")
-			{
-				if (commandParts.size() == 2){
+			else if (commandParts[0] == "--VERBOSITY" || commandParts[0] == "-VB") {
+				if (commandParts.size() == 2) {
 					WalletSettingValues::verbose = stoi(commandParts[1]);
-					console::WriteLine("Changed verbosity to ("+std::to_string(WalletSettingValues::verbose)+")");
+					console::WriteLine("Changed verbosity to (" + std::to_string(WalletSettingValues::verbose) + ")");
 					walletConfig["verbosity"] = WalletSettingValues::verbose;
 					// Save to file TODO: Mkae general save/load config function
 					std::ofstream configFile("./config.cfg");
-					if (configFile.is_open())
-					{
+					if (configFile.is_open()) {
 						configFile << walletConfig.dump(4);
 						configFile.close();
 					}
 				}
 				else
-					console::WriteLine("Verbosity is currently set to ("+std::to_string(WalletSettingValues::verbose)+")");
+					console::WriteLine("Verbosity is currently set to (" + std::to_string(WalletSettingValues::verbose) + ")");
 			}
-			else if (commandParts[0] == "--MINEANY" || commandParts[0] == "-MA")
-			{
+			else if (commandParts[0] == "--MINEANY" || commandParts[0] == "-MA") {
 				std::string diff = "";
 				if (commandParts.size() == 3)
 					diff = commandParts[2];
 				MineAnyBlock(stoi(commandParts[1]), diff);
 			}
-			else if (commandParts[0] == "--POOL" || commandParts[0] == "-P")
-			{
+			else if (commandParts[0] == "--POOL" || commandParts[0] == "-P") {
 				std::string poolURL = serverURL;
 				if (commandParts.size() == 2)
 					poolURL = commandParts[1];
 				PoolMine(poolURL, walletInfo);
 			}
-			else if (commandParts[0] == "--SUPERBLOCK" || commandParts[0] == "-SP")
-			{
+			else if (commandParts[0] == "--SUPERBLOCK" || commandParts[0] == "-SP") {
 				CreateSuperblock();
 			}
-			else if (commandParts[0] == "--MAKE-CONTAINER" || commandParts[0] == "-MK")
-			{
+			else if (commandParts[0] == "--MAKE-CONTAINER" || commandParts[0] == "-MK") {
 				if (commandParts.size() == 2) {
 					MakeProgram(walletInfo, walletConfig, commandParts[1]);
 				}
 			}
-			else if (commandParts[0] == "--CURRENTCONNECTION")
-			{
+			else if (commandParts[0] == "--CURRENTCONNECTION") {
 				std::cout << p2p.otherAddrStr << " s: " << p2p.otherAddrStr.size() << std::endl;
 				std::cout << p2p.clientIPPort << " s: " << p2p.clientIPPort.size() << std::endl;
 			}
-			else if (commandParts[0] == "--LIST-CONTAINERS" || commandParts[0] == "-LS")
-			{
+			else if (commandParts[0] == "--LIST-CONTAINERS" || commandParts[0] == "-LS") {
 				console::WriteLine();
-				const std::string delugeDirectories[2] = { "./wwwdata/deluges/", "./wwwdata/developing-deluges/" };
+				const std::string delugeDirectories[2] = {"./wwwdata/deluges/", "./wwwdata/developing-deluges/"};
 				for (std::string delugeDir : delugeDirectories) {
 					console::Write("\nDeluges in directory: ");
 					console::WriteLine("\"" + delugeDir + "\"", console::yellowFGColor);
-					
+
 					std::vector<std::string> headers = {"Name", "ID", "Peers", "Size"};
 					std::vector<std::vector<colorstr>> content = std::vector<std::vector<colorstr>>();
 					int widths[] = {0, 0, 0, 0};
 
 
-					for (auto deluge : fs::directory_iterator(delugeDir))
-					{
+					for (auto deluge : fs::directory_iterator(delugeDir)) {
 						std::ifstream delugeFile(deluge.path());
 						if (delugeFile.is_open()) {
 							std::stringstream delugeFilebuf;
@@ -633,27 +589,26 @@ int main()
 							json delugeJson = json::parse(delugeFilebuf.str());
 							delugeFile.close();
 
-							content.push_back({(colorstr){(std::string)delugeJson["_name"]},  (colorstr){((std::string)delugeJson["_totalHash"]).substr(0, 20)}, (colorstr){std::to_string(delugeJson["peers"].size())}, (colorstr){truncateMetricNum((unsigned long long)delugeJson["_totalSizeB"]) + "B"}}); // Add new row
-							//// Verify the deluge, by checking each chunk with its expected hash, and then the full hash
-							//std::string delugePath = "./wwwdata/containers/" + ((std::string)delugeJson["_totalHash"]).substr(0, 32) + ".tar.zip";
-							//if(VerifyDeluge(delugeJson, delugePath)){
-							//	// Add deluge full hash to list with it's path as a value
-							//	//completeDelugeList[(std::string)delugeJson["_totalHash"]] = deluge.path();
-							//}
-							//// If the deluge is invalid, remove it's file
-							//else{
-							//	try{
-							//		remove(deluge.path());
-							//	}
-							//	catch(...){}
-							//}
+							content.push_back({(colorstr) {(std::string)delugeJson["_name"]}, (colorstr) {((std::string)delugeJson["_totalHash"]).substr(0, 20)}, (colorstr) {std::to_string(delugeJson["peers"].size())}, (colorstr) {truncateMetricNum((unsigned long long)delugeJson["_totalSizeB"]) + "B"}});  // Add new row
+																																																																												   //// Verify the deluge, by checking each chunk with its expected hash, and then the full hash
+																																																																												   //std::string delugePath = "./wwwdata/containers/" + ((std::string)delugeJson["_totalHash"]).substr(0, 32) + ".tar.zip";
+																																																																												   //if(VerifyDeluge(delugeJson, delugePath)){
+																																																																												   //	// Add deluge full hash to list with it's path as a value
+																																																																												   //	//completeDelugeList[(std::string)delugeJson["_totalHash"]] = deluge.path();
+																																																																												   //}
+																																																																												   //// If the deluge is invalid, remove it's file
+																																																																												   //else{
+																																																																												   //	try{
+																																																																												   //		remove(deluge.path());
+																																																																												   //	}
+																																																																												   //	catch(...){}
+																																																																												   //}
 						}
 					}
 					console::WriteTable(headers, content, widths, 1);
 				}
 			}
-			else if (commandParts[0] == "--LIST-PEERS" || commandParts[0] == "-LP")
-			{
+			else if (commandParts[0] == "--LIST-PEERS" || commandParts[0] == "-LP") {
 				console::WriteLine();
 				console::Write("\nPeers: ");
 
@@ -662,20 +617,19 @@ int main()
 				int widths[] = {0, 0, 0, 0, 0};
 
 
-				for(const auto& [key, value] : p2p.p2pConnections)
-				{
+				for (const auto& [key, value] : p2p.p2pConnections) {
 					// IP and Port
 					std::string ipPort = key;
-					
+
 					// Online/Offline
 					bool statusBool = value->testedOnline;
 					colorstr connectionStatusStr;
 					if (statusBool)
-						connectionStatusStr = (colorstr){"online", console::greenFGColor};
+						connectionStatusStr = (colorstr) {"online", console::greenFGColor};
 					else
-						connectionStatusStr = (colorstr){"unknown", console::redFGColor};
+						connectionStatusStr = (colorstr) {"unknown", console::redFGColor};
 
-					content.push_back({(colorstr){SplitString(ipPort, ":")[0]},  (colorstr){SplitString(ipPort, ":")[1]}, (colorstr){std::to_string(value->peerList.size())}, (colorstr){std::to_string(value->height)}, connectionStatusStr}); // Add new row
+					content.push_back({(colorstr) {SplitString(ipPort, ":")[0]}, (colorstr) {SplitString(ipPort, ":")[1]}, (colorstr) {std::to_string(value->peerList.size())}, (colorstr) {std::to_string(value->height)}, connectionStatusStr});	// Add new row
 				}
 				// Actually write the table finally
 				console::WriteTable(headers, content, widths, 1);
@@ -698,7 +652,7 @@ int main()
 				console::WriteLine("Invalid command");
 			}
 		}
-		catch(...){
+		catch (...) {
 			console::ErrorPrint();
 			console::WriteLine("Invalid command");
 		}
@@ -720,17 +674,25 @@ void Version()
 // Print the logo art
 void Logo()
 {
-	console::WriteLine(R"V0G0N( ______      ______    ______  
-|_   _ `.  .' ___  | .' ___  | 
-  | | `. \/ .'   \_|/ .'   \_| 
-  | |  | || |       | |        
- _| |_.' /\ `.___.'\\ `.___.'\ 
-|______.'  `.____ .' `.____ .' 
+	console::WriteLine(R"V0G0N(
+      _----------_,
+    ,"__         _-:, 
+   /    ""--_--""...:\
+  /         |.........\          _             _   __                       ______           _        __ 
+ /          |..........\        / \           / |_[  |                    .' ___  |         (_)      |  ]
+/,         _'_........./:      / _ \    .---.`| |-'| |--.  .---.  _ .--. / .'   \_| _ .--.  __   .--.| | 
+! -,    _-"   "-_... ,;;:     / ___ \  / /__\\| |  | .-. |/ /__\\[ `/'`\]| |   ____[ `/'`\][  |/ /'`\' |  
+\   -_-"         "-_/;;;;   _/ /   \ \_| \__.,| |, | | | || \__., | |    \ `.___]  || |     | || \__/  | 
+ \   \             /;;;;'  |____| |____|'.__.'\__/[___]|__]'.__.'[___]    `._____.'[___]   [___]'.__.;__]
+  \   \           /;;;;      
+   '.  \         /;;;'
+     "-_\_______/;;'
 
-DCC, copyright (c) AstroSam (sam-astro) 
+AetherGrid, copyright (c) AstroSam (sam-astro) 
    The-Distributed-Computing-Project 
    2021-2024        
-)V0G0N", console::cyanFGColor, "");
+)V0G0N",
+		console::magentaFGColor, "");
 	Version();
 }
 
@@ -752,15 +714,14 @@ Options:
                                           difficulty <dif>
   --funds                             Count and print the funds of the user
   --difficulty                        Calculate the expected block's difficulty
-  -sn, --send <addr> <amount>         Sends the <amount> of DCC to a receiving address <addr>
+  -sn, --send <addr> <amount>         Sends the <amount> of Aether to a receiving address <addr>
   -sp, --superblock                   Generates a debug superblock to summarize all transactions
   -vf, --verify                       Verify the entire blockchain to make sure all blocks are valid
-  -p, --pool <url>                    Start mining at a pool, given by <url>. Default is http://dccpool.us.to
+  -p, --pool <url>                    Start mining at a pool, given by <url>. Default is http://distributedcomputeproject.org
   -mk, --make-container <path>        Create a new Deluge for sharing a container (this won't publish it yet)
 
 )V0G0N");
 }
-
 
 
 // Send funds to another address, by first checking if the user has enough funds in the first place,
@@ -780,24 +741,18 @@ int SendFunds(P2P& p2p, std::string& toAddress, float amount)
 
 
 	// Make sure chain is completely valid
-	while (!IsChainValid(p2p, walletInfo))
-	{
-		for (auto oldBlock : fs::directory_iterator("./wwwdata/blockchain/"))
-		{
-			try
-			{
+	while (!IsChainValid(p2p, walletInfo)) {
+		for (auto oldBlock : fs::directory_iterator("./wwwdata/blockchain/")) {
+			try {
 				remove(oldBlock.path());
 			}
-			catch (const std::exception&)
-			{
+			catch (const std::exception&) {
 				console::ErrorPrint();
 				console::WriteLine("Error removing \"" + oldBlock.path().string() + "\"");
 			}
 		}
-		for (int a = 0; a < walletInfo["BlockchainLength"]; a++)
-		{
-			if (SyncBlock(p2p, 1 + a) == 0)
-			{
+		for (int a = 0; a < walletInfo["BlockchainLength"]; a++) {
+			if (SyncBlock(p2p, 1 + a) == 0) {
 				console::ConnectionError();
 				break;
 			}
@@ -817,17 +772,15 @@ int SendFunds(P2P& p2p, std::string& toAddress, float amount)
 	char sha256OutBuffer[65];
 	json txDat = json::object({});
 	txDat["tx"] = {
-			{"fromAddr", (std::string)walletInfo["Address"]},
-			{"toAddr", toAddress},
-			{"amount", amount},
-			{"unlockTime", 10},
-			{"transactionFee", 0.01}
-	};
+		{"fromAddr", (std::string)walletInfo["Address"]},
+		{"toAddr", toAddress},
+		{"amount", amount},
+		{"unlockTime", 10},
+		{"transactionFee", 0.01}};
 	txDat["sec"] = {
-			{"signature", ""},
-			{"pubKey", keypair[0]},
-			{"note", ""}
-	};
+		{"signature", ""},
+		{"pubKey", keypair[0]},
+		{"note", ""}};
 
 	console::WriteLine();
 	console::NetworkPrint();
@@ -850,7 +803,8 @@ int SendFunds(P2P& p2p, std::string& toAddress, float amount)
 	p2p.reqDat = 0;
 	p2p.extraData = ReplaceEscapeSymbols(txDat.dump());
 
-	while (p2p.isAwaiting()) {}
+	while (p2p.isAwaiting()) {
+	}
 
 	return 1;
 }

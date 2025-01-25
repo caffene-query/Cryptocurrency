@@ -397,9 +397,160 @@ void P2P::ListenerThread(int update_interval)
 							if (WalletSettingValues::verbose >= 4) {
 								console::DebugPrint();
 								console::WriteLine("Cancelled connection from invalid address", console::greenFGColor, "");
-								continue;
 							}
-							messagePrefix += "peer~connect~";
+							continue;
+						}
+
+						messagePrefix += "peer~connect~";
+						json announcedInfo = json::parse(totalMessage.substr(messagePrefix.size()));
+						// Add peer to collection of connections if not there yet
+						AddToPeerList(otherAddrStr);
+
+						p2pConnections[otherAddrStr]->height = announcedInfo["height"];
+						p2pConnections[otherAddrStr]->peerList = announcedInfo["peerList"];
+						p2pConnections[otherAddrStr]->testedOnline = true;
+
+						if (WalletSettingValues::verbose >= 7) {
+							console::WriteLine("answer peerconnect", console::greenFGColor, "");
+						}
+
+						messageStatus = announce;
+						//messageStatus = await_first_success; // Awaiting confirmation status
+						messageAttempt = 0;
+						differentPeerAttempts = 0;
+
+						CONNECTED_TO_PEER = true;
+					}
+					// If the peer is ending the connection
+					else if (totalMessage == "peer~disconnect") {
+						console::NetworkPrint();
+						console::WriteLine("Peer closed.");
+						CONNECTED_TO_PEER = false;
+						reqDat = -1;
+						messageStatus = -1;
+						pendingReceiveData = false;
+						otherAddrStr = "";
+						return;
+					}
+					// If the peer is requesting message received confirmation
+					else if (totalMessage == "peer~success" && (messageStatus >= 0)) {
+						if (WalletSettingValues::verbose >= 7) {
+							console::DebugPrint();
+							console::WriteLine("Dual Confirmation", console::greenFGColor, "");
+						}
+						//messageStatus = await_second_success; // Confirmed message status, continue sending our own
+						p2pConnections[otherAddrStr]->testedOnline = true;
+						messageStatus = idle;  // Confirmed message status, continue sending our own
+						reqDat = -1;
+						messageStatus = -1;
+						pendingReceiveData = false;
+						otherAddrStr = "";
+						// confirm 2 times, then switch to idle state -1
+						CONNECTED_TO_PEER = false;
+					}
+					// If the peer is idling
+					else if (totalMessage == "peer~idle") {
+						if (WalletSettingValues::verbose >= 5) {
+							console::DebugPrint();
+							console::WriteLine("idle...", console::yellowFGColor, "");
+							p2pConnections[otherAddrStr]->testedOnline = true;
+						}
+					}
+					// If peer is requesting data
+					else if (SplitString(totalMessage, "~")[0] == "request") {
+						p2pConnections[otherAddrStr]->testedOnline = true;
+						messagePrefix += "request~";
+						// If peer is asking for blockchain height
+						if (SplitString(totalMessage, "~")[1] == "height")
+							messageStatus = replying_height;
+						// If peer is asking for a pending block's data
+						else if (SplitString(totalMessage, "~")[1] == "pendingblock") {
+							messageStatus = replying_pendingblock;
+							reqDat = std::stoi(SplitString(totalMessage, "~")[2]);
+						}
+						// If peer is asking for a block's data
+						else if (SplitString(totalMessage, "~")[1] == "block") {
+							messageStatus = replying_block;
+							reqDat = std::stoi(SplitString(totalMessage, "~")[2]);
+						}
+						// If peer is asking for this peer's peerList
+						else if (SplitString(totalMessage, "~")[1] == "peerlist")
+							messageStatus = replying_peer_list;
+						// If peer is asking for you to process and record a transaction
+						else if (SplitString(totalMessage, "~")[1] == "transactionprocess") {
+							messageStatus = await_first_success;
+							std::string transactionString = SplitString(totalMessage, "~")[2];
+
+
+							// Verify the transaction:
+							//	* First ensure it has a valid signature
+							//  * Then see if the user has enough Aether to send
+
+							json transaction = json::parse(transactionString);
+							std::string signature = transaction["sec"]["signature"];
+
+							// Check signature length
+							if (signature.size() == 0)
+								continue;
+
+							// Check if transaction is valid
+							if (VerifyTransaction(transaction, 0, true)) {
+								// Save transaction data to file
+								try {
+									json pendingTransactions = json();
+									pendingTransactions["transactions"] = json::array();
+
+									// Read existing pending transactions file, if it exists
+									std::ifstream transactionsFileRead("./wwwdata/pendingtransactions.agtxs");
+									if (transactionsFileRead.is_open()) {
+										std::stringstream bufferd;
+										bufferd << transactionsFileRead.rdbuf();
+										std::string blockText = bufferd.str();
+										transactionsFileRead.close();
+									}
+
+									// Append the new transaction
+									pendingTransactions["transactions"].push_back(transaction);
+
+									// Save the new transaction list
+									std::ofstream transactionsFileWrite("./wwwdata/pendingtransactions.agtxs");
+									if (transactionsFileWrite.is_open()) {
+										transactionsFileWrite << pendingTransactions.dump();
+										transactionsFileWrite.close();
+										if (WalletSettingValues::verbose >= 4)
+											console::WriteLine("\nSaved new transaction");
+									}
+								}
+								catch (const std::exception& e) {
+									ERRORMSG("failed to save transaction data to file");
+									std::cerr << e.what() << std::endl;
+								}
+
+								if (WalletSettingValues::verbose >= 4) {
+									console::WriteLine("received transaction: " + (std::string)transaction["tx"]["fromAddr"], console::greenFGColor, "");
+								}
+							}
+						}
+
+						if (WalletSettingValues::verbose >= 7) {
+							console::WriteLine("request " + std::to_string(messageStatus), console::greenFGColor, "");
+						}
+					}
+					// If peer is answering request
+					else if (SplitString(totalMessage, "~")[0] == "answer") {
+						p2pConnections[otherAddrStr]->testedOnline = true;
+						messagePrefix += "answer~";
+						// If peer is giving blockchain height
+						if (SplitString(totalMessage, "~")[1] == "height") {
+							peerBlockchainLength = std::stoi(SplitString(totalMessage, "~")[2]);
+							messageStatus = await_first_success;
+							if (WalletSettingValues::verbose >= 4) {
+								console::WriteLine("answer height: " + std::to_string(peerBlockchainLength), console::greenFGColor, "");
+							}
+						}
+						// If peer is responding to an announce
+						else if (SplitString(totalMessage, "~")[1] == "announce") {
+							messagePrefix += "announce~";
 							json announcedInfo = json::parse(totalMessage.substr(messagePrefix.size()));
 							// Add peer to collection of connections if not there yet
 							AddToPeerList(otherAddrStr);
@@ -408,244 +559,94 @@ void P2P::ListenerThread(int update_interval)
 							p2pConnections[otherAddrStr]->peerList = announcedInfo["peerList"];
 							p2pConnections[otherAddrStr]->testedOnline = true;
 
+							messageStatus = await_first_success;
 							if (WalletSettingValues::verbose >= 7) {
-								console::WriteLine("answer peerconnect", console::greenFGColor, "");
-							}
-
-							messageStatus = announce;
-							//messageStatus = await_first_success; // Awaiting confirmation status
-							messageAttempt = 0;
-							differentPeerAttempts = 0;
-
-							CONNECTED_TO_PEER = true;
-						}
-						// If the peer is ending the connection
-						else if (totalMessage == "peer~disconnect") {
-							console::NetworkPrint();
-							console::WriteLine("Peer closed.");
-							CONNECTED_TO_PEER = false;
-							reqDat = -1;
-							messageStatus = -1;
-							pendingReceiveData = false;
-							otherAddrStr = "";
-							return;
-						}
-						// If the peer is requesting message received confirmation
-						else if (totalMessage == "peer~success" && (messageStatus >= 0)) {
-							if (WalletSettingValues::verbose >= 7) {
-								console::DebugPrint();
-								console::WriteLine("Dual Confirmation", console::greenFGColor, "");
-							}
-							//messageStatus = await_second_success; // Confirmed message status, continue sending our own
-							p2pConnections[otherAddrStr]->testedOnline = true;
-							messageStatus = idle;  // Confirmed message status, continue sending our own
-							reqDat = -1;
-							messageStatus = -1;
-							pendingReceiveData = false;
-							otherAddrStr = "";
-							// confirm 2 times, then switch to idle state -1
-							CONNECTED_TO_PEER = false;
-						}
-						// If the peer is idling
-						else if (totalMessage == "peer~idle") {
-							if (WalletSettingValues::verbose >= 5) {
-								console::DebugPrint();
-								console::WriteLine("idle...", console::yellowFGColor, "");
-								p2pConnections[otherAddrStr]->testedOnline = true;
+								console::WriteLine("answer peerannounce", console::greenFGColor, "");
 							}
 						}
-						// If peer is requesting data
-						else if (SplitString(totalMessage, "~")[0] == "request") {
-							p2pConnections[otherAddrStr]->testedOnline = true;
-							messagePrefix += "request~";
-							// If peer is asking for blockchain height
-							if (SplitString(totalMessage, "~")[1] == "height")
-								messageStatus = replying_height;
-							// If peer is asking for a pending block's data
-							else if (SplitString(totalMessage, "~")[1] == "pendingblock") {
-								messageStatus = replying_pendingblock;
-								reqDat = std::stoi(SplitString(totalMessage, "~")[2]);
+						// If peer is giving peer list
+						else if (SplitString(totalMessage, "~")[1] == "peerlist") {
+							//std::vector<std::string> receivedPeers = SplitString(SplitString(totalMessage, "~")[2], ":");
+							//// Iterate all received peers, and only add them to our list if it is not already on it
+							//for (int x = 0; x < receivedPeers.size(); x++) {
+							//	bool wasFound = false;
+							//	for (int y = 0; y < peerList.size(); y++) {
+							//		if (receivedPeers[x] == peerList[y]) {
+							//			wasFound = true;
+							//			break;
+							//		}
+							//	}
+							//	if (wasFound == false)
+							//		peerList.push_back(SplitString(receivedPeers[x], ":")[0] + ":" + SplitString(receivedPeers[x], ":")[1] + ":0");
+							//}
+							//SavePeerList();
+							messageStatus = await_first_success;
+						}
+						// If peer is giving a block's data
+						else if (SplitString(totalMessage, "~")[1] == "block") {
+							messageStatus = await_first_success;
+							int num = std::stoi(SplitString(totalMessage, "~")[2]);
+							std::string blockData = SplitString(totalMessage, "~")[3];
+
+							// Make sure this data is actually being requested; we don't want a forced download.
+							if (reqDat != num) {
+								if (WalletSettingValues::verbose >= 5)
+									console::WriteLine("\nAnswered block does not match request: " + std::to_string(reqDat) + " != " + std::to_string(num));
+								continue;
 							}
-							// If peer is asking for a block's data
-							else if (SplitString(totalMessage, "~")[1] == "block") {
-								messageStatus = replying_block;
-								reqDat = std::stoi(SplitString(totalMessage, "~")[2]);
-							}
-							// If peer is asking for this peer's peerList
-							else if (SplitString(totalMessage, "~")[1] == "peerlist")
-								messageStatus = replying_peer_list;
-							// If peer is asking for you to process and record a transaction
-							else if (SplitString(totalMessage, "~")[1] == "transactionprocess") {
-								messageStatus = await_first_success;
-								std::string transactionString = SplitString(totalMessage, "~")[2];
 
-
-								// Verify the transaction:
-								//	* First ensure it has a valid signature
-								//  * Then see if the user has enough Aether to send
-
-								json transaction = json::parse(transactionString);
-								std::string signature = transaction["sec"]["signature"];
-
-								// Check signature length
-								if (signature.size() == 0)
-									continue;
-
-								// Check if transaction is valid
-								if (VerifyTransaction(transaction, 0, true)) {
-									// Save transaction data to file
-									try {
-										json pendingTransactions = json();
-										pendingTransactions["transactions"] = json::array();
-
-										// Read existing pending transactions file, if it exists
-										std::ifstream transactionsFileRead("./wwwdata/pendingtransactions.agtxs");
-										if (transactionsFileRead.is_open()) {
-											std::stringstream bufferd;
-											bufferd << transactionsFileRead.rdbuf();
-											std::string blockText = bufferd.str();
-											transactionsFileRead.close();
-										}
-
-										// Append the new transaction
-										pendingTransactions["transactions"].push_back(transaction);
-
-										// Save the new transaction list
-										std::ofstream transactionsFileWrite("./wwwdata/pendingtransactions.agtxs");
-										if (transactionsFileWrite.is_open()) {
-											transactionsFileWrite << pendingTransactions.dump();
-											transactionsFileWrite.close();
-											if (WalletSettingValues::verbose >= 4)
-												console::WriteLine("\nSaved new transaction");
-										}
-									}
-									catch (const std::exception& e) {
-										ERRORMSG("failed to save transaction data to file");
-										std::cerr << e.what() << std::endl;
-									}
-
-									if (WalletSettingValues::verbose >= 4) {
-										console::WriteLine("received transaction: " + (std::string)transaction["tx"]["fromAddr"], console::greenFGColor, "");
-									}
+							// Save block data to file
+							try {
+								if (WalletSettingValues::verbose >= 5)
+									console::WriteLine("\nSaved block: " + std::to_string(num));
+								std::ofstream blockFile("./wwwdata/blockchain/block" + std::to_string(num) + ".agblock");
+								if (blockFile.is_open()) {
+									blockFile << blockData;
+									blockFile.close();
 								}
+							}
+							catch (const std::exception& e) {
+								ERRORMSG("failed to save block data to file");
+								std::cerr << e.what() << std::endl;
 							}
 
 							if (WalletSettingValues::verbose >= 7) {
-								console::WriteLine("request " + std::to_string(messageStatus), console::greenFGColor, "");
+								console::WriteLine("received block: " + std::to_string(num), console::greenFGColor, "");
 							}
 						}
-						// If peer is answering request
-						else if (SplitString(totalMessage, "~")[0] == "answer") {
-							p2pConnections[otherAddrStr]->testedOnline = true;
-							messagePrefix += "answer~";
-							// If peer is giving blockchain height
-							if (SplitString(totalMessage, "~")[1] == "height") {
-								peerBlockchainLength = std::stoi(SplitString(totalMessage, "~")[2]);
-								messageStatus = await_first_success;
-								if (WalletSettingValues::verbose >= 4) {
-									console::WriteLine("answer height: " + std::to_string(peerBlockchainLength), console::greenFGColor, "");
-								}
-							}
-							// If peer is responding to an announce
-							else if (SplitString(totalMessage, "~")[1] == "announce") {
-								messagePrefix += "announce~";
-								json announcedInfo = json::parse(totalMessage.substr(messagePrefix.size()));
-								// Add peer to collection of connections if not there yet
-								AddToPeerList(otherAddrStr);
-
-								p2pConnections[otherAddrStr]->height = announcedInfo["height"];
-								p2pConnections[otherAddrStr]->peerList = announcedInfo["peerList"];
-								p2pConnections[otherAddrStr]->testedOnline = true;
-
-								messageStatus = await_first_success;
-								if (WalletSettingValues::verbose >= 7) {
-									console::WriteLine("answer peerannounce", console::greenFGColor, "");
-								}
-							}
-							// If peer is giving peer list
-							else if (SplitString(totalMessage, "~")[1] == "peerlist") {
-								//std::vector<std::string> receivedPeers = SplitString(SplitString(totalMessage, "~")[2], ":");
-								//// Iterate all received peers, and only add them to our list if it is not already on it
-								//for (int x = 0; x < receivedPeers.size(); x++) {
-								//	bool wasFound = false;
-								//	for (int y = 0; y < peerList.size(); y++) {
-								//		if (receivedPeers[x] == peerList[y]) {
-								//			wasFound = true;
-								//			break;
-								//		}
-								//	}
-								//	if (wasFound == false)
-								//		peerList.push_back(SplitString(receivedPeers[x], ":")[0] + ":" + SplitString(receivedPeers[x], ":")[1] + ":0");
-								//}
-								//SavePeerList();
-								messageStatus = await_first_success;
-							}
-							// If peer is giving a block's data
-							else if (SplitString(totalMessage, "~")[1] == "block") {
-								messageStatus = await_first_success;
-								int num = std::stoi(SplitString(totalMessage, "~")[2]);
-								std::string blockData = SplitString(totalMessage, "~")[3];
-
-								// Make sure this data is actually being requested; we don't want a forced download.
-								if (reqDat != num) {
-									if (WalletSettingValues::verbose >= 5)
-										console::WriteLine("\nAnswered block does not match request: " + std::to_string(reqDat) + " != " + std::to_string(num));
-									continue;
-								}
-
-								// Save block data to file
-								try {
-									if (WalletSettingValues::verbose >= 5)
-										console::WriteLine("\nSaved block: " + std::to_string(num));
-									std::ofstream blockFile("./wwwdata/blockchain/block" + std::to_string(num) + ".agblock");
-									if (blockFile.is_open()) {
-										blockFile << blockData;
-										blockFile.close();
-									}
-								}
-								catch (const std::exception& e) {
-									ERRORMSG("failed to save block data to file");
-									std::cerr << e.what() << std::endl;
-								}
-
-								if (WalletSettingValues::verbose >= 7) {
-									console::WriteLine("received block: " + std::to_string(num), console::greenFGColor, "");
-								}
-							}
-							messageAttempt = 0;
-						}
-					}
-					else if (noreceipt >= 100) {
-						if (WalletSettingValues::verbose >= 4 && otherAddrStr != "")
-							console::WriteLine("noreceipt timeout check");
-						messageStatus = idle;
 						messageAttempt = 0;
-						otherAddrStr = "";
-						noreceipt = 0;
-						pendingReceiveData = false;
 					}
-					else {
-						noreceipt++;
-					}
-	#if WINDOWS
-					else if (WSAGetLastError() != WSAETIMEDOUT && WalletSettingValues::verbose >= 5)
-					{
-						console::NetworkErrorPrint();
-						console::WriteLine("Error, Peer closed.");
-						CONNECTED_TO_PEER = false;
-						reqDat = -1;
-						//thread_running = false;
-						return;
-					}
-	#endif
 				}
+				else if (noreceipt >= 100) {
+					if (WalletSettingValues::verbose >= 4 && otherAddrStr != "")
+						console::WriteLine("noreceipt timeout check");
+					messageStatus = idle;
+					messageAttempt = 0;
+					otherAddrStr = "";
+					noreceipt = 0;
+					pendingReceiveData = false;
+				}
+				else {
+					noreceipt++;
+				}
+	#if WINDOWS
+				else if (WSAGetLastError() != WSAETIMEDOUT && WalletSettingValues::verbose >= 5)
+				{
+					console::NetworkErrorPrint();
+					console::WriteLine("Error, Peer closed.");
+					CONNECTED_TO_PEER = false;
+					reqDat = -1;
+					//thread_running = false;
+					return;
+				}
+	#endif
 			}
 		}
-		catch (const std::exception& e)
-		{
-			ERRORMSG("");
-			std::cerr << e.what() << std::endl;
-		}
+	}
+	catch (const std::exception& e) {
+		ERRORMSG("");
+		std::cerr << e.what() << std::endl;
+	}
 
 
 #endif
@@ -747,22 +748,22 @@ int P2P::OpenP2PSocket(int port)
 
 #else
 
-		localSocket = socket(AF_INET, SOCK_DGRAM, 0);
-		if (localSocket < 0) {
-			console::ErrorPrint();
-			console::WriteLine("ERROR opening socket");
-			exit(1);
-		}
-		//bzero((char*)&serv_addr, sizeof(serv_addr));
-		memset(&serv_addr, 0, sizeof(serv_addr));
-		portno = port;
-		serv_addr.sin_family = AF_INET;
-		serv_addr.sin_addr.s_addr = INADDR_ANY;
-		serv_addr.sin_port = htons(portno);
-		if (bind(localSocket, (const struct sockaddr*)&serv_addr, sizeof(serv_addr)) < 0) {
-			console::ErrorPrint();
-			console::WriteLine("ERROR on binding");
-		}
+	localSocket = socket(AF_INET, SOCK_DGRAM, 0);
+	if (localSocket < 0) {
+		console::ErrorPrint();
+		console::WriteLine("ERROR opening socket");
+		exit(1);
+	}
+	//bzero((char*)&serv_addr, sizeof(serv_addr));
+	memset(&serv_addr, 0, sizeof(serv_addr));
+	portno = port;
+	serv_addr.sin_family = AF_INET;
+	serv_addr.sin_addr.s_addr = INADDR_ANY;
+	serv_addr.sin_port = htons(portno);
+	if (bind(localSocket, (const struct sockaddr*)&serv_addr, sizeof(serv_addr)) < 0) {
+		console::ErrorPrint();
+		console::WriteLine("ERROR on binding");
+	}
 
 #endif
 
@@ -1080,8 +1081,8 @@ void P2P::SenderThread()
 #if WINDOWS
 				Sleep(50);
 #else
-					//sleep(1);
-					std::this_thread::sleep_for(std::chrono::milliseconds(20));
+				//sleep(1);
+				std::this_thread::sleep_for(std::chrono::milliseconds(20));
 #endif
 			}
 

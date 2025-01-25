@@ -297,6 +297,10 @@ void P2P::ListenerThread(int update_interval)
 						continue;
 					}
 
+					// If at this point the other address is still not known, do not continue
+					if (otherAddrStr == "" || otherAddrStr == "0.0.0.0:0")
+						continue;
+
 					// Read the received data buffer into a string
 					std::string textVal = std::string(buffer, buffer + iResult);
 
@@ -384,7 +388,7 @@ void P2P::ListenerThread(int update_interval)
 
 					// If the peer is requesting to connect
 					if (StringStartsWith(totalMessage, "peer~connect")) {
-						role = 0;
+						role = 1;
 						if (WalletSettingValues::verbose >= 4) {
 							console::DebugPrint();
 							console::WriteLine("Received initial connection from (" + otherAddrStr + ")", console::greenFGColor, "");

@@ -596,19 +596,21 @@ int main()
 							delugeFile.close();
 
 							content.push_back({(colorstr) {(std::string)delugeJson["_name"]}, (colorstr) {((std::string)delugeJson["_totalHash"]).substr(0, 20)}, (colorstr) {std::to_string(delugeJson["peers"].size())}, (colorstr) {truncateMetricNum((unsigned long long)delugeJson["_totalSizeB"]) + "B"}});  // Add new row
-																																																																												   //// Verify the deluge, by checking each chunk with its expected hash, and then the full hash
-																																																																												   //std::string delugePath = "./wwwdata/containers/" + ((std::string)delugeJson["_totalHash"]).substr(0, 32) + ".tar.zip";
-																																																																												   //if(VerifyDeluge(delugeJson, delugePath)){
-																																																																												   //	// Add deluge full hash to list with it's path as a value
-																																																																												   //	//completeDelugeList[(std::string)delugeJson["_totalHash"]] = deluge.path();
-																																																																												   //}
-																																																																												   //// If the deluge is invalid, remove it's file
-																																																																												   //else{
-																																																																												   //	try{
-																																																																												   //		remove(deluge.path());
-																																																																												   //	}
-																																																																												   //	catch(...){}
-																																																																												   //}
+
+							// Verify the deluge, by checking each chunk with its expected hash, and then the full hash
+							std::string delugePath = "./wwwdata/containers/" + ((std::string)delugeJson["_totalHash"]).substr(0, 32) + ".tar.zip";
+							if (VerifyDeluge(delugeJson, delugePath)) {
+								// Add deluge full hash to list with it's path as a value
+								//completeDelugeList[(std::string)delugeJson["_totalHash"]] = deluge.path();
+							}
+							// If the deluge is invalid, remove it's file
+							else {
+								try {
+									//remove(deluge.path());
+								}
+								catch (...) {
+								}
+							}
 						}
 					}
 					console::WriteTable(headers, content, widths, 1);

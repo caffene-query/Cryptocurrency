@@ -10,10 +10,10 @@ BlockchainMiner/bin/Debug/netcoreapp3.1/programs
 ColdWallet/config.txt
 FileContentIndex
 *.cfg
-*.dccwallet
+*.agwallet
 *.lnk
-*.dccblock
-*.dccsuper
+*.agblock
+*.agsuper
 programs
 slnx.sqlite
 DCC-Miner/.vs/slnx.sqlite

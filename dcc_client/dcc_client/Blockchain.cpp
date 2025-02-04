@@ -4,12 +4,10 @@
 #include "Blockchain.h"
 
 
-
 //
 //int GetProgram();
 //float GetProgramLifeLeft(std::string& programID);
 //json UpgradeBlock(json& b, std::string toVersion);
-
 
 
 std::string programID = "";
@@ -20,14 +18,15 @@ json programConfig;
 // Sync a single pending block from a peer
 int SyncPending(P2P& p2p, int whichBlock)
 {
-	if (fs::exists("./wwwdata/pendingblocks/block" + std::to_string(whichBlock) + ".dccblock"))
+	if (fs::exists("./wwwdata/pendingblocks/block" + std::to_string(whichBlock) + ".agblock"))
 		return 1;
 
 	p2p.messageStatus = p2p.requesting_pendingblock;
 	p2p.messageAttempt = 0;
 	p2p.reqDat = whichBlock;
 
-	while (p2p.isAwaiting()) {}
+	while (p2p.isAwaiting()) {
+	}
 
 	return 1;
 }
@@ -35,14 +34,15 @@ int SyncPending(P2P& p2p, int whichBlock)
 // Sync a single solid block from a peer
 int SyncBlock(P2P& p2p, int whichBlock, bool force, bool awaitFinish)
 {
-	if (fs::exists("./wwwdata/blockchain/block" + std::to_string(whichBlock) + ".dccblock") && !force)
+	if (fs::exists("./wwwdata/blockchain/block" + std::to_string(whichBlock) + ".agblock") && !force)
 		return 1;
 
 	p2p.messageStatus = p2p.requesting_block;
 	p2p.messageAttempt = 0;
 	p2p.reqDat = whichBlock;
 
-	while (p2p.isAwaiting() && awaitFinish) {}
+	while (p2p.isAwaiting() && awaitFinish) {
+	}
 
 	return 1;
 }
@@ -50,17 +50,16 @@ int SyncBlock(P2P& p2p, int whichBlock, bool force, bool awaitFinish)
 // Sync the entire blockchain
 int Sync(P2P& p2p, json& walletInfo)
 {
-	try
-	{
+	try {
 		for (int i = 1; i < walletInfo["BlockchainLength"]; i++)
-			if (!fs::exists("./wwwdata/blockchain/block" + std::to_string(i) + ".dccblock"))
+			if (!fs::exists("./wwwdata/blockchain/block" + std::to_string(i) + ".agblock"))
 				SyncBlock(p2p, i);
 		//GetProgram(walletInfo);
 		return 1;
 	}
-	catch (const std::exception& e)
-	{
-		ERRORMSG("Failed to sync chain\n" << e.what());
+	catch (const std::exception& e) {
+		ERRORMSG("Failed to sync chain\n"
+				 << e.what());
 		return 0;
 	}
 }
@@ -68,8 +67,7 @@ int Sync(P2P& p2p, json& walletInfo)
 // Announce the current ip address and port to all of the peers in the peer list
 int AnnounceToPeers(P2P& p2p)
 {
-	try
-	{
+	try {
 		//for (int i = 0; i < p2p.peerList.size(); i++) {
 		//	p2p.SetPeer(i);
 
@@ -82,9 +80,9 @@ int AnnounceToPeers(P2P& p2p)
 		//GetProgram(walletInfo);
 		return 1;
 	}
-	catch (const std::exception& e)
-	{
-		ERRORMSG("Failed to announce to peers\n" << e.what());
+	catch (const std::exception& e) {
+		ERRORMSG("Failed to announce to peers\n"
+				 << e.what());
 		return 0;
 	}
 }
@@ -102,18 +100,15 @@ json ReadProgramConfig()
 // Write the JSON data for the assigned program to file
 int WriteProgramConfig()
 {
-	try
-	{
+	try {
 		std::ofstream configFile("./wwwdata/programs/" + programID + ".cfg");
-		if (configFile.is_open())
-		{
+		if (configFile.is_open()) {
 			configFile << programConfig.dump();
 			configFile.close();
 		}
 		return 1;
 	}
-	catch (const std::exception&)
-	{
+	catch (const std::exception&) {
 		return 0;
 	}
 }
@@ -125,7 +120,8 @@ int GetProgram(P2P& p2p, json& walletInfo)
 	p2p.messageAttempt = 0;
 	//p2p.reqDat = whichBlock;
 
-	while (p2p.isAwaiting()) {}
+	while (p2p.isAwaiting()) {
+	}
 
 	return 0;
 
@@ -265,14 +261,14 @@ int MakeProgram(json& walletInfo, json& walletConfig, std::string& path, bool is
 	console::WriteLine("This may take a moment...");
 
 	std::string quietOption = "";
-	if(isQuiet)
+	if (isQuiet)
 		quietOption = "-q ";
-	system(("podman build "+quietOption+"--rm -f " + path + configFileName + " -t dcc/temporaryimage:latest " + path).c_str());
+	system(("podman build " + quietOption + "--rm -f " + path + configFileName + " -t aethergrid/temporaryimage:latest " + path).c_str());
 
 	// Save to tar archive
 	console::ContainerManagerPrint();
 	console::WriteLine("Archiving the application ... ");
-	int podmanStatus = system("podman save -o temporaryimage.tar dcc/temporaryimage:latest"); // Save it to file
+	int podmanStatus = system("podman save -o temporaryimage.tar aethergrid/temporaryimage:latest");  // Save it to file
 
 	// Make sure podman did not give an error
 	if (podmanStatus != 0) {
@@ -283,7 +279,7 @@ int MakeProgram(json& walletInfo, json& walletConfig, std::string& path, bool is
 		return 1;
 	}
 
-	ExecuteCommand("tar -a -c -f temporaryimage.tar.zip temporaryimage.tar"); // Compress the file using tar
+	ExecuteCommand("tar -a -c -f temporaryimage.tar.zip temporaryimage.tar");  // Compress the file using tar
 
 
 	FILE* pFile;
@@ -293,8 +289,7 @@ int MakeProgram(json& walletInfo, json& walletConfig, std::string& path, bool is
 	fseek(pFile, 0L, SEEK_SET);
 	char* byteArray = new char[size + 1];
 	byteArray[size] = '\0';
-	if (pFile != NULL)
-	{
+	if (pFile != NULL) {
 		int counter = 0;
 		do {
 			byteArray[counter] = fgetc(pFile);
@@ -305,26 +300,25 @@ int MakeProgram(json& walletInfo, json& walletConfig, std::string& path, bool is
 
 	//std::ifstream t(path);
 	//if (t.is_open()) {
-		//std::stringstream buffer;
-		//buffer << t.rdbuf();
-		//std::string content = buffer.str();
+	//std::stringstream buffer;
+	//buffer << t.rdbuf();
+	//std::string content = buffer.str();
 	console::ContainerManagerPrint();
-	std::cout << "Total compressed Deluge size: " << size << " bytes, "+truncateMetricNum(size)+"bytes\n";
+	std::cout << "Total compressed Deluge size: " << size << " bytes, " + truncateMetricNum(size) + "bytes\n";
 
 
 	using namespace indicators;
-	indicators::ProgressBar delugeBuilderProgress{
-		indicators::option::BarWidth{50},
-		indicators::option::Start{"["},
-		indicators::option::Fill{"■"},
-		indicators::option::Lead{"■"},
-		indicators::option::Remainder{"-"},
-		indicators::option::End{" ]"},
-		indicators::option::PostfixText{"Building part 0"},
-		indicators::option::ForegroundColor{Color::blue},
-		indicators::option::FontStyles{std::vector<FontStyle>{FontStyle::bold}},
-		indicators::option::MaxProgress{size}
-	};
+	indicators::ProgressBar delugeBuilderProgress {
+		indicators::option::BarWidth {50},
+		indicators::option::Start {"["},
+		indicators::option::Fill {"■"},
+		indicators::option::Lead {"■"},
+		indicators::option::Remainder {"-"},
+		indicators::option::End {" ]"},
+		indicators::option::PostfixText {"Building part 0"},
+		indicators::option::ForegroundColor {Color::blue},
+		indicators::option::FontStyles {std::vector<FontStyle> {FontStyle::bold}},
+		indicators::option::MaxProgress {size}};
 
 
 	// Create hash for each 32kb chunk of the file, and add to list
@@ -336,8 +330,7 @@ int MakeProgram(json& walletInfo, json& walletConfig, std::string& path, bool is
 	unsigned char hash[32];
 	//char strOutBuffer[] = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
 	int actualSize = 0;
-	do
-	{
+	do {
 		csubstr(byteArray, outDatArray, ind, DELUGE_CHUNK_SIZE, size, actualSize);
 		//cConcatInt(outDatArray, outDatArray, actualSize, chunks);
 		sha256_string((char*)(allHashesString.c_str()), sha256OutBuffer);
@@ -346,17 +339,15 @@ int MakeProgram(json& walletInfo, json& walletConfig, std::string& path, bool is
 		auto it = std::find(hashList.begin(), hashList.end(), sha256OutBuffer);
 
 		// If element was found, only add index of it
-		if (it != hashList.end())
-		{
+		if (it != hashList.end()) {
 			int index = it - hashList.begin();
 			hashList.push_back(std::to_string(index));
 		}
 		// Else, add as new element
-		else
-		{
+		else {
 			hashList.push_back(sha256OutBuffer);
 		}
-		delugeBuilderProgress.set_option(option::PostfixText{"Building part " + PadString(std::to_string(chunks), '0', 4)});
+		delugeBuilderProgress.set_option(option::PostfixText {"Building part " + PadString(std::to_string(chunks), '0', 4)});
 		delugeBuilderProgress.set_progress(ind);
 		//console::ContainerManagerPrint();
 		//std::cout << "Building part " << PadString(std::to_string(chunks), '0', 4) << "  ,  " << PadString(std::to_string(ind), '0', std::to_string(size).size()) << " of " << size << " bytes" << "   =>   " << hashList.at(hashList.size() - 1).substr(0, 20) + "...\r";
@@ -384,13 +375,12 @@ int MakeProgram(json& walletInfo, json& walletConfig, std::string& path, bool is
 	unsigned long long currentTime = (unsigned long long)(std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count());
 
 	// Hash all of the important data
-	std::string combinedData = 
-							JoinArrayPieces(hashList) + 
-							(std::string)walletConfig["ip"] + 
-							(std::string)walletInfo["Address"] + 
-							std::to_string(currentTime) + 
-							std::to_string(size)
-	;
+	std::string combinedData =
+		JoinArrayPieces(hashList) +
+		(std::string)walletConfig["ip"] +
+		(std::string)walletInfo["Address"] +
+		std::to_string(currentTime) +
+		std::to_string(size);
 	sha256_string((char*)(combinedData.c_str()), sha256OutBuffer);
 	std::string hData = std::string(sha256OutBuffer);
 
@@ -402,27 +392,26 @@ int MakeProgram(json& walletInfo, json& walletConfig, std::string& path, bool is
 	// Create json object storing the program data
 	json programData = json::object({});
 	programData = {
-			{"hashList", hashList},
-			{"_ip", (std::string)walletConfig["ip"]},
-			{"_address", (std::string)walletInfo["Address"]},
-			{"_totalHash", hData},
-			{"_chunkSizeB", DELUGE_CHUNK_SIZE},
-			{"_totalSizeB", size},
-			{"_version", DELUGE_VERSION},
-			{"_time", currentTime},
-			{"_signature", sigBase64},
-			{"_pubKey", walletInfo["pubKey"]},
-			{"_name", SplitGetLastAfterChar(path,"/").substr(0, 32)}, // Use path as name, also truncate to only 32 chars
-			{"peers", json::array()} // List of peers that say have this file, add self for original distribution
+		{"hashList", hashList},
+		{"_ip", (std::string)walletConfig["ip"]},
+		{"_address", (std::string)walletInfo["Address"]},
+		{"_totalHash", hData},
+		{"_chunkSizeB", DELUGE_CHUNK_SIZE},
+		{"_totalSizeB", size},
+		{"_version", DELUGE_VERSION},
+		{"_time", currentTime},
+		{"_signature", sigBase64},
+		{"_pubKey", walletInfo["pubKey"]},
+		{"_name", SplitGetLastAfterChar(path, "/").substr(0, 32)},	// Use path as name, also truncate to only 32 chars
+		{"peers", json::array()}									// List of peers that say have this file, add self for original distribution
 	};
-	programData["peers"].push_back({ (std::string)walletConfig["ip"], (int)walletConfig["port"] });
+	programData["peers"].push_back({(std::string)walletConfig["ip"], (int)walletConfig["port"]});
 
 	// Output name will be the total hash (only the first 32 characters)
 	console::ContainerManagerPrint();
 	console::WriteLine("Saving to file \"./wwwdata/developing-deluges/" + hData.substr(0, 32) + ".deluge" + "\"");
 	std::ofstream programDeluge("./wwwdata/developing-deluges/" + hData.substr(0, 32) + ".deluge");
-	if (programDeluge.is_open())
-	{
+	if (programDeluge.is_open()) {
 		programDeluge << programData.dump();
 		programDeluge.close();
 	}
@@ -451,8 +440,7 @@ bool VerifyDeluge(json& delugeJson, std::string& path)
 	fseek(pFile, 0L, SEEK_SET);
 	char* byteArray = new char[size + 1];
 	byteArray[size] = '\0';
-	if (pFile != NULL)
-	{
+	if (pFile != NULL) {
 		int counter = 0;
 		do {
 			byteArray[counter] = fgetc(pFile);
@@ -472,15 +460,14 @@ bool VerifyDeluge(json& delugeJson, std::string& path)
 	unsigned char hash[32];
 	//char strOutBuffer[] = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
 	int actualSize = 0;
-	do
-	{
+	do {
 		csubstr(byteArray, outDatArray, ind, DELUGE_CHUNK_SIZE, size, actualSize);
 		//cConcatInt(outDatArray, outDatArray, actualSize, chunks);
 		sha256_string((char*)(allHashesString.c_str()), sha256OutBuffer);
 		std::string hData = std::string(sha256OutBuffer);
 
 		std::string expectedHash = (std::string)delugeJson["hashList"][chunks];
-		if (expectedHash.size() < 20) // If the length of the string is less than the hash size, it is referencing another index
+		if (expectedHash.size() < 20)  // If the length of the string is less than the hash size, it is referencing another index
 			expectedHash = (std::string)delugeJson["hashList"][std::stoi(expectedHash)];
 
 		if (hData != expectedHash) {
@@ -488,7 +475,8 @@ bool VerifyDeluge(json& delugeJson, std::string& path)
 			return false;
 		}
 
-		std::cout << "Checking part `" << PadString(std::to_string(chunks), '0', 4) << "`  ,  " << PadString(std::to_string(ind), '0', std::to_string(size).size()) << " of " << size << " bytes" << "   =>   " << expectedHash << std::endl;
+		std::cout << "Checking part `" << PadString(std::to_string(chunks), '0', 4) << "`  ,  " << PadString(std::to_string(ind), '0', std::to_string(size).size()) << " of " << size << " bytes"
+				  << "   =>   " << expectedHash << std::endl;
 		allHashesString += hData;
 		ind += DELUGE_CHUNK_SIZE;
 		chunks++;
@@ -524,11 +512,10 @@ bool VerifyDeluge(json& delugeJson, std::string& path)
 // Get the amount of time left of the current assigned rust program, by asking the server     // TODO: change to ask peers instead of the server
 float GetProgramLifeLeft()
 {
-	try
-	{
+	try {
 		Http http;
-		std::vector<std::string> args = { "query=getProgramLifeLeft", "programID=" + programID };
-		std::string html = http.StartHttpWebRequest(serverURL + "/dcc/", args);
+		std::vector<std::string> args = {"query=getProgramLifeLeft", "programID=" + programID};
+		std::string html = http.StartHttpWebRequest(serverURL + "/ag/", args);
 
 		if (html.find("ERR") != std::string::npos || html == "")
 			return -100;
@@ -536,14 +523,13 @@ float GetProgramLifeLeft()
 		boost::trim(cpy);
 		return stof(cpy);
 	}
-	catch (const std::exception&)
-	{
+	catch (const std::exception&) {
 		return 0;
 	}
 }
 
-void CreateTransaction(P2P& p2p, json& walletInfo, double& amount) {
-
+void CreateTransaction(P2P& p2p, json& walletInfo, double& amount)
+{
 }
 
 // Check every single block to make sure the nonce is valid, the hash matches the earlier and later blocks, and each transaction has a valid signature.
@@ -576,13 +562,12 @@ bool IsChainValid(P2P& p2p, json& walletInfo)
 
 		using namespace indicators;
 
-		// Apply funds to user from the first block separately
-		checkFirstBlock:
-		try
-		{
+	// Apply funds to user from the first block separately
+	checkFirstBlock:
+		try {
 			if (chainLength >= 1) {
 				std::ifstream th;
-				th.open("./wwwdata/blockchain/block1.dccblock");
+				th.open("./wwwdata/blockchain/block1.agblock");
 				if (!th.is_open())
 					ERRORMSG("Could not open file");
 				std::stringstream buffer2;
@@ -608,9 +593,8 @@ bool IsChainValid(P2P& p2p, json& walletInfo)
 						tmpFunds += amount;
 				}
 				// Save upgraded block
-				std::ofstream blockFile("./wwwdata/blockchain/block1.dccblock");
-				if (blockFile.is_open())
-				{
+				std::ofstream blockFile("./wwwdata/blockchain/block1.agblock");
+				if (blockFile.is_open()) {
 					blockFile << firstBlock.dump();
 					blockFile.close();
 				}
@@ -625,9 +609,8 @@ bool IsChainValid(P2P& p2p, json& walletInfo)
 				// The data we will actually be hashing is a hash of the
 				// transactions and header, so we don't need to do calculations on
 				// massive amounts of data
-				std::string txData; // Only use the `tx` portion of each transaction objects' data
-				for (size_t i = 0; i < firstBlock["transactions"].size(); i++)
-				{
+				std::string txData;	 // Only use the `tx` portion of each transaction objects' data
+				for (size_t i = 0; i < firstBlock["transactions"].size(); i++) {
 					txData += (std::string)firstBlock["transactions"][i]["tx"].dump();
 				}
 				// Compile all data into shorter format:
@@ -639,8 +622,7 @@ bool IsChainValid(P2P& p2p, json& walletInfo)
 				sha256_string((char*)(hData + nonce).c_str(), sha256OutBuffer);
 				std::string blockHash = sha256OutBuffer;
 
-				if (blockHash != currentHash)
-				{
+				if (blockHash != currentHash) {
 					std::string rr = "";
 					if (blockHash != currentHash)
 						rr += "1";
@@ -650,14 +632,14 @@ bool IsChainValid(P2P& p2p, json& walletInfo)
 			}
 		}
 		// If there is a failure state, assume that block is bad or does not exist.
-		catch (std::exception& e)
-		{
+		catch (std::exception& e) {
 			if (WalletSettingValues::verbose >= 1) {
-				ERRORMSG("Error\n" << e.what());
+				ERRORMSG("Error\n"
+						 << e.what());
 			}
 
 			console::WriteLine();
-			SyncBlock(p2p, 1, true); // Force resync
+			SyncBlock(p2p, 1, true);  // Force resync
 
 			// Then recount, because we need to know if the synced block is new or overwrote an existing one.
 			chainLength = FileCount("./wwwdata/blockchain/");
@@ -666,27 +648,25 @@ bool IsChainValid(P2P& p2p, json& walletInfo)
 		}
 
 		indicators::IndeterminateProgressBar progressAndFixingBar {
-		    indicators::option::BarWidth{20},
-		    indicators::option::Start{"["},
-		    indicators::option::Fill{"·"},
-		    indicators::option::Lead{"<==>"},
-		    indicators::option::End{"]"},
-		    indicators::option::PostfixText{"Checking ("+std::to_string(0)+"/"+std::to_string(chainLength)+")"},
-		    indicators::option::ForegroundColor{indicators::Color::green},
-		    indicators::option::FontStyles{
-		        std::vector<indicators::FontStyle>{indicators::FontStyle::bold}}
-		};
+			indicators::option::BarWidth {20},
+			indicators::option::Start {"["},
+			indicators::option::Fill {"·"},
+			indicators::option::Lead {"<==>"},
+			indicators::option::End {"]"},
+			indicators::option::PostfixText {"Checking (" + std::to_string(0) + "/" + std::to_string(chainLength) + ")"},
+			indicators::option::ForegroundColor {indicators::Color::green},
+			indicators::option::FontStyles {
+				std::vector<indicators::FontStyle> {indicators::FontStyle::bold}}};
 
 		// Then process the rest of the blocks
-		for (int i = 2; i <= chainLength; i++)
-		{
-			try
-			{
+		for (int i = 2; i <= chainLength; i++) {
+			try {
 				std::ifstream t;
-				t.open("./wwwdata/blockchain/block" + std::to_string(i) + ".dccblock");
+				t.open("./wwwdata/blockchain/block" + std::to_string(i) + ".agblock");
 				if (!t.is_open()) {
-					if(WalletSettingValues::verbose >= 4)
-						ERRORMSG("Could not open file" << " ./wwwdata/blockchain/block" << std::to_string(i) << ".dccblock ");
+					if (WalletSettingValues::verbose >= 4)
+						ERRORMSG("Could not open file"
+								 << " ./wwwdata/blockchain/block" << std::to_string(i) << ".agblock ");
 					throw 1;
 				}
 				std::stringstream buffer;
@@ -697,15 +677,13 @@ bool IsChainValid(P2P& p2p, json& walletInfo)
 				bool changedBlockData = false;
 				json o = json::parse(content);
 
-				std::string rewardedAddress; // The address that is awarded the gas fees and block reward
+				std::string rewardedAddress;  // The address that is awarded the gas fees and block reward
 
 				// Make sure block is up-to-date
-				if (o["_version"] == nullptr || o["_version"] == "" || o["_version"] != BLOCK_VERSION)
-				{
+				if (o["_version"] == nullptr || o["_version"] == "" || o["_version"] != BLOCK_VERSION) {
 					UpgradeBlock(o);
-					std::ofstream blockFile("./wwwdata/blockchain/block" + std::to_string(i) + ".dccblock");
-					if (blockFile.is_open())
-					{
+					std::ofstream blockFile("./wwwdata/blockchain/block" + std::to_string(i) + ".agblock");
+					if (blockFile.is_open()) {
 						blockFile << o.dump();
 						blockFile.close();
 					}
@@ -717,7 +695,7 @@ bool IsChainValid(P2P& p2p, json& walletInfo)
 
 				// Get the previous block
 				std::ifstream td;
-				td.open("./wwwdata/blockchain/block" + std::to_string(i - 1) + ".dccblock");
+				td.open("./wwwdata/blockchain/block" + std::to_string(i - 1) + ".agblock");
 				if (!td.is_open()) {
 					ERRORMSG("Could not open file");
 					throw 1;
@@ -738,9 +716,8 @@ bool IsChainValid(P2P& p2p, json& walletInfo)
 				// The data we will actually be hashing is a hash of the
 				// transactions and header, so we don't need to do calculations on
 				// massive amounts of data
-				std::string txData = ""; // Only use the `tx` portion of each transaction objects' data
-				for (size_t i = 0; i < o["transactions"].size(); i++)
-				{
+				std::string txData = "";  // Only use the `tx` portion of each transaction objects' data
+				for (size_t i = 0; i < o["transactions"].size(); i++) {
 					txData += (std::string)(o["transactions"][i]["tx"].dump());
 				}
 				std::string fDat = (std::string)o["pprev"] + txData;
@@ -750,8 +727,7 @@ bool IsChainValid(P2P& p2p, json& walletInfo)
 				sha256_string((char*)(hData + nonce.c_str()).c_str(), sha256OutBuffer);
 				std::string blockHash = std::string(sha256OutBuffer);
 
-				if ((blockHash[0] != '0' && blockHash[1] != '0') || blockHash != currentHash || lastRealHash != pprev)
-				{
+				if ((blockHash[0] != '0' && blockHash[1] != '0') || blockHash != currentHash || lastRealHash != pprev) {
 					std::string rr = "";
 					if ((blockHash[0] != '0' && blockHash[1] != '0'))
 						rr += "0";
@@ -774,7 +750,7 @@ bool IsChainValid(P2P& p2p, json& walletInfo)
 
 					// If this is the first transaction, that is the block reward, so it should be handled differently:
 					if (tr == 0) {
-						if ((std::string)walletInfo["Address"] == toAddr) { // If this is the receiving address, then give reward
+						if ((std::string)walletInfo["Address"] == toAddr) {	 // If this is the receiving address, then give reward
 							tmpFunds2 += amount;
 						}
 						rewardedAddress = toAddr;
@@ -811,7 +787,7 @@ bool IsChainValid(P2P& p2p, json& walletInfo)
 					}
 					else if ((std::string)walletInfo["Address"] == toAddr)
 						tmpFunds2 += amount;
-					else if (rewardedAddress == (std::string)walletInfo["Address"]) // If you are the one that mined this block, add gas fees
+					else if (rewardedAddress == (std::string)walletInfo["Address"])	 // If you are the one that mined this block, add gas fees
 						tmpFunds2 += (float)o["transactions"][tr]["tx"]["transactionFee"];
 				}
 
@@ -820,22 +796,21 @@ bool IsChainValid(P2P& p2p, json& walletInfo)
 				walletInfo["transactionNumber"] = txNPending;
 
 
-				if(WalletSettingValues::verbose >= 5)
+				if (WalletSettingValues::verbose >= 5)
 					if (i % 10 == 0 || i >= chainLength - 2) {
 						console::Write("     Transactions: " + std::to_string(o["transactions"].size()));
 						console::Write("   Ok  ", console::greenFGColor, "");
 					}
 
-				if(WalletSettingValues::lightWeight == false)
-					if(i % 200 == 0){
-						progressAndFixingBar.set_option(option::PostfixText{"Checking ("+std::to_string(i)+"/"+std::to_string(chainLength)+")"});
-						progressAndFixingBar.set_option(option::ForegroundColor{indicators::Color::green});
+				if (WalletSettingValues::lightWeight == false)
+					if (i % 200 == 0) {
+						progressAndFixingBar.set_option(option::PostfixText {"Checking (" + std::to_string(i) + "/" + std::to_string(chainLength) + ")"});
+						progressAndFixingBar.set_option(option::ForegroundColor {indicators::Color::green});
 						progressAndFixingBar.tick();
 					}
 			}
 			// If there is a failure state, assume that block is bad or does not exist.
-			catch (...)
-			{
+			catch (...) {
 				/*if (WalletSettingValues::verbose >= 1) {
 					ERRORMSG("Error\n" << e.what());
 				}*/
@@ -843,11 +818,11 @@ bool IsChainValid(P2P& p2p, json& walletInfo)
 				//console::WriteLine();
 				console::Write("\r\r                                                                                                    ");
 
-				progressAndFixingBar.set_option(option::PostfixText{"Fixing   ("+std::to_string(i)+")"});
-				progressAndFixingBar.set_option(option::ForegroundColor{indicators::Color::yellow});
+				progressAndFixingBar.set_option(option::PostfixText {"Fixing   (" + std::to_string(i) + ")"});
+				progressAndFixingBar.set_option(option::ForegroundColor {indicators::Color::yellow});
 
 				//console::Write("\nAttempting fix...");
-				SyncBlock(p2p, i, true, false); // Force resync
+				SyncBlock(p2p, i, true, false);	 // Force resync
 				while (p2p.isAwaiting()) {
 					std::this_thread::sleep_for(std::chrono::milliseconds(50));
 					progressAndFixingBar.tick();
@@ -856,7 +831,6 @@ bool IsChainValid(P2P& p2p, json& walletInfo)
 				i -= 1;
 				// Then recount, because we need to know if the synced block is new or overwrote an existing one.
 				chainLength = FileCount("./wwwdata/blockchain/");
-
 			}
 		}
 
@@ -867,9 +841,9 @@ bool IsChainValid(P2P& p2p, json& walletInfo)
 		console::Write("Done!                                                         \n");
 		return true;
 	}
-	catch (const std::exception& e)
-	{
-		ERRORMSG("Error validating chain:\n" << e.what());
+	catch (const std::exception& e) {
+		ERRORMSG("Error validating chain:\n"
+				 << e.what());
 	}
 	console::Write("\r");
 	console::BlockchainPrint();
@@ -880,8 +854,9 @@ bool IsChainValid(P2P& p2p, json& walletInfo)
 
 // Calculates the difficulty of the next block by looking at the past 288 blocks,
 // and averaging the time it took between each block to keep it within the 2 min (120 second) range
-#define BLOCK_DIFFICULTY_CUTOFF_RANGE 48 // 48*5mins = 4 hours
-std::string CalculateDifficulty(json& walletInfo) {
+#define BLOCK_DIFFICULTY_CUTOFF_RANGE 48  // 48*5mins = 4 hours
+std::string CalculateDifficulty(json& walletInfo)
+{
 	std::string targetDifficulty = "000000FFFFFF0000000000000000000000000000000000000000000000000000";
 
 	int blockCount = FileCount("./wwwdata/blockchain/");
@@ -898,7 +873,7 @@ std::string CalculateDifficulty(json& walletInfo) {
 
 	// Get first block time
 	std::ifstream t;
-	t.open("./wwwdata/blockchain/block" + std::to_string(blockCount - 288) + ".dccblock");
+	t.open("./wwwdata/blockchain/block" + std::to_string(blockCount - 288) + ".agblock");
 	std::stringstream buffer;
 	buffer << t.rdbuf();
 	json ot = json::parse(buffer.str());
@@ -907,7 +882,7 @@ std::string CalculateDifficulty(json& walletInfo) {
 	// Iterate last 288 blocks and add their time difference to the vector
 	for (int i = blockCount - 287; i <= blockCount; i++) {
 		std::ifstream tt;
-		tt.open("./wwwdata/blockchain/block" + std::to_string(i) + ".dccblock");
+		tt.open("./wwwdata/blockchain/block" + std::to_string(i) + ".agblock");
 		if (!tt.is_open())
 			ERRORMSG("Could not open file");
 		std::stringstream buffert;
@@ -941,7 +916,7 @@ std::string CalculateDifficulty(json& walletInfo) {
 	// Get the average of previous target difficulties in the past 256 blocks
 	for (int i = blockCount - 256; i <= blockCount; i++) {
 		std::ifstream tt;
-		tt.open("./wwwdata/blockchain/block" + std::to_string(i) + ".dccblock");
+		tt.open("./wwwdata/blockchain/block" + std::to_string(i) + ".agblock");
 		if (!tt.is_open())
 			ERRORMSG("Could not open file");
 		std::stringstream buffert;
@@ -992,7 +967,8 @@ std::string CalculateDifficulty(json& walletInfo) {
 }
 
 // Create a superblock using all of the blocks in the `blockchain` directory
-void CreateSuperblock() {
+void CreateSuperblock()
+{
 
 	std::map<std::string, double> walletBalances;
 
@@ -1000,12 +976,12 @@ void CreateSuperblock() {
 
 	// Iterate all blocks and compute each transaction
 	for (int i = 1; i <= blockCount; i++) {
-		std::ifstream tt("./wwwdata/blockchain/block" + std::to_string(i) + ".dccblock");
+		std::ifstream tt("./wwwdata/blockchain/block" + std::to_string(i) + ".agblock");
 		std::stringstream buffert;
 		buffert << tt.rdbuf();
 		json o = json::parse(buffert.str());
 
-		std::string rewardedAddress; // The address that is awarded the gas fees and block reward
+		std::string rewardedAddress;  // The address that is awarded the gas fees and block reward
 
 		// Add / subtract value from each address in the transactions
 		for (int tr = 0; tr < o["transactions"].size(); tr++) {
@@ -1057,14 +1033,13 @@ void CreateSuperblock() {
 	// Iterate through the map and add the elements to the array
 	console::WriteLine();
 	console::WriteLine("List of all wallet balances:");
-	while (it != walletBalances.end())
-	{
+	while (it != walletBalances.end()) {
 		console::WriteBulleted("", 1);
 		std::printf("Wallet: %s, Balance: $%f\n", it->first.c_str(), it->second);
 		json item = json::object({});
 		item = {
-				{"address", it->first},
-				{"balance", it->second},
+			{"address", it->first},
+			{"balance", it->second},
 		};
 		superblockJson["balances"].insert(superblockJson["balances"].begin(), item);
 		++it;
@@ -1072,9 +1047,8 @@ void CreateSuperblock() {
 	console::WriteLine();
 
 	int superblockCount = FileCount("./wwwdata/superchain/");
-	std::ofstream blockFilew("./wwwdata/superchain/" + std::to_string(superblockCount + 1) + ".dccsuper");
-	if (blockFilew.is_open())
-	{
+	std::ofstream blockFilew("./wwwdata/superchain/" + std::to_string(superblockCount + 1) + ".agsuper");
+	if (blockFilew.is_open()) {
 		blockFilew << superblockJson.dump();
 		blockFilew.close();
 	}
@@ -1098,8 +1072,7 @@ json UpgradeBlock(json& b)
 	// Changes:
 	// * Add version field
 	// * Update version
-	if (IsVersionGreaterOrEqual(currentVersion, "v0.0.1-alpha-coin") == false)
-	{
+	if (IsVersionGreaterOrEqual(currentVersion, "v0.0.1-alpha-coin") == false) {
 		b["_version"] = "v0.0.1-alpha-coin";
 	}
 
@@ -1107,8 +1080,7 @@ json UpgradeBlock(json& b)
 	// Changes:
 	// * Convert all transactions from list array to object
 	// * Update version
-	if (IsVersionGreaterOrEqual(currentVersion, "v0.2.0-alpha-coin") == false)
-	{
+	if (IsVersionGreaterOrEqual(currentVersion, "v0.2.0-alpha-coin") == false) {
 		b["_version"] = "v0.2.0-alpha-coin";
 	}
 
@@ -1116,8 +1088,7 @@ json UpgradeBlock(json& b)
 	// Changes:
 	// * Add new targetDifficulty variable
 	// * Update version
-	if (IsVersionGreaterOrEqual(currentVersion, "v0.3.0-alpha-coin") == false)
-	{
+	if (IsVersionGreaterOrEqual(currentVersion, "v0.3.0-alpha-coin") == false) {
 		b["targetDifficulty"] = "0000000FFFF0000000000000000000000000000000000000000000000000000";
 		b["_version"] = "v0.3.0-alpha-coin";
 	}
@@ -1127,8 +1098,7 @@ json UpgradeBlock(json& b)
 	// * Remove txNum
 	// * Add unlockTime
 	// * Update version
-	if (IsVersionGreaterOrEqual(currentVersion, "v0.4.0-alpha-coin") == false)
-	{
+	if (IsVersionGreaterOrEqual(currentVersion, "v0.4.0-alpha-coin") == false) {
 		// Add unlockTime variable to each transaction
 		for (int tr = 0; tr < b["transactions"].size(); tr++) {
 			b["transactions"][tr]["unlockTime"] = 0;
@@ -1142,8 +1112,7 @@ json UpgradeBlock(json& b)
 	// * Remove txNum (actually)
 	// * Add unlockTime (actually)
 	// * Update version
-	if (IsVersionGreaterOrEqual(currentVersion, "v0.5.0-alpha-coin") == false)
-	{
+	if (IsVersionGreaterOrEqual(currentVersion, "v0.5.0-alpha-coin") == false) {
 		// Add unlockTime variable to each transaction
 		for (int tr = 0; tr < b["transactions"].size(); tr++) {
 			b["transactions"][tr]["tx"]["unlockTime"] = 0;
@@ -1158,8 +1127,7 @@ json UpgradeBlock(json& b)
 	// * Switch to using hexadecimal format for nonce.
 	//       (This is optional, so no changes need to be made to the block.)
 	// * Update version
-	if (IsVersionGreaterOrEqual(currentVersion, "v0.6.0-alpha-coin") == false)
-	{
+	if (IsVersionGreaterOrEqual(currentVersion, "v0.6.0-alpha-coin") == false) {
 		b["_version"] = "v0.6.0-alpha-coin";
 	}
 
@@ -1167,8 +1135,7 @@ json UpgradeBlock(json& b)
 	// Changes:
 	// * Add transactionFee to each transaction
 	// * Update version
-	if (IsVersionGreaterOrEqual(currentVersion, "v0.7.0-alpha-coin") == false)
-	{
+	if (IsVersionGreaterOrEqual(currentVersion, "v0.7.0-alpha-coin") == false) {
 		// Add transactionFee to each transaction
 		for (int tr = 0; tr < b["transactions"].size(); tr++) {
 			b["transactions"][tr]["tx"]["transactionFee"] = 0.0;
@@ -1180,8 +1147,7 @@ json UpgradeBlock(json& b)
 	// Changes:
 	// * Create containerTask section of block for holding task data sources and hashes
 	// * Update version
-	if (IsVersionGreaterOrEqual(currentVersion, "v0.8.0-alpha-coin") == false)
-	{
+	if (IsVersionGreaterOrEqual(currentVersion, "v0.8.0-alpha-coin") == false) {
 		// Add containerTask to each transaction
 		b["containerTask"]["taskID"] = "";
 		b["containerTask"]["taskInstances"] = json::array();
@@ -1193,8 +1159,7 @@ json UpgradeBlock(json& b)
 	// Changes:
 	// * Make containerTask object into containerTasks array
 	// * Update version
-	if (IsVersionGreaterOrEqual(currentVersion, "v0.8.1-alpha-coin") == false)
-	{
+	if (IsVersionGreaterOrEqual(currentVersion, "v0.8.1-alpha-coin") == false) {
 		// Add containerTask to each transaction
 		b.erase("containerTask");
 		b["containerTasks"] = json::array();
@@ -1206,14 +1171,13 @@ json UpgradeBlock(json& b)
 	// * Change `lastHash` to `pprev`
 	// * Add `pnext`
 	// * Update version
-	if (IsVersionGreaterOrEqual(currentVersion, "v0.8.2-alpha-coin") == false)
-	{
+	if (IsVersionGreaterOrEqual(currentVersion, "v0.8.2-alpha-coin") == false) {
 		// pprev
 		b["pprev"] = b["lastHash"];
 		b.erase("lastHash");
 		// pnext
 		std::ifstream t;
-		t.open("./wwwdata/blockchain/block" + std::to_string((uint64_t)b["id"] + 1) + ".dccblock");
+		t.open("./wwwdata/blockchain/block" + std::to_string((uint64_t)b["id"] + 1) + ".agblock");
 		if (!t.is_open()) {
 			ERRORMSG("Could not open file, skipping `pnext` upgrade");
 			b["pnext"] = "";
@@ -1232,8 +1196,7 @@ json UpgradeBlock(json& b)
 	// v0.8.3-alpha-coin
 	// Changes:
 	// * Add signature, IP, and port to containerTasks object
-	if (IsVersionGreaterOrEqual(currentVersion, "v0.8.3-alpha-coin") == false)
-	{
+	if (IsVersionGreaterOrEqual(currentVersion, "v0.8.3-alpha-coin") == false) {
 		// Add containerTask to each transaction
 		b["containerTasks"].push_back(json::object());
 		b["containerTasks"][0]["taskID"] = "";
@@ -1249,8 +1212,7 @@ json UpgradeBlock(json& b)
 	// Changes:
 	// * Add back seed
 	// * Add back taskDataHash
-	if (IsVersionGreaterOrEqual(currentVersion, "v0.8.4-alpha-coin") == false)
-	{
+	if (IsVersionGreaterOrEqual(currentVersion, "v0.8.4-alpha-coin") == false) {
 		// Add containerTask to each transaction
 		b["containerTasks"][0]["taskInstances"][0]["seed"] = "00000000";
 		b["containerTasks"][0]["taskInstances"][0]["taskDataHash"] = "";
@@ -1261,14 +1223,11 @@ json UpgradeBlock(json& b)
 	// v0.8.5-alpha-coin
 	// Changes:
 	// * Remove legacy transactionTimes array
-	if (IsVersionGreaterOrEqual(currentVersion, "v0.8.5-alpha-coin") == false)
-	{
+	if (IsVersionGreaterOrEqual(currentVersion, "v0.8.5-alpha-coin") == false) {
 		b.erase("transactionTimes");
 
 		b["_version"] = "v0.8.5-alpha-coin";
 	}
-
-
 
 
 	// Make sure there is always an upgrade step. If there isn't, then throw error

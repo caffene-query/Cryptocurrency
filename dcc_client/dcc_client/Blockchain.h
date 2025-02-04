@@ -1,22 +1,21 @@
 #pragma once
 
+#include <chrono>
+#include <fstream>
+#include <iostream>
+#include <map>
+
+#include "FileManip.h"
+#include "Network.h"
+#include "P2PClient.h"
+#include "SettingsConsts.h"
+#include "System.h"
+#include "crypto.h"
 #include "json.hpp"
 #include "strops.h"
-#include "Network.h"
-#include "SettingsConsts.h"
-#include "crypto.h"
-#include "System.h"
-#include "P2PClient.h"
-#include "FileManip.h"
-
-#include <iostream>
-#include <fstream>
-#include <map>
-#include <chrono>
 
 using json = nlohmann::json;
 namespace fs = std::filesystem;
-
 
 
 //P2P p2p;
@@ -36,4 +35,3 @@ json UpgradeBlock(json& b);
 void CreateSuperblock();
 int MakeProgram(json& walletInfo, json& walletConfig, std::string& path, bool isQuiet = false);
 bool VerifyDeluge(json& delugeJson, std::string& path);
-

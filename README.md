@@ -1,10 +1,10 @@
 
+![aethernet](Media/aethergrid.png)
 
-# <img src="./dcc_client/DCC-Logo4.png" height="30rem" style="margin:auto"> Distributed Compute Coin
 
 [![Badge License]][License]   [![Button Discord]][Discord Server]
 
-A unique P2P blockchain built in C++, with a trading client and a miner. This crypto can be bought, traded, sold, mined, or used just like any other. What sets it apart though is how it can be used, and the technique for mining. It is based on sharing mining computing hardware with developers to run their programs better and compute a large amount of data quickly, using Distributed Computing. Anybody can submit code using the client to be run across the peer-to-peer network, and will pay for that using this crypto. [What sets this crypto apart?](./#condensing).
+A unique P2P blockchain built in C++, with a trading client and a miner. This crypto can be bought, traded, sold, mined, or used just like any other. What sets it apart though is how it can be used, and the technique for mining. It is based on sharing mining computing hardware with developers to run their programs better and compute a large amount of data quickly, using distributed computing. Anybody can submit code using the client to be run across the peer-to-peer network, and will pay for that using this crypto. [What sets this crypto apart?](./#condensing).
 
 If you want to learn more, please feel free to go to [the wiki.](https://github.com/sam-astro/Distributed-Compute-Coin/wiki)
 
@@ -12,11 +12,11 @@ If you want to learn more, please feel free to go to [the wiki.](https://github.
 
 ## Installation / Use:
 1. First, either clone with `git clone https://github.com/sam-astro/Distributed-Compute-Coin` or download it as a ZIP file, and extract it.
-2. All of the builds are packaged in this folder. They all follow the same directory map, and the binary is located at `DCC-Miner/out/DCC-Miner/Debug/DCC-Miner.exe`.
+2. All of the builds are packaged in this folder. They all follow the same directory map, and the binary is located at `dcc_client/out-linux/dcc_client/dcc_client`.
 3. A change from the C# version, is that all functionality is now combined into a single program, which can handle transactions, submitting programs, and mining. It is also currently a command-line only interface while in development. 
-4. **If you are interested in earning DCC, then you can use the Mining aspect of the client.** The miner verifies the blockchain network, and also run programs created by developers. Just like the developers, programs are written in a language called Rust and you will need to install Rust before using the Miner. You can do that by going to the [Rust website](https://www.rust-lang.org/tools/install) and following the instructions there, which should only take a few minutes. Just use the `--mine` command to start mining a single block. You can also specify how many blocks you want to mine after the command like: `--mine 10` will mine 10 blocks. Using `-1` will mine until you stop the program.
+4. **If you are interested in earning Aether, then you can use the Mining aspect of the client.** The miner verifies the blockchain network, and also run programs created by developers. The miner utilizes containers to keep any run programs separate from your own computer. It utilizes **Podman**, an open source, secure, and light-weight alternative to Docker. You can install Podman by going to the [Podman website](https://podman.io/) and following the instructions there, which should only take a few minutes. Just use the `--mine` command to start mining a single block. You can also specify how many blocks you want to mine after the command like: `--mine 10` will mine 10 blocks. Using `-1` will mine until you stop the program.
 ```
-Usage: DCC-Miner.exe [options]
+Usage: aetherdaemon [options]
 		 OR (while in interactive mode)
        Input: [options]
 Options:
@@ -29,27 +29,27 @@ Options:
                                           difficulty <dif>
   --funds                             Count and print the funds of the user
   --difficulty                        Calculate the expected block's difficulty
-  -sn, --send <addr> <amount>         Sends the <amount> of DCC to a receiving address <addr>
+  -sn, --send <addr> <amount>         Sends the <amount> of Aether to a receiving address <addr>
   -sp, --superblock                   Generates a debug superblock to summarize all transactions
   -vf, --verify                       Verify the entire blockchain to make sure all blocks are valid
   -p, --pool <url>                    Start mining at a pool, given by <url>. Default is
-                                          http://dccpool.us.to:3333
+                                          http://distributedcomputeproject:3333
 ```
 Inputting one of these commands and pressing the Enter key will execute the command. To begin mining, simply type "mine" (and a block amount, if you want to mine more than one).
 
 <hr>
 
-# The Podman Update
-For a much increased ability to compute, better portability, and fine control of the permissions programs are able to exercise, Podman containers will be replacing Rust programs in the near future.
+# The Docker Update
+For a much increased ability to compute, better portability, and fine control of the permissions programs are able to exercise, Docker containers will be replacing Rust programs in the near future.
 
 A set of commands for managing task may look like:
 ```ruby
 # Start container with limited network and file access 
-podman run --network none --rm --name=<taskID> -v "C:\Program Files\DCC\TaskData\<taskID>:/dcc_output/" <taskIDImg> /bin/bash run.sh;
+docker run --network none --rm --name=<taskID> -v "C:\Program Files\DCC\TaskData\<taskID>:/dcc_output/" <taskIDImg> /bin/bash run.sh;
 # Wait for the container to exit and return exit code (This will be done in a background thread, and will time out when mining ends)
-podman wait <taskID>;
+docker wait <taskID>;
 # Stop the container
-podman stop <taskID>;
+docker stop <taskID>;
 ```
 
 ## Computation Buying

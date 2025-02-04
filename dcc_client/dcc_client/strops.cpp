@@ -4,8 +4,7 @@
 std::string JoinArrayPieces(std::string input[])
 {
 	std::string outStr = "";
-	for (int i = 0; i < sizeof(input) / sizeof(input[0]); i++)
-	{
+	for (int i = 0; i < sizeof(input) / sizeof(input[0]); i++) {
 		outStr += input[i];
 	}
 	return outStr;
@@ -15,15 +14,13 @@ std::string SplitGetLastAfterChar(const std::string& str, std::string delim)
 {
 	std::vector<std::string> splittedString;
 	int startIndex = 0;
-	int  endIndex = 0;
-	while ((endIndex = str.find(delim, startIndex)) < str.size())
-	{
+	int endIndex = 0;
+	while ((endIndex = str.find(delim, startIndex)) < str.size()) {
 		//std::string val = str.substr(startIndex, endIndex - startIndex);
 		//splittedString.push_back(val);
 		startIndex = endIndex + delim.size();
 	}
-	if (startIndex < str.size())
-	{
+	if (startIndex < str.size()) {
 		std::string val = str.substr(startIndex);
 		//splittedString.push_back(val);
 		return val;
@@ -34,21 +31,20 @@ std::string SplitGetLastAfterChar(const std::string& str, std::string delim)
 std::string JoinArrayPieces(std::vector<std::string>& input)
 {
 	std::string outStr = "";
-	for (int i = 0; i < input.size(); i++)
-	{
+	for (int i = 0; i < input.size(); i++) {
 		outStr += input[i];
 	}
 	return outStr;
 }
 
 
-
-std::string CommaLargeNumber(unsigned long long int num) {
+std::string CommaLargeNumber(unsigned long long int num)
+{
 	unsigned long long int v = num;
 	std::string s = std::to_string(v);
 
 	unsigned long long int n = s.length() - 3;
-	unsigned long long int end = (v >= 0) ? 0 : 1; // Support for negative numbers
+	unsigned long long int end = (v >= 0) ? 0 : 1;	// Support for negative numbers
 	while (n > end) {
 		s.insert(n, ",");
 		n -= 3;
@@ -57,12 +53,13 @@ std::string CommaLargeNumber(unsigned long long int num) {
 	return s;
 }
 
-std::string CommaLargeNumber(long num) {
+std::string CommaLargeNumber(long num)
+{
 	long v = num;
 	std::string s = std::to_string(v);
 
 	long n = s.length() - 3;
-	long end = (v >= 0) ? 0 : 1; // Support for negative numbers
+	long end = (v >= 0) ? 0 : 1;  // Support for negative numbers
 	while (n > end) {
 		s.insert(n, ",");
 		n -= 3;
@@ -71,12 +68,13 @@ std::string CommaLargeNumber(long num) {
 	return s;
 }
 
-std::string CommaLargeNumberF(float num) {
+std::string CommaLargeNumberF(float num)
+{
 	int v = (int)num;
 	auto s = std::to_string(v);
 
 	int n = s.length() - 3;
-	int end = (v >= 0) ? 0 : 1; // Support for negative numbers
+	int end = (v >= 0) ? 0 : 1;	 // Support for negative numbers
 	while (n > end) {
 		s.insert(n, ",");
 		n -= 3;
@@ -88,12 +86,13 @@ std::string CommaLargeNumberF(float num) {
 	return s;
 }
 
-std::string CommaLargeNumberF(double num) {
+std::string CommaLargeNumberF(double num)
+{
 	long v = (long)num;
 	auto s = std::to_string(v);
 
 	long n = s.length() - 3;
-	long end = (v >= 0) ? 0 : 1; // Support for negative numbers
+	long end = (v >= 0) ? 0 : 1;  // Support for negative numbers
 	while (n > end) {
 		s.insert(n, ",");
 		n -= 3;
@@ -106,7 +105,8 @@ std::string CommaLargeNumberF(double num) {
 }
 
 // Function to pad the front of a string with a character to make it a certain length
-std::string PadString(const std::string& input, char padChar, size_t desiredLength) {
+std::string PadString(const std::string& input, char padChar, size_t desiredLength)
+{
 	std::string result = input;
 	while (result.length() < desiredLength) {
 		result.insert(result.begin(), padChar);
@@ -115,7 +115,8 @@ std::string PadString(const std::string& input, char padChar, size_t desiredLeng
 }
 
 // Function to pad the back of a string with a character to make it a certain length
-std::string PadStringRight(const std::string& input, char padChar, size_t desiredLength) {
+std::string PadStringRight(const std::string& input, char padChar, size_t desiredLength)
+{
 	std::string result = input;
 	while (result.length() < desiredLength) {
 		result += padChar;
@@ -124,7 +125,8 @@ std::string PadStringRight(const std::string& input, char padChar, size_t desire
 }
 
 // Function to extract the padded characters from the front of a string until another character is found
-std::string ExtractPaddedChars(const std::string& input, char padChar) {
+std::string ExtractPaddedChars(const std::string& input, char padChar)
+{
 	std::string result;
 	size_t index = 0;
 
@@ -142,15 +144,13 @@ std::vector<std::string> SplitString(std::string& str, std::string delim)
 {
 	std::vector<std::string> splittedString;
 	int startIndex = 0;
-	int  endIndex = 0;
-	while ((endIndex = str.find(delim, startIndex)) < str.size())
-	{
+	int endIndex = 0;
+	while ((endIndex = str.find(delim, startIndex)) < str.size()) {
 		std::string val = str.substr(startIndex, endIndex - startIndex);
 		splittedString.push_back(val);
 		startIndex = endIndex + delim.size();
 	}
-	if (startIndex < str.size())
-	{
+	if (startIndex < str.size()) {
 		std::string val = str.substr(startIndex);
 		splittedString.push_back(val);
 	}
@@ -160,8 +160,7 @@ std::vector<std::string> SplitString(std::string& str, std::string delim)
 // See if a string <str> contains another <check>
 bool StringContains(std::string& str, std::string check)
 {
-	if (str.find(check, 0) < str.size())
-	{
+	if (str.find(check, 0) < str.size()) {
 		return true;
 	}
 	return false;
@@ -169,8 +168,7 @@ bool StringContains(std::string& str, std::string check)
 // See if a string <str> contains another <check>
 bool StringContains(std::string& str, char check)
 {
-	if (str.find(check, 0) < str.size())
-	{
+	if (str.find(check, 0) < str.size()) {
 		return true;
 	}
 	return false;
@@ -181,7 +179,7 @@ void ltrim(std::string& s)
 {
 	s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) {
 		return !std::isspace(ch);
-		}));
+	}));
 }
 
 // trim from end (in place)
@@ -189,7 +187,8 @@ void rtrim(std::string& s)
 {
 	s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) {
 		return !std::isspace(ch);
-		}).base(), s.end());
+	}).base(),
+		s.end());
 }
 // Overrided by boost::trim
 // trim from both ends (in place)
@@ -205,29 +204,31 @@ std::string TrimString(std::string s)
 std::string ToUpper(std::string s)
 {
 	std::string sN = s;
-	for (auto& c : sN) c = toupper(c);
+	for (auto& c : sN)
+		c = toupper(c);
 	return sN;
 }
 
-// Convert string to lowercase 
+// Convert string to lowercase
 std::string ToLower(std::string s)
 {
 	std::string sN = s;
-	for (auto& c : sN) c = tolower(c);
+	for (auto& c : sN)
+		c = tolower(c);
 	return sN;
 }
 
 bool StringStartsWith(std::string str, std::string substr)
 {
-	for (int i = 0; i < substr.length(); i++)
-	{
+	for (int i = 0; i < substr.length(); i++) {
 		if (str[i] != substr[i])
 			return false;
 	}
 	return true;
 }
 
-char toHexChar(int value) {
+char toHexChar(int value)
+{
 	if (value < 10) {
 		return static_cast<char>('0' + value);
 	}
@@ -236,18 +237,18 @@ char toHexChar(int value) {
 	}
 }
 
-void stringToHex(char* input, char* output, int len) {
-	for (int i = 0; i < len; i++)
-	{
+void stringToHex(char* input, char* output, int len)
+{
+	for (int i = 0; i < len; i++) {
 		output[0] = toHexChar((static_cast<unsigned char>(*input) >> 4) & 0x0F);
 		output[1] = toHexChar(static_cast<unsigned char>(*input) & 0x0F);
 		input++;
 		output += 2;
 	}
-	*output = '\0'; // Add null terminator at the end
+	*output = '\0';	 // Add null terminator at the end
 }
 
-char d[30]; // Buffer for the CharStrStartsWith() function check
+char d[30];	 // Buffer for the CharStrStartsWith() function check
 // Check if the unsigned char* <str> starts with another char* <substr>
 bool CharStrStartsWith(unsigned char* str, char* substr, int len)
 {
@@ -257,8 +258,7 @@ bool CharStrStartsWith(unsigned char* str, char* substr, int len)
 	//	sprintf(c + (i * 2), "%02x", str[i]);
 	//}
 	stringToHex((char*)str, c, len);
-	for (int i = 0; i < len; i++)
-	{
+	for (int i = 0; i < len; i++) {
 		if (c[i] != substr[i])
 			return false;
 	}
@@ -266,7 +266,8 @@ bool CharStrStartsWith(unsigned char* str, char* substr, int len)
 }
 
 // Function to compare two char* representing numbers. Returns true if a > b
-bool CompareCharNumbers(const unsigned char* number1, const unsigned char* number2) {
+bool CompareCharNumbers(const unsigned char* number1, const unsigned char* number2)
+{
 	//// Skip leading zeros
 	//while (*number1 == '0' && *(number1 + 1) != '\0') {
 	//	number1++;
@@ -298,8 +299,7 @@ bool CompareCharNumbers(const unsigned char* number1, const unsigned char* numbe
 std::string ReplaceEscapeSymbols(std::string s)
 {
 	std::string out = "";
-	for (size_t i = 0; i < s.size(); i++)
-	{
+	for (size_t i = 0; i < s.size(); i++) {
 		if (s[i] == '\n')
 			out += "\\n";
 		else
@@ -309,7 +309,8 @@ std::string ReplaceEscapeSymbols(std::string s)
 }
 
 // Function to multiply a large hexadecimal number by an integer
-std::string multiplyHexByInteger(const std::string& hexNumber, int multiplier) {
+std::string multiplyHexByInteger(const std::string& hexNumber, int multiplier)
+{
 	// Convert the multiplier to hexadecimal string
 	std::string multiplierHex = std::to_string(multiplier);
 	std::string resultHex;
@@ -362,7 +363,8 @@ std::string multiplyHexByInteger(const std::string& hexNumber, int multiplier) {
 	return resultHex;
 }
 
-void subOneFromHex(std::string& hexNumber, int index) {
+void subOneFromHex(std::string& hexNumber, int index)
+{
 	for (int i = index; i >= 0; --i) {
 		char hexDigit = hexNumber[i];
 		//hexNumber[i] = (char)hexNumber[i] - 1;
@@ -384,9 +386,9 @@ void subOneFromHex(std::string& hexNumber, int index) {
 }
 
 
-void addOneToHexStr(char* num, int len) {
-	for (int i = len - 1; i >= 0; i--)
-	{
+void addOneToHexStr(char* num, int len)
+{
+	for (int i = len - 1; i >= 0; i--) {
 		num[i] = num[i] + 1;
 		if ((num[i] >= '0' && num[i] <= '9') || (num[i] >= 'a' && num[i] <= 'z')) {
 			break;
@@ -406,9 +408,9 @@ void addOneToHexStr(char* num, int len) {
 }
 
 
-void addOneToHexStrInRange(char* num, int start, int len) {
-	for (int i = start + len - 1; i >= start; i--)
-	{
+void addOneToHexStrInRange(char* num, int start, int len)
+{
+	for (int i = start + len - 1; i >= start; i--) {
 		num[i] = num[i] + 1;
 		if ((num[i] >= '0' && num[i] <= '9') || (num[i] >= 'a' && num[i] <= 'z')) {
 			break;
@@ -469,7 +471,8 @@ std::string hexLongDivision(const std::string& number, uint32_t divisor)
 }
 
 // Function to divide a large hexadecimal number by a float
-std::string divideHexByFloat(const std::string& hexNumber, float divisor) {
+std::string divideHexByFloat(const std::string& hexNumber, float divisor)
+{
 	std::string quotientHex;
 	std::string hexNum = hexNumber;
 	//int dividend = 0;
@@ -497,8 +500,8 @@ std::string divideHexByFloat(const std::string& hexNumber, float divisor) {
 
 		//dividend = dividend * 16 + dividendDigit;
 
-		int dividend = (carry)+dividendDigit;
-		if (std::round(((float)dividend / divisor) - (std::round(((float)dividend / divisor)))) != 0) { // if dividend has fraction (ie, has remainder), carry
+		int dividend = (carry) + dividendDigit;
+		if (std::round(((float)dividend / divisor) - (std::round(((float)dividend / divisor)))) != 0) {	 // if dividend has fraction (ie, has remainder), carry
 			carry = (dividend % (int)std::round(divisor)) << 4;
 			//if (carry == 0)
 			//	carry = 1;
@@ -548,22 +551,23 @@ std::string divideHexByFloat(const std::string& hexNumber, float divisor) {
 	return quotientHex;
 }
 
-std::string shiftHexNumber(const std::string& hexNumber, int digits) {
+std::string shiftHexNumber(const std::string& hexNumber, int digits)
+{
 	std::string outNum = hexNumber;
 	if (digits < 0) {
 		outNum = outNum.substr(abs(digits), outNum.length() + digits);
-		for (digits < 0; digits++;)
-		{
+		for (digits < 0; digits++;) {
 			outNum += '0';
 		}
 	}
-	else if(digits>0) {
+	else if (digits > 0) {
 		outNum = outNum.substr(0, outNum.length() - digits);
 	}
 	return outNum;
 }
 
-std::string addHexNumbers(const std::string& hexNumberA, const std::string& hexNumberB) {
+std::string addHexNumbers(const std::string& hexNumberA, const std::string& hexNumberB)
+{
 
 	std::string decNumberA = PadString(hex2dec.Convert(hexNumberA), '0', 80);
 	std::string decNumberB = PadString(hex2dec.Convert(hexNumberB), '0', 80);
@@ -578,7 +582,7 @@ std::string addHexNumbers(const std::string& hexNumberA, const std::string& hexN
 
 		// Perform the addition and add the carry
 		int sum = (int)(digitValueA + digitValueB + carry) % 10;
-		carry = (int)floor((double)(digitValueA + digitValueB+carry) / 10.);
+		carry = (int)floor((double)(digitValueA + digitValueB + carry) / 10.);
 
 		resultDec[i] = sum + '0';
 	}
@@ -587,11 +591,10 @@ std::string addHexNumbers(const std::string& hexNumberA, const std::string& hexN
 	std::string hexStr = dec2hex.Convert(resultDec);
 
 	return hexStr;
-
-
 }
 
-std::string multiplyHexByFloat(const std::string& hexNumber, float multiplier) {
+std::string multiplyHexByFloat(const std::string& hexNumber, float multiplier)
+{
 
 	if (multiplier < 1) {
 		float divisor = 1.0 / (multiplier);
@@ -609,7 +612,7 @@ std::string multiplyHexByFloat(const std::string& hexNumber, float multiplier) {
 
 			// Perform the multiplication and add the carry
 			int product = (int)((float)digitValue * multiplier + carry) % 10;
-			carry = (int)((float)digitValue * multiplier + carry) /10;
+			carry = (int)((float)digitValue * multiplier + carry) / 10;
 
 			resultDec[i] = product + '0';
 		}
@@ -618,12 +621,11 @@ std::string multiplyHexByFloat(const std::string& hexNumber, float multiplier) {
 		std::string hexStr = dec2hex.Convert(resultDec);
 
 		return hexStr;
-
 	}
-
 }
 
-float clampf(float x, float min, float max) {
+float clampf(float x, float min, float max)
+{
 	if (x < min)
 		return min;
 	else if (x > max)
@@ -652,7 +654,7 @@ double round(float value, int decimal_places)
 	return std::round(value * multiplier) / multiplier;
 }
 
-void csubstr(char* arr, char* outArr, int begin, int len, int totalLen, int &actualSize)
+void csubstr(char* arr, char* outArr, int begin, int len, int totalLen, int& actualSize)
 {
 	if (begin + len >= totalLen)
 		len = totalLen - begin;
@@ -667,12 +669,13 @@ void cConcatInt(char* arr, char* outArr, int len, int x)
 	std::string sVal = std::to_string(x);
 	strcpy(outArr, arr);
 	for (int i = 0; i < sVal.size(); i++)
-		outArr[i+len-1] = sVal[i];
+		outArr[i + len - 1] = sVal[i];
 	outArr[len + sVal.size() - 1] = 0;
 }
 
 // Returns true if <a> is greater than or equal to <b>
-bool IsVersionGreaterOrEqual(std::string a, std::string b) {
+bool IsVersionGreaterOrEqual(std::string a, std::string b)
+{
 	if (a == b)
 		return true;
 
@@ -711,21 +714,21 @@ bool IsVersionGreaterOrEqual(std::string a, std::string b) {
 inline static const std::string roundFloat(const double input, const int decimal_places)
 {
 	std::ostringstream str;
-    str << std::fixed << std::setprecision(decimal_places);
-    str << input;
-    return str.str();
+	str << std::fixed << std::setprecision(decimal_places);
+	str << input;
+	return str.str();
 }
 
-std::string truncateMetricNum(double x){
-    if(x > 1000000000000)
-        return roundFloat((float)((long long)x/10000000000)/100.0,2) + " T";
-    else if(x > 1000000000)
-        return roundFloat((float)((long)x/10000000)/100.0,2) + " G";
-    else if(x > 1000000)
-        return roundFloat((float)((long)x/10000)/100.0,2) + " M";
-    else if(x > 1000)
-        return roundFloat((float)((long)x/10)/100.0,2) + " K";
-    else
-        return std::to_string(x);
+std::string truncateMetricNum(double x)
+{
+	if (x > 1000000000000)
+		return roundFloat((float)((long long)x / 10000000000) / 100.0, 2) + " T";
+	else if (x > 1000000000)
+		return roundFloat((float)((long)x / 10000000) / 100.0, 2) + " G";
+	else if (x > 1000000)
+		return roundFloat((float)((long)x / 10000) / 100.0, 2) + " M";
+	else if (x > 1000)
+		return roundFloat((float)((long)x / 10) / 100.0, 2) + " K";
+	else
+		return std::to_string(x);
 }
-

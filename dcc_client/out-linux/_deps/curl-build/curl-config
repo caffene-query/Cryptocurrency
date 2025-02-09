@@ -76,7 +76,7 @@ while test $# -gt 0; do
         ;;
 
     --cc)
-        echo "/usr/lib/icecc/bin/cc"
+        echo "/usr/bin/cc"
         ;;
 
     --prefix)

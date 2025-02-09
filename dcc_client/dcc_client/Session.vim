@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/Code/Distributed-Compute-Coin/dcc_client/dcc_client
+cd ~/Code/AetherGrid/dcc_client/dcc_client
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -29,6 +29,8 @@ badd +255 Console.cpp
 badd +1 strops.cpp
 badd +1 term://~/Code/Distributed-Compute-Coin/dcc_client/dcc_client//336272:/bin/bash
 badd +12 ~/Code/Distributed-Compute-Coin/dcc_client/out-linux/dcc_client/out.txt
+badd +28 System.cpp
+badd +12 System.h
 argglobal
 %argdel
 $argadd P2PClient.cpp
@@ -80,62 +82,44 @@ normal! zo
 normal! zo
 266
 normal! zo
-350
+436
 normal! zo
-351
+460
 normal! zo
-444
+480
 normal! zo
-464
+497
 normal! zo
-481
+499
 normal! zo
-483
+540
 normal! zo
-501
+586
 normal! zo
-524
+599
 normal! zo
-528
+632
 normal! zo
-536
+655
 normal! zo
-570
+689
 normal! zo
-576
+707
 normal! zo
-583
+776
 normal! zo
-604
+800
 normal! zo
-639
+826
 normal! zo
-673
+837
 normal! zo
-681
-normal! zo
-691
-normal! zo
-760
-normal! zo
-784
-normal! zo
-788
-normal! zo
-810
-normal! zo
-821
-normal! zo
-822
-normal! zo
-1158
-normal! zo
-let s:l = 523 - ((9 * winheight(0) + 28) / 56)
+let s:l = 524 - ((11 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 523
-normal! 051|
+keepjumps 524
+normal! 033|
 tabnext
 edit P2PClient.h
 argglobal
@@ -372,58 +356,33 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-58
-normal! zo
-114
+61
 normal! zo
 124
 normal! zo
-205
+332
 normal! zo
-207
+343
 normal! zo
-322
+356
 normal! zo
-333
+425
 normal! zo
-346
+579
 normal! zo
-415
+742
 normal! zo
-423
+758
 normal! zo
-428
-normal! zo
-578
-normal! zo
-581
-normal! zo
-617
-normal! zo
-726
-normal! zo
-730
-normal! zo
-746
-normal! zo
-761
-normal! zo
-762
-normal! zo
-771
-normal! zo
-let s:l = 574 - ((24 * winheight(0) + 28) / 56)
+let s:l = 69 - ((27 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 574
-normal! 044|
+keepjumps 69
+normal! 013|
 tabnext
+edit term://~/Code/Distributed-Compute-Coin/dcc_client/dcc_client//336272:/bin/bash
 argglobal
-if bufexists(fnamemodify("term://~/Code/Distributed-Compute-Coin/dcc_client/dcc_client//336272:/bin/bash", ":p")) | buffer term://~/Code/Distributed-Compute-Coin/dcc_client/dcc_client//336272:/bin/bash | else | edit term://~/Code/Distributed-Compute-Coin/dcc_client/dcc_client//336272:/bin/bash | endif
-if &buftype ==# 'terminal'
-  silent file term://~/Code/Distributed-Compute-Coin/dcc_client/dcc_client//336272:/bin/bash
-endif
 balt Main.cpp
 setlocal fdm=manual
 setlocal fde=b:anyfold_ind_buffer[v:lnum-1]
@@ -433,11 +392,13 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 56 - ((55 * winheight(0) + 28) / 56)
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 1 - ((0 * winheight(0) + 28) / 56)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 56
+keepjumps 1
 normal! 0
 tabnext
 edit SettingsConsts.h
@@ -456,7 +417,7 @@ keepjumps exe s:l
 normal! zt
 keepjumps 18
 normal! 05|
-tabnext 1
+tabnext 9
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

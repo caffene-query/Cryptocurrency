@@ -1,5 +1,5 @@
 dcc_client/CMakeFiles/dcc_client.dir/benchmark.cpp.o: \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/benchmark.cpp \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/benchmark.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/12/algorithm \
  /usr/include/c++/12/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
@@ -213,14 +213,14 @@ dcc_client/CMakeFiles/dcc_client.dir/benchmark.cpp.o: \
  /usr/include/c++/12/bits/this_thread_sleep.h \
  /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/semaphore.h \
  /usr/include/x86_64-linux-gnu/bits/semaphore.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/benchmark.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/strops.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/benchmark.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/strops.h \
  /usr/include/c++/12/cstring /usr/include/string.h /usr/include/strings.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/Console.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/Console.h \
  /usr/include/c++/12/queue /usr/include/c++/12/deque \
  /usr/include/c++/12/bits/stl_deque.h /usr/include/c++/12/bits/deque.tcc \
  /usr/include/c++/12/bits/stl_queue.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/indicators.hpp \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/indicators.hpp \
  /usr/include/c++/12/utility /usr/include/c++/12/bits/stl_relops.h \
  /usr/include/x86_64-linux-gnu/sys/ioctl.h \
  /usr/include/x86_64-linux-gnu/bits/ioctls.h \
@@ -264,4 +264,4 @@ dcc_client/CMakeFiles/dcc_client.dir/benchmark.cpp.o: \
  /usr/include/c++/12/bits/unordered_map.h \
  /usr/include/c++/12/bits/erase_if.h /usr/include/c++/12/array \
  /usr/include/c++/12/math.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/BaseConverter.h
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/BaseConverter.h

@@ -1,7 +1,7 @@
 dcc_client/CMakeFiles/dcc_client.dir/strops.cpp.o: \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/strops.cpp \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/strops.cpp \
  /usr/include/stdc-predef.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/strops.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/strops.h \
  /usr/include/c++/12/vector /usr/include/c++/12/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \
@@ -173,12 +173,12 @@ dcc_client/CMakeFiles/dcc_client.dir/strops.cpp.o: \
  /usr/include/c++/12/bits/ranges_util.h \
  /usr/include/c++/12/pstl/glue_algorithm_defs.h \
  /usr/include/c++/12/pstl/execution_defs.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/Console.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/Console.h \
  /usr/include/c++/12/queue /usr/include/c++/12/deque \
  /usr/include/c++/12/bits/stl_deque.h /usr/include/c++/12/bits/deque.tcc \
  /usr/include/c++/12/bits/stl_queue.h \
  /usr/include/c++/12/bits/uses_allocator.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/indicators.hpp \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/indicators.hpp \
  /usr/include/c++/12/iostream /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
@@ -264,4 +264,4 @@ dcc_client/CMakeFiles/dcc_client.dir/strops.cpp.o: \
  /usr/include/c++/12/bits/unordered_map.h \
  /usr/include/c++/12/bits/erase_if.h /usr/include/c++/12/array \
  /usr/include/c++/12/math.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/BaseConverter.h
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/BaseConverter.h

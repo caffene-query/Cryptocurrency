@@ -1,7 +1,7 @@
 dcc_client/CMakeFiles/dcc_client.dir/BaseConverter.cpp.o: \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/BaseConverter.cpp \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/BaseConverter.cpp \
  /usr/include/stdc-predef.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/BaseConverter.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/BaseConverter.h \
  /usr/include/c++/12/string \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \

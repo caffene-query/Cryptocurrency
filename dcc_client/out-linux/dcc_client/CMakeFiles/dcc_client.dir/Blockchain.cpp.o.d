@@ -1,7 +1,7 @@
 dcc_client/CMakeFiles/dcc_client.dir/Blockchain.cpp.o: \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/Blockchain.cpp \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/Blockchain.cpp \
  /usr/include/stdc-predef.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/Blockchain.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/Blockchain.h \
  /usr/include/c++/12/chrono /usr/include/c++/12/bits/chrono.h \
  /usr/include/c++/12/ratio /usr/include/c++/12/type_traits \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
@@ -172,7 +172,7 @@ dcc_client/CMakeFiles/dcc_client.dir/Blockchain.cpp.o: \
  /usr/include/c++/12/bits/uses_allocator.h \
  /usr/include/c++/12/bits/stl_multimap.h \
  /usr/include/c++/12/bits/erase_if.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/FileManip.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/FileManip.h \
  /usr/include/c++/12/vector /usr/include/c++/12/bits/stl_uninitialized.h \
  /usr/include/c++/12/bits/stl_vector.h \
  /usr/include/c++/12/bits/stl_bvector.h \
@@ -192,11 +192,11 @@ dcc_client/CMakeFiles/dcc_client.dir/Blockchain.cpp.o: \
  /usr/include/c++/12/bits/unique_ptr.h /usr/include/c++/12/bit \
  /usr/include/c++/12/bits/align.h /usr/include/c++/12/bits/fs_dir.h \
  /usr/include/c++/12/bits/fs_ops.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/Network.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/SettingsConsts.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/curlver.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/system.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/Network.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/SettingsConsts.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/curlver.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/system.h \
  /usr/include/x86_64-linux-gnu/sys/socket.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
  /usr/include/x86_64-linux-gnu/bits/socket.h \
@@ -222,16 +222,16 @@ dcc_client/CMakeFiles/dcc_client.dir/Blockchain.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
  /usr/include/x86_64-linux-gnu/sys/time.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/easy.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/multi.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/urlapi.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/options.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/Console.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/easy.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/multi.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/urlapi.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/options.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/Console.h \
  /usr/include/c++/12/queue /usr/include/c++/12/deque \
  /usr/include/c++/12/bits/stl_deque.h /usr/include/c++/12/bits/deque.tcc \
  /usr/include/c++/12/bits/stl_heap.h /usr/include/c++/12/bits/stl_queue.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/indicators.hpp \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/indicators.hpp \
  /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h \
@@ -299,11 +299,11 @@ dcc_client/CMakeFiles/dcc_client.dir/Blockchain.cpp.o: \
  /usr/include/c++/12/bits/hashtable_policy.h \
  /usr/include/c++/12/bits/enable_special_members.h \
  /usr/include/c++/12/bits/unordered_map.h /usr/include/c++/12/array \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/strops.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/strops.h \
  /usr/include/c++/12/cstring /usr/include/string.h /usr/include/strings.h \
  /usr/include/c++/12/math.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/BaseConverter.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/P2PClient.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/BaseConverter.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/P2PClient.h \
  /usr/include/c++/12/iterator /usr/include/c++/12/bits/stream_iterator.h \
  /usr/include/netinet/in.h /usr/include/x86_64-linux-gnu/bits/in.h \
  /usr/include/boost/process.hpp /usr/include/boost/process/args.hpp \
@@ -1676,7 +1676,7 @@ dcc_client/CMakeFiles/dcc_client.dir/Blockchain.cpp.o: \
  /usr/include/boost/process/system.hpp \
  /usr/include/boost/process/start_dir.hpp \
  /usr/include/boost/process/detail/posix/start_dir.hpp \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/crypto.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/crypto.h \
  /usr/include/openssl/md5.h /usr/include/openssl/macros.h \
  /usr/include/x86_64-linux-gnu/openssl/opensslconf.h \
  /usr/include/x86_64-linux-gnu/openssl/configuration.h \
@@ -1727,7 +1727,7 @@ dcc_client/CMakeFiles/dcc_client.dir/Blockchain.cpp.o: \
  /usr/include/boost/algorithm/string/std/slist_traits.hpp \
  /usr/include/c++/12/ext/slist \
  /usr/include/boost/algorithm/string/erase.hpp \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/json.hpp \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/json.hpp \
  /usr/include/c++/12/numeric /usr/include/c++/12/bits/stl_numeric.h \
  /usr/include/c++/12/pstl/glue_numeric_defs.h \
  /usr/include/c++/12/forward_list /usr/include/c++/12/bits/forward_list.h \
@@ -1741,4 +1741,4 @@ dcc_client/CMakeFiles/dcc_client.dir/Blockchain.cpp.o: \
  /usr/include/c++/12/bits/gslice_array.h \
  /usr/include/c++/12/bits/mask_array.h \
  /usr/include/c++/12/bits/indirect_array.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/System.h
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/System.h

@@ -1,7 +1,7 @@
 _deps/cpr-build/cpr/CMakeFiles/cpr.dir/parameters.cpp.o: \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-src/cpr/parameters.cpp \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-src/cpr/parameters.cpp \
  /usr/include/stdc-predef.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-src/include/cpr/parameters.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-src/include/cpr/parameters.h \
  /usr/include/c++/12/initializer_list \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \
@@ -13,7 +13,7 @@ _deps/cpr-build/cpr/CMakeFiles/cpr.dir/parameters.cpp.o: \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/cpu_defines.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-src/include/cpr/curl_container.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-src/include/cpr/curl_container.h \
  /usr/include/c++/12/memory /usr/include/c++/12/bits/stl_algobase.h \
  /usr/include/c++/12/bits/functexcept.h \
  /usr/include/c++/12/bits/exception_defines.h \
@@ -150,7 +150,7 @@ _deps/cpr-build/cpr/CMakeFiles/cpr.dir/parameters.cpp.o: \
  /usr/include/c++/12/bits/stl_vector.h \
  /usr/include/c++/12/bits/stl_bvector.h \
  /usr/include/c++/12/bits/vector.tcc \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-src/include/cpr/curlholder.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-src/include/cpr/curlholder.h \
  /usr/include/c++/12/array /usr/include/c++/12/compare \
  /usr/include/c++/12/mutex /usr/include/c++/12/system_error \
  /usr/include/x86_64-linux-gnu/c++/12/bits/error_constants.h \
@@ -159,9 +159,9 @@ _deps/cpr-build/cpr/CMakeFiles/cpr.dir/parameters.cpp.o: \
  /usr/include/c++/12/ctime /usr/include/c++/12/bits/parse_numbers.h \
  /usr/include/c++/12/bits/std_mutex.h \
  /usr/include/c++/12/bits/unique_lock.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/curlver.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/system.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/curlver.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/system.h \
  /usr/include/x86_64-linux-gnu/sys/socket.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
  /usr/include/x86_64-linux-gnu/bits/socket.h \
@@ -187,12 +187,12 @@ _deps/cpr-build/cpr/CMakeFiles/cpr.dir/parameters.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
  /usr/include/x86_64-linux-gnu/sys/time.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/easy.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/multi.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/urlapi.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/options.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-src/include/cpr/util.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/easy.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/multi.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/urlapi.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/options.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-src/include/cpr/util.h \
  /usr/include/c++/12/fstream /usr/include/c++/12/istream \
  /usr/include/c++/12/ios /usr/include/c++/12/bits/ios_base.h \
  /usr/include/c++/12/bits/locale_classes.h \
@@ -211,9 +211,9 @@ _deps/cpr-build/cpr/CMakeFiles/cpr.dir/parameters.cpp.o: \
  /usr/include/x86_64-linux-gnu/c++/12/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++io.h \
  /usr/include/c++/12/bits/fstream.tcc \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-src/include/cpr/callback.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-src/include/cpr/cprtypes.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/system.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-src/include/cpr/callback.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-src/include/cpr/cprtypes.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/system.h \
  /usr/include/c++/12/map /usr/include/c++/12/bits/stl_tree.h \
  /usr/include/c++/12/bits/stl_map.h \
  /usr/include/c++/12/bits/stl_multimap.h \
@@ -221,6 +221,6 @@ _deps/cpr-build/cpr/CMakeFiles/cpr.dir/parameters.cpp.o: \
  /usr/include/c++/12/bits/stl_numeric.h /usr/include/c++/12/functional \
  /usr/include/c++/12/bits/std_function.h /usr/include/c++/12/utility \
  /usr/include/c++/12/bits/stl_relops.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-src/include/cpr/cookies.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-src/include/cpr/cookies.h \
  /usr/include/c++/12/sstream /usr/include/c++/12/bits/sstream.tcc \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-src/include/cpr/cprtypes.h
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-src/include/cpr/cprtypes.h

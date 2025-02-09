@@ -1,7 +1,7 @@
 dcc_client/CMakeFiles/dcc_client.dir/Main.cpp.o: \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/Main.cpp \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/Main.cpp \
  /usr/include/stdc-predef.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/Main.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/Main.h \
  /usr/include/c++/12/iostream \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \
@@ -156,7 +156,7 @@ dcc_client/CMakeFiles/dcc_client.dir/Main.cpp.o: \
  /usr/include/c++/12/bits/basic_ios.tcc \
  /usr/include/c++/12/bits/ostream.tcc /usr/include/c++/12/istream \
  /usr/include/c++/12/bits/istream.tcc \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/json.hpp \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/json.hpp \
  /usr/include/c++/12/algorithm /usr/include/c++/12/bits/stl_algo.h \
  /usr/include/c++/12/bits/algorithmfwd.h \
  /usr/include/c++/12/bits/stl_heap.h \
@@ -1673,26 +1673,26 @@ dcc_client/CMakeFiles/dcc_client.dir/Main.cpp.o: \
  /usr/include/boost/process/system.hpp \
  /usr/include/boost/process/start_dir.hpp \
  /usr/include/boost/process/detail/posix/start_dir.hpp \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/SettingsConsts.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/System.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/strops.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/Console.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/SettingsConsts.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/System.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/strops.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/Console.h \
  /usr/include/c++/12/queue /usr/include/c++/12/bits/stl_queue.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/indicators.hpp \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/indicators.hpp \
  /usr/include/c++/12/thread /usr/include/c++/12/math.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/BaseConverter.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/FileManip.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/Network.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/curlver.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/system.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/easy.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/multi.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/urlapi.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/options.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/P2PClient.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/crypto.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/BaseConverter.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/FileManip.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/Network.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/curlver.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/system.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/easy.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/multi.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/urlapi.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/options.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/P2PClient.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/crypto.h \
  /usr/include/openssl/md5.h /usr/include/openssl/macros.h \
  /usr/include/x86_64-linux-gnu/openssl/opensslconf.h \
  /usr/include/x86_64-linux-gnu/openssl/configuration.h \
@@ -1743,7 +1743,7 @@ dcc_client/CMakeFiles/dcc_client.dir/Main.cpp.o: \
  /usr/include/boost/algorithm/string/std/slist_traits.hpp \
  /usr/include/c++/12/ext/slist \
  /usr/include/boost/algorithm/string/erase.hpp \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/Miner.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/Miner.h \
  /usr/include/curses.h /usr/include/ncurses_dll.h /usr/include/unctrl.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/Blockchain.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/benchmark.h
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/Blockchain.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/benchmark.h

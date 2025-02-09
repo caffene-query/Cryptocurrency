@@ -1,7 +1,7 @@
 dcc_client/CMakeFiles/dcc_client.dir/Network.cpp.o: \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/Network.cpp \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/Network.cpp \
  /usr/include/stdc-predef.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/Network.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/Network.h \
  /usr/include/c++/12/iostream \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \
@@ -160,10 +160,10 @@ dcc_client/CMakeFiles/dcc_client.dir/Network.cpp.o: \
  /usr/include/c++/12/bits/stl_vector.h \
  /usr/include/c++/12/bits/stl_bvector.h \
  /usr/include/c++/12/bits/vector.tcc \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/SettingsConsts.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/curlver.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/system.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/SettingsConsts.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/curlver.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/system.h \
  /usr/include/x86_64-linux-gnu/sys/socket.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
  /usr/include/x86_64-linux-gnu/bits/socket.h \
@@ -189,17 +189,17 @@ dcc_client/CMakeFiles/dcc_client.dir/Network.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
  /usr/include/x86_64-linux-gnu/sys/time.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/easy.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/multi.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/urlapi.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/options.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/Console.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/easy.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/multi.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/urlapi.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/options.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/Console.h \
  /usr/include/c++/12/queue /usr/include/c++/12/deque \
  /usr/include/c++/12/bits/stl_deque.h /usr/include/c++/12/bits/deque.tcc \
  /usr/include/c++/12/bits/stl_heap.h /usr/include/c++/12/bits/stl_queue.h \
  /usr/include/c++/12/bits/uses_allocator.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/indicators.hpp \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/indicators.hpp \
  /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h \
@@ -284,7 +284,7 @@ dcc_client/CMakeFiles/dcc_client.dir/Network.cpp.o: \
  /usr/include/c++/12/bits/node_handle.h \
  /usr/include/c++/12/bits/unordered_map.h \
  /usr/include/c++/12/bits/erase_if.h /usr/include/c++/12/array \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/strops.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/strops.h \
  /usr/include/c++/12/cstring /usr/include/string.h /usr/include/strings.h \
  /usr/include/c++/12/math.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/BaseConverter.h
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/BaseConverter.h

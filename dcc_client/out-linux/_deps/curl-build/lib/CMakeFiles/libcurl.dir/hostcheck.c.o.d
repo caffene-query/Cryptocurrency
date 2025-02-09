@@ -1,11 +1,11 @@
 _deps/curl-build/lib/CMakeFiles/libcurl.dir/hostcheck.c.o: \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/hostcheck.c \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/hostcheck.c \
  /usr/include/stdc-predef.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/curl_setup.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-build/lib/curl_config.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/curlver.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/system.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/curl_setup.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-build/lib/curl_config.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/curlver.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/system.h \
  /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/features.h \
  /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -82,14 +82,14 @@ _deps/curl-build/lib/CMakeFiles/libcurl.dir/hostcheck.c.o: \
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
  /usr/include/x86_64-linux-gnu/sys/time.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/easy.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/multi.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/urlapi.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/options.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/typecheck-gcc.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/easy.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/multi.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/urlapi.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/options.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/typecheck-gcc.h \
  /usr/include/assert.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/curl_setup_once.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/curl_setup_once.h \
  /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h \
  /usr/include/x86_64-linux-gnu/bits/waitstatus.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
@@ -108,21 +108,21 @@ _deps/curl-build/lib/CMakeFiles/libcurl.dir/hostcheck.c.o: \
  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/curl_ctype.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/curl_ctype.h \
  /usr/include/netinet/in.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/in.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/hostcheck.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/strcase.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/hostip.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/hash.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/llist.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/curl_addrinfo.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/hostcheck.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/strcase.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/hostip.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/hash.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/llist.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/curl_addrinfo.h \
  /usr/include/netdb.h /usr/include/rpc/netdb.h \
  /usr/include/x86_64-linux-gnu/bits/netdb.h /usr/include/arpa/inet.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/timeval.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/asyn.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/timeval.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/asyn.h \
  /usr/include/setjmp.h /usr/include/x86_64-linux-gnu/bits/setjmp.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/curl_memory.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/memdebug.h
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/curl_memory.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/memdebug.h

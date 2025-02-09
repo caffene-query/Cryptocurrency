@@ -4,19 +4,19 @@
 cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
-  "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-src"
-  "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-build"
-  "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-subbuild/cpr-populate-prefix"
-  "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-subbuild/cpr-populate-prefix/tmp"
-  "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-subbuild/cpr-populate-prefix/src/cpr-populate-stamp"
-  "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-subbuild/cpr-populate-prefix/src"
-  "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-subbuild/cpr-populate-prefix/src/cpr-populate-stamp"
+  "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-src"
+  "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-build"
+  "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-subbuild/cpr-populate-prefix"
+  "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-subbuild/cpr-populate-prefix/tmp"
+  "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-subbuild/cpr-populate-prefix/src/cpr-populate-stamp"
+  "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-subbuild/cpr-populate-prefix/src"
+  "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-subbuild/cpr-populate-prefix/src/cpr-populate-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-subbuild/cpr-populate-prefix/src/cpr-populate-stamp/${subDir}")
+    file(MAKE_DIRECTORY "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-subbuild/cpr-populate-prefix/src/cpr-populate-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-subbuild/cpr-populate-prefix/src/cpr-populate-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-subbuild/cpr-populate-prefix/src/cpr-populate-stamp${cfgdir}") # cfgdir has leading slash
 endif()

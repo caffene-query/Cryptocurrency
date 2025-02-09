@@ -1,7 +1,7 @@
 dcc_client/CMakeFiles/dcc_client.dir/SettingsConsts.cpp.o: \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/SettingsConsts.cpp \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/SettingsConsts.cpp \
  /usr/include/stdc-predef.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/SettingsConsts.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/SettingsConsts.h \
  /usr/include/c++/12/string \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \

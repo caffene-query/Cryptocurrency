@@ -22,8 +22,8 @@ set_property(GLOBAL PROPERTY _CMAKE_FindGit_GIT_EXECUTABLE_VERSION
 include(ExternalProject)
 ExternalProject_Add(cpr-populate
                      "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/libcpr/cpr.git" "GIT_TAG" "ee7f91f5566b6279aadf6d0b1aaf56b11963f527"
-                    SOURCE_DIR          "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-src"
-                    BINARY_DIR          "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-build"
+                    SOURCE_DIR          "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-src"
+                    BINARY_DIR          "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-build"
                     CONFIGURE_COMMAND   ""
                     BUILD_COMMAND       ""
                     INSTALL_COMMAND     ""

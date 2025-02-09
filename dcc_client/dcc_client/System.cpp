@@ -2,7 +2,6 @@
 #include "System.h"
 
 
-
 // Execute a command in the main thread and print the output
 std::string ExecuteCommand(const char* cmd, bool printout)
 {
@@ -15,8 +14,8 @@ std::string ExecuteCommand(const char* cmd, bool printout)
 	}
 	while (fgets(buffer.data(), (int)(buffer.size()), pipe.get()) != nullptr) {
 		result += buffer.data();
-		if(printout)
-		std::cout << buffer.data();
+		if (printout)
+			std::cout << buffer.data();
 	}
 #else
 	system(cmd);
@@ -26,17 +25,33 @@ std::string ExecuteCommand(const char* cmd, bool printout)
 	return "";
 }
 
+std::string GetStdoutFromCommand(std::string cmd)
+{
+	std::string data;
+	FILE* stream;
+	const int max_buffer = 256;
+	char buffer[max_buffer];
+	cmd.append(" 2>&1");
+	stream = popen(cmd.c_str(), "r");
+	if (stream) {
+		while (!feof(stream)) {
+			if (fgets(buffer, max_buffer, stream) != NULL)
+				data.append(buffer);
+		}
+		pclose(stream);
+	}
+	return data;
+}
+
 // Execute a process in an asynchronous background thread
 boost::process::child ExecuteAsync(std::string cmd, bool printOutput)
 {
-	try
-	{
+	try {
 		namespace bp = boost::process;
 		std::vector<std::string> splitCommand = SplitString(cmd, " ");
 		std::string command = splitCommand[0];
 		std::string args;
-		for (int i = 1; i < sizeof(splitCommand) / sizeof(splitCommand[0]); i++)
-		{
+		for (int i = 1; i < sizeof(splitCommand) / sizeof(splitCommand[0]); i++) {
 			args += splitCommand[i] + " ";
 		}
 
@@ -48,11 +63,9 @@ boost::process::child ExecuteAsync(std::string cmd, bool printOutput)
 
 		return c;
 	}
-	catch (const std::exception&)
-	{
+	catch (const std::exception&) {
 		return boost::process::child();
 	}
 
 	return boost::process::child();
 }
-

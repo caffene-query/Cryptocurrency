@@ -22,8 +22,8 @@ set_property(GLOBAL PROPERTY _CMAKE_FindGit_GIT_EXECUTABLE_VERSION
 include(ExternalProject)
 ExternalProject_Add(zlib-populate
                      "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/zlib-ng/zlib-ng" "GIT_TAG" "2.0.5"
-                    SOURCE_DIR          "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src"
-                    BINARY_DIR          "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-build"
+                    SOURCE_DIR          "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src"
+                    BINARY_DIR          "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-build"
                     CONFIGURE_COMMAND   ""
                     BUILD_COMMAND       ""
                     INSTALL_COMMAND     ""

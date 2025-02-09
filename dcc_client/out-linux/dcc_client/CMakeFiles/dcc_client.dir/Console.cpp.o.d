@@ -1,7 +1,7 @@
 dcc_client/CMakeFiles/dcc_client.dir/Console.cpp.o: \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/Console.cpp \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/Console.cpp \
  /usr/include/stdc-predef.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/Console.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/Console.h \
  /usr/include/c++/12/queue /usr/include/c++/12/deque \
  /usr/include/c++/12/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
@@ -56,7 +56,7 @@ dcc_client/CMakeFiles/dcc_client.dir/Console.cpp.o: \
  /usr/include/c++/12/bits/vector.tcc /usr/include/c++/12/bits/stl_heap.h \
  /usr/include/c++/12/bits/stl_queue.h \
  /usr/include/c++/12/bits/uses_allocator.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/indicators.hpp \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/indicators.hpp \
  /usr/include/c++/12/iostream /usr/include/c++/12/ostream \
  /usr/include/c++/12/ios /usr/include/c++/12/iosfwd \
  /usr/include/c++/12/bits/stringfwd.h /usr/include/c++/12/bits/postypes.h \
@@ -259,7 +259,7 @@ dcc_client/CMakeFiles/dcc_client.dir/Console.cpp.o: \
  /usr/include/c++/12/bits/node_handle.h \
  /usr/include/c++/12/bits/unordered_map.h \
  /usr/include/c++/12/bits/erase_if.h /usr/include/c++/12/array \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/strops.h \
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/strops.h \
  /usr/include/c++/12/cstring /usr/include/string.h /usr/include/strings.h \
  /usr/include/c++/12/math.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/dcc_client/BaseConverter.h
+ /home/sam/Code/AetherGrid/dcc_client/dcc_client/BaseConverter.h

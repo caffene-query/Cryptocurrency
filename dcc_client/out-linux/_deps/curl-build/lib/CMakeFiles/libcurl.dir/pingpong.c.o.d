@@ -1,11 +1,11 @@
 _deps/curl-build/lib/CMakeFiles/libcurl.dir/pingpong.c.o: \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/pingpong.c \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/pingpong.c \
  /usr/include/stdc-predef.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/curl_setup.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-build/lib/curl_config.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/curlver.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/system.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/curl_setup.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-build/lib/curl_config.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/curlver.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/system.h \
  /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/features.h \
  /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -82,14 +82,14 @@ _deps/curl-build/lib/CMakeFiles/libcurl.dir/pingpong.c.o: \
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
  /usr/include/x86_64-linux-gnu/sys/time.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/easy.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/multi.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/urlapi.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/options.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/typecheck-gcc.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/easy.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/multi.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/curl.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/urlapi.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/options.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/typecheck-gcc.h \
  /usr/include/assert.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/curl_setup_once.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/curl_setup_once.h \
  /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h \
  /usr/include/x86_64-linux-gnu/bits/waitstatus.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
@@ -108,70 +108,70 @@ _deps/curl-build/lib/CMakeFiles/libcurl.dir/pingpong.c.o: \
  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/curl_ctype.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/urldata.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/cookie.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/psl.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/formdata.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/curl_ctype.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/urldata.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/cookie.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/psl.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/formdata.h \
  /usr/include/netinet/in.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/in.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/timeval.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/http_chunks.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/hostip.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/hash.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/llist.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/curl_addrinfo.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/timeval.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/http_chunks.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/hostip.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/hash.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/llist.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/curl_addrinfo.h \
  /usr/include/netdb.h /usr/include/rpc/netdb.h \
  /usr/include/x86_64-linux-gnu/bits/netdb.h /usr/include/arpa/inet.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/asyn.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/asyn.h \
  /usr/include/setjmp.h /usr/include/x86_64-linux-gnu/bits/setjmp.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/splay.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/dynbuf.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/mime.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/imap.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/pingpong.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/curl_sasl.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/bufref.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/pop3.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/smtp.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/ftp.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/file.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/vssh/ssh.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/curl_setup.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/http.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/rtsp.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/smb.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/mqtt.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/wildcard.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/multihandle.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/conncache.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/socketpair.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/quic.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/c-hyper.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/sendf.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/select.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/splay.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/dynbuf.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/mime.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/imap.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/pingpong.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/curl_sasl.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/bufref.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/pop3.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/smtp.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/ftp.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/file.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/vssh/ssh.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/curl_setup.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/http.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/rtsp.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/smb.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/mqtt.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/wildcard.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/multihandle.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/conncache.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/socketpair.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/quic.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/c-hyper.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/sendf.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/select.h \
  /usr/include/poll.h /usr/include/x86_64-linux-gnu/sys/poll.h \
  /usr/include/x86_64-linux-gnu/bits/poll.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/progress.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/speedcheck.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/multiif.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/non-ascii.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/vtls/vtls.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/vtls/openssl.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/urldata.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/vtls/gtls.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/vtls/nssg.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/vtls/gskit.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/vtls/wolfssl.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/vtls/schannel.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/vtls/sectransp.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/vtls/mbedtls.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/vtls/mesalink.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/vtls/bearssl.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/vtls/rustls.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/curl_printf.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/mprintf.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/curl_memory.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/lib/memdebug.h
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/progress.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/speedcheck.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/multiif.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/non-ascii.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/vtls/vtls.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/vtls/openssl.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/urldata.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/vtls/gtls.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/vtls/nssg.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/vtls/gskit.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/vtls/wolfssl.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/vtls/schannel.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/vtls/sectransp.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/vtls/mbedtls.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/vtls/mesalink.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/vtls/bearssl.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/vtls/rustls.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/curl_printf.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/mprintf.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/curl_memory.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/lib/memdebug.h

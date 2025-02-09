@@ -1,9 +1,9 @@
 _deps/zlib-build/CMakeFiles/zlib.dir/trees.c.o: \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src/trees.c \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src/trees.c \
  /usr/include/stdc-predef.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src/zbuild.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src/deflate.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src/zutil.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src/zbuild.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src/deflate.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src/zutil.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h /usr/include/string.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -24,9 +24,9 @@ _deps/zlib-build/CMakeFiles/zlib.dir/trees.c.o: \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src/zlib.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src/zlib.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-build/zconf.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-build/zconf.h \
  /usr/include/x86_64-linux-gnu/sys/types.h \
  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
@@ -34,8 +34,8 @@ _deps/zlib-build/CMakeFiles/zlib.dir/trees.c.o: \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h \
  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src/arch/x86/x86.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src/zendian.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src/trees.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src/trees_emit.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src/trees_tbl.h
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src/arch/x86/x86.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src/zendian.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src/trees.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src/trees_emit.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src/trees_tbl.h

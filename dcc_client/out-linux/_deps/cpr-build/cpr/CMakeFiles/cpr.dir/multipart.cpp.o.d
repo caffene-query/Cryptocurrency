@@ -1,7 +1,7 @@
 _deps/cpr-build/cpr/CMakeFiles/cpr.dir/multipart.cpp.o: \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-src/cpr/multipart.cpp \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-src/cpr/multipart.cpp \
  /usr/include/stdc-predef.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-src/include/cpr/multipart.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-src/include/cpr/multipart.h \
  /usr/include/c++/12/cstdint \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \

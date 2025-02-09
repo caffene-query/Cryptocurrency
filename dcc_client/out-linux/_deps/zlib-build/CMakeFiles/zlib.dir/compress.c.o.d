@@ -1,8 +1,8 @@
 _deps/zlib-build/CMakeFiles/zlib.dir/compress.c.o: \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src/compress.c \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src/compress.c \
  /usr/include/stdc-predef.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src/zbuild.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src/zlib.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src/zbuild.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src/zlib.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -19,7 +19,7 @@ _deps/zlib-build/CMakeFiles/zlib.dir/compress.c.o: \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-build/zconf.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-build/zconf.h \
  /usr/include/x86_64-linux-gnu/sys/types.h \
  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \

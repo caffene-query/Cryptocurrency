@@ -14,8 +14,8 @@ project(curl-populate NONE)
 include(ExternalProject)
 ExternalProject_Add(curl-populate
                      "UPDATE_DISCONNECTED" "False" "DOWNLOAD_EXTRACT_TIMESTAMP" "TRUE" "URL" "https://github.com/curl/curl/releases/download/curl-7_80_0/curl-7.80.0.tar.xz" "URL_HASH" "SHA256=a132bd93188b938771135ac7c1f3ac1d3ce507c1fcbef8c471397639214ae2ab"
-                    SOURCE_DIR          "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src"
-                    BINARY_DIR          "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-build"
+                    SOURCE_DIR          "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src"
+                    BINARY_DIR          "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-build"
                     CONFIGURE_COMMAND   ""
                     BUILD_COMMAND       ""
                     INSTALL_COMMAND     ""

@@ -1,7 +1,7 @@
 _deps/cpr-build/cpr/CMakeFiles/cpr.dir/bearer.cpp.o: \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-src/cpr/bearer.cpp \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-src/cpr/bearer.cpp \
  /usr/include/stdc-predef.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-src/include/cpr/bearer.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-src/include/cpr/bearer.h \
  /usr/include/c++/12/string \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \
@@ -115,5 +115,5 @@ _deps/cpr-build/cpr/CMakeFiles/cpr.dir/bearer.cpp.o: \
  /usr/include/c++/12/bits/functional_hash.h \
  /usr/include/c++/12/bits/hash_bytes.h \
  /usr/include/c++/12/bits/basic_string.tcc \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src/include/curl/curlver.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src/include/curl/curlver.h \
  /usr/include/c++/12/utility /usr/include/c++/12/bits/stl_relops.h

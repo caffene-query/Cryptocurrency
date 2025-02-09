@@ -1,4 +1,4 @@
-# Install script for directory: /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-src/cpr
+# Install script for directory: /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-src/cpr
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -55,8 +55,8 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
     endif()
   endforeach()
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES
-    "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-build/cpr/libcpr.so.1.8.2"
-    "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-build/cpr/libcpr.so.1"
+    "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-build/cpr/libcpr.so.1.8.2"
+    "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-build/cpr/libcpr.so.1"
     )
   foreach(file
       "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libcpr.so.1.8.2"
@@ -66,7 +66,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
        NOT IS_SYMLINK "${file}")
       file(RPATH_CHANGE
            FILE "${file}"
-           OLD_RPATH "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-build/lib:"
+           OLD_RPATH "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-build/lib:"
            NEW_RPATH "")
       if(CMAKE_INSTALL_DO_STRIP)
         execute_process(COMMAND "/usr/bin/strip" "${file}")
@@ -82,12 +82,12 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libcpr.so"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/cpr-build/cpr/libcpr.so")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/cpr-build/cpr/libcpr.so")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libcpr.so" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libcpr.so")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libcpr.so"
-         OLD_RPATH "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-build/lib:"
+         OLD_RPATH "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-build/lib:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libcpr.so")

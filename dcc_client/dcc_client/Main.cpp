@@ -43,6 +43,9 @@ std::string peerPort = "";
 
 unsigned long long flops = 0;
 
+std::string processorName;
+std::string gpuName;
+
 //int transactionNumber = 0;
 
 //Console console;
@@ -64,12 +67,19 @@ int main()
 	console::SystemPrint();
 	console::WriteLine("Benchmarking... ");
 	flops = benchmark();
+	processorName = TrimString(GetStdoutFromCommand("lscpu | grep 'Model name' | cut -f 2 -d \":\" | awk '{$1=$1}1'"));
+	gpuName = TrimString(GetStdoutFromCommand("inxi -G | grep -i 'opengl.*renderer' | sed -n 's/.*renderer:.*(\\(.*\\)).*/\\1/p'"));
+
 	std::cout << "                                                          \r";
 	console::SystemPrint();
 	console::Write("Benchmark results: ");
 	console::Write(truncateMetricNum(flops) + "Flops", console::cyanFGColor);
 	console::Write(" across ");
 	console::Write(std::to_string(processor_count) + " cores", console::cyanFGColor);
+	console::Write(" on ");
+	console::Write(processorName, console::cyanFGColor);
+	console::Write(", also with unmeasured ");
+	console::Write(gpuName, console::cyanFGColor);
 	console::WriteLine(" ok", console::greenFGColor);
 
 	if (WalletSettingValues::verbose >= 6) {

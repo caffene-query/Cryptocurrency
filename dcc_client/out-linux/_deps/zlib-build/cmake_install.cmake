@@ -1,4 +1,4 @@
-# Install script for directory: /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src
+# Install script for directory: /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -63,8 +63,8 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   file(INSTALL DESTINATION "/usr/local/lib" TYPE SHARED_LIBRARY FILES
-    "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-build/libz.so.1.2.11.zlib-ng"
-    "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-build/libz.so.1"
+    "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-build/libz.so.1.2.11.zlib-ng"
+    "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-build/libz.so.1"
     )
   foreach(file
       "$ENV{DESTDIR}/usr/local/lib/libz.so.1.2.11.zlib-ng"
@@ -94,7 +94,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/usr/local/lib" TYPE SHARED_LIBRARY FILES "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-build/libz.so")
+  file(INSTALL DESTINATION "/usr/local/lib" TYPE SHARED_LIBRARY FILES "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-build/libz.so")
   if(EXISTS "$ENV{DESTDIR}/usr/local/lib/libz.so" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}/usr/local/lib/libz.so")
     if(CMAKE_INSTALL_DO_STRIP)
@@ -112,7 +112,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/usr/local/include" TYPE FILE RENAME "zlib.h" FILES "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src/zlib.h")
+  file(INSTALL DESTINATION "/usr/local/include" TYPE FILE RENAME "zlib.h" FILES "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src/zlib.h")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -124,7 +124,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/usr/local/include" TYPE FILE RENAME "zconf.h" FILES "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-build/zconf.h")
+  file(INSTALL DESTINATION "/usr/local/include" TYPE FILE RENAME "zconf.h" FILES "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-build/zconf.h")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -136,6 +136,6 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/usr/local/lib/pkgconfig" TYPE FILE FILES "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-build/zlib.pc")
+  file(INSTALL DESTINATION "/usr/local/lib/pkgconfig" TYPE FILE FILES "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-build/zlib.pc")
 endif()
 

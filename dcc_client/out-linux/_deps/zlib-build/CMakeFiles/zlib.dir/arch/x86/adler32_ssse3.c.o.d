@@ -1,8 +1,8 @@
 _deps/zlib-build/CMakeFiles/zlib.dir/arch/x86/adler32_ssse3.c.o: \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src/arch/x86/adler32_ssse3.c \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src/arch/x86/adler32_ssse3.c \
  /usr/include/stdc-predef.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src/arch/x86/../../zbuild.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src/arch/x86/../../zutil.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src/arch/x86/../../zbuild.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src/arch/x86/../../zutil.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h /usr/include/string.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -23,9 +23,9 @@ _deps/zlib-build/CMakeFiles/zlib.dir/arch/x86/adler32_ssse3.c.o: \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src/arch/x86/../../zlib.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src/arch/x86/../../zlib.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-build/zconf.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-build/zconf.h \
  /usr/include/x86_64-linux-gnu/sys/types.h \
  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
@@ -33,9 +33,9 @@ _deps/zlib-build/CMakeFiles/zlib.dir/arch/x86/adler32_ssse3.c.o: \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h \
  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src/arch/x86/../../zbuild.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src/arch/x86/../../arch/x86/x86.h \
- /home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/zlib-src/arch/x86/../../adler32_p.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src/arch/x86/../../zbuild.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src/arch/x86/../../arch/x86/x86.h \
+ /home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/zlib-src/arch/x86/../../adler32_p.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/immintrin.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/x86gprintrin.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/ia32intrin.h \

@@ -4,19 +4,19 @@
 cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
-  "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-src"
-  "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-build"
-  "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-subbuild/curl-populate-prefix"
-  "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-subbuild/curl-populate-prefix/tmp"
-  "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-subbuild/curl-populate-prefix/src/curl-populate-stamp"
-  "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-subbuild/curl-populate-prefix/src"
-  "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-subbuild/curl-populate-prefix/src/curl-populate-stamp"
+  "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-src"
+  "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-build"
+  "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-subbuild/curl-populate-prefix"
+  "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-subbuild/curl-populate-prefix/tmp"
+  "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-subbuild/curl-populate-prefix/src/curl-populate-stamp"
+  "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-subbuild/curl-populate-prefix/src"
+  "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-subbuild/curl-populate-prefix/src/curl-populate-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-subbuild/curl-populate-prefix/src/curl-populate-stamp/${subDir}")
+    file(MAKE_DIRECTORY "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-subbuild/curl-populate-prefix/src/curl-populate-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "/home/sam/Code/Distributed-Compute-Coin/dcc_client/out-linux/_deps/curl-subbuild/curl-populate-prefix/src/curl-populate-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "/home/sam/Code/AetherGrid/dcc_client/out-linux/_deps/curl-subbuild/curl-populate-prefix/src/curl-populate-stamp${cfgdir}") # cfgdir has leading slash
 endif()

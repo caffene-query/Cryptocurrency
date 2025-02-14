@@ -12,7 +12,7 @@ If you want to learn more, please feel free to go to [the wiki.](https://github.
 
 ## Installation / Use:
 1. First, either clone with `git clone https://github.com/sam-astro/Distributed-Compute-Coin` or download it as a ZIP file, and extract it.
-2. Install requirements, which are: `inxi podman`
+2. Install requirements, which are: `inxi podman openssl libssl-dev libboost-all-dev`
 3. All of the builds are packaged in this folder. They all follow the same directory map, and the binary is located at `dcc_client/out-linux/dcc_client/dcc_client`.
 4. A change from the C# version, is that all functionality is now combined into a single program, which can handle transactions, submitting programs, and mining. It is also currently a command-line only interface while in development. 
 5. **If you are interested in earning Aether, then you can use the Mining aspect of the client.** The miner verifies the blockchain network, and also run programs created by developers. The miner utilizes containers to keep any run programs separate from your own computer. It utilizes **Podman**, an open source, secure, and light-weight alternative to Docker. You can install Podman by going to the [Podman website](https://podman.io/) and following the instructions there, which should only take a few minutes. Just use the `--mine` command to start mining a single block. You can also specify how many blocks you want to mine after the command like: `--mine 10` will mine 10 blocks. Using `-1` will mine until you stop the program.
